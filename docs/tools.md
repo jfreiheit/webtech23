@@ -27,7 +27,7 @@ Gewähren Sie mir Zugriff auf Ihr zentrales Repository. Auf GitHub finden Sie mi
 
 ### Repository initial anlegen
 
-Wir zeigen das Erstellen eines Repositories exemplarisch für `GitHub`. ***Die Beispiele hier sind für das Jahr 2020, funktionieren aber noch genau so. Ersetzen Sie einfach  `20` durch `22`.***
+Wir zeigen das Erstellen eines Repositories exemplarisch für `GitHub`. ***Die Beispiele hier sind für das Jahr 2020, funktionieren aber noch genau so. Ersetzen Sie einfach  `20` durch `23`.***
 
 #### Option A: Repository zunächst in Github anlegen, dann clonen
 
