@@ -1,0 +1,82 @@
+# Project information
+site_name: WebTech
+site_description: Lehrmaterial, Übungen, Aufgaben und Hilfen für WebTech
+site_author: Jörn Freiheit
+site_url: http://freiheit.f4.htw-berlin.de/webtech
+
+# Repository
+repo_name: webtech
+repo_url: https://github.com/jfreiheit/webtech
+
+# Copyright
+copyright: Copyright &copy; 2022 Jörn Freiheit
+
+# Configuration
+theme:
+  name: material
+  language: de
+  palette:
+    primary: grey
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+#    - navigation.tabs
+    - navigation.tracking
+  favicon: img/favicon.png
+  logo: img/fiw.jpg
+
+extra_css:
+  - extra.css
+
+# Extensions
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tilde
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+#Navigation
+nav:
+    - Home: index.md
+    - Einführung: einfuehrung.md
+    - HTML: html.md
+    - CSS: css.md
+    - RWD: rwd.md 
+    - JavaScript: javascript.md 
+    - Angular: angular.md 
+    - JSON und Direktiven: angular2.md
+    - Routing und Services: routing.md 
+    - Backend (MongoDB): backend.md 
+    - Backend (PostgreSQL): backend_pg.md
+    - Frontend-Backend-Anbindung: fe-be-anbindung.md 
+    - RxJS und Guards: guards.md 
+    - Deployment: deployment.md 
+    - Übungen: uebungen.md
+    - Promises: promises.md 
+    - Werkzeuge: tools.md

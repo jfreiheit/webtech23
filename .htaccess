@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "WebTech 2021/22"
+AuthUserFile "/home/local/.htpasswd"
+Require valid-user

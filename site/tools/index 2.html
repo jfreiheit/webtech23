@@ -1,0 +1,1350 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Lehrmaterial, Übungen, Aufgaben und Hilfen für WebTech">
+      
+      
+        <meta name="author" content="Jörn Freiheit">
+      
+      
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/webtech/tools/">
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Werkzeuge - WebTech</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#werkzeuge" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="WebTech" class="md-header__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WebTech
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Werkzeuge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WebTech" class="md-nav__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    WebTech
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../einfuehrung/" class="md-nav__link">
+        Einführung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html/" class="md-nav__link">
+        HTML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../css/" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rwd/" class="md-nav__link">
+        RWD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript/" class="md-nav__link">
+        JavaScript
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular/" class="md-nav__link">
+        Angular
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular2/" class="md-nav__link">
+        JSON und Direktiven
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        Routing und Services
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend/" class="md-nav__link">
+        Backend (MongoDB)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend_pg/" class="md-nav__link">
+        Backend (PostgreSQL)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fe-be-anbindung/" class="md-nav__link">
+        Frontend-Backend-Anbindung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guards/" class="md-nav__link">
+        RxJS und Guards
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uebungen/" class="md-nav__link">
+        Übungen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Werkzeuge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Werkzeuge
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-development-environment-ide" class="md-nav__link">
+    Integrated Development Environment (IDE)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
+  </a>
+  
+    <nav class="md-nav" aria-label="Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-initial-anlegen" class="md-nav__link">
+    Repository initial anlegen
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository initial anlegen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-repository-zunachst-in-github-anlegen-dann-clonen" class="md-nav__link">
+    Option A: Repository zunächst in Github anlegen, dann clonen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-repository-in-github-anlegen-und-lokal-anlegen-dann-verbinden" class="md-nav__link">
+    Option B: Repository in Github anlegen und lokal anlegen, dann verbinden
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-tools" class="md-nav__link">
+    Developer Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome" class="md-nav__link">
+    Chrome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firefox" class="md-nav__link">
+    Firefox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safari" class="md-nav__link">
+    Safari
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    Curl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    Postman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodejs" class="md-nav__link">
+    Node.js
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#angular" class="md-nav__link">
+    Angular
+  </a>
+  
+    <nav class="md-nav" aria-label="Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installationen" class="md-nav__link">
+    Installationen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-angularcli" class="md-nav__link">
+    Update @angular/cli
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    MySQL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phpmyadmin" class="md-nav__link">
+    phpMyadmin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mongodb" class="md-nav__link">
+    MongoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="MongoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-atlas" class="md-nav__link">
+    MongoDB Atlas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-compass" class="md-nav__link">
+    MongoDB Compass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongosh-mongodb-in-der-shell" class="md-nav__link">
+    Mongosh - MongoDB in der Shell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weitere-hilfen" class="md-nav__link">
+    Weitere Hilfen
+  </a>
+  
+    <nav class="md-nav" aria-label="Weitere Hilfen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prozesse-und-ports" class="md-nav__link">
+    Prozesse und Ports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#integrated-development-environment-ide" class="md-nav__link">
+    Integrated Development Environment (IDE)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
+  </a>
+  
+    <nav class="md-nav" aria-label="Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-initial-anlegen" class="md-nav__link">
+    Repository initial anlegen
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository initial anlegen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-repository-zunachst-in-github-anlegen-dann-clonen" class="md-nav__link">
+    Option A: Repository zunächst in Github anlegen, dann clonen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-repository-in-github-anlegen-und-lokal-anlegen-dann-verbinden" class="md-nav__link">
+    Option B: Repository in Github anlegen und lokal anlegen, dann verbinden
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-tools" class="md-nav__link">
+    Developer Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chrome" class="md-nav__link">
+    Chrome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firefox" class="md-nav__link">
+    Firefox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safari" class="md-nav__link">
+    Safari
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    Curl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    Postman
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodejs" class="md-nav__link">
+    Node.js
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#angular" class="md-nav__link">
+    Angular
+  </a>
+  
+    <nav class="md-nav" aria-label="Angular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installationen" class="md-nav__link">
+    Installationen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-angularcli" class="md-nav__link">
+    Update @angular/cli
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    MySQL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phpmyadmin" class="md-nav__link">
+    phpMyadmin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mongodb" class="md-nav__link">
+    MongoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="MongoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-atlas" class="md-nav__link">
+    MongoDB Atlas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-compass" class="md-nav__link">
+    MongoDB Compass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongosh-mongodb-in-der-shell" class="md-nav__link">
+    Mongosh - MongoDB in der Shell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weitere-hilfen" class="md-nav__link">
+    Weitere Hilfen
+  </a>
+  
+    <nav class="md-nav" aria-label="Weitere Hilfen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prozesse-und-ports" class="md-nav__link">
+    Prozesse und Ports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/jfreiheit/webtech/edit/master/docs/tools.md" title="Seite editieren" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="werkzeuge">Werkzeuge<a class="headerlink" href="#werkzeuge" title="Permanent link">&para;</a></h1>
+<h2 id="integrated-development-environment-ide">Integrated Development Environment (IDE)<a class="headerlink" href="#integrated-development-environment-ide" title="Permanent link">&para;</a></h2>
+<p>Für die Webentwicklung stehen Ihnen viele gute Entwicklungswerkzeuge zur Verfügung. Für welches Sie sich entscheiden, bleibt Ihnen überlassen. Hier eine Auswahl der aus meiner Sicht besten Entwicklungswerkzeuge:</p>
+<ul>
+<li><a href="https://www.jetbrains.com/de-de/idea/">IntelliJ IDEA</a></li>
+<li><a href="https://www.jetbrains.com/de-de/phpstorm/">PhpStorm</a></li>
+<li><a href="https://www.jetbrains.com/de-de/webstorm/">WebStorm</a></li>
+<li><a href="https://www.sublimetext.com/">Sublime Text</a></li>
+<li><a href="https://atom.io/">Atom</a></li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+</ul>
+<p>Für die Tools von Jetbrains benötigen Sie einen Account. Mit Ihrer HTW-E-Mail-Adresse bekommen Sie aber eine kostenlose Hochschullizenz und können so die Enterprise-Versionen kostenlos nutzen. Sublime Text ist Shareware und fragt regelmäßig, ob Sie spenden möchten.  </p>
+<p>Ich werde in den Vorlesungen und Übungen <a href="https://code.visualstudio.com/">Visual Studio Code</a> verwenden. <a href="https://code.visualstudio.com/">Visual Studio Code</a> ist auch auf den Laborrechnern verfügbar.</p>
+<h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+<p><a href="https://git-scm.com/"><strong>Git</strong></a> ist ein Werkzeug zur Versionskontrolle und zum gemeinsamen Entwickeln in Teams. Nach jeder Übung committen Sie Ihre Lösung und pushen Sie auf einen zentralen, netzbasierten Dienst, wie z.B.</p>
+<ul>
+<li><a href="https://github.com/">GitHub</a></li>
+<li><a href="https://about.gitlab.com/">GitLab</a></li>
+<li><a href="https://bitbucket.org/product/">Bibucket</a> </li>
+</ul>
+<p>Gewähren Sie mir Zugriff auf Ihr zentrales Repository. Auf GitHub finden Sie mich unter <em>jfreiheit</em> bzw. meiner E-Mail-Adresse <em><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#101;&#114;&#110;&#46;&#102;&#114;&#101;&#105;&#104;&#101;&#105;&#116;&#64;&#104;&#116;&#119;&#45;&#98;&#101;&#114;&#108;&#105;&#110;&#46;&#100;&#101;">&#106;&#111;&#101;&#114;&#110;&#46;&#102;&#114;&#101;&#105;&#104;&#101;&#105;&#116;&#64;&#104;&#116;&#119;&#45;&#98;&#101;&#114;&#108;&#105;&#110;&#46;&#100;&#101;</a></em>.</p>
+<h3 id="repository-initial-anlegen">Repository initial anlegen<a class="headerlink" href="#repository-initial-anlegen" title="Permanent link">&para;</a></h3>
+<p>Wir zeigen das Erstellen eines Repositories exemplarisch für <code>GitHub</code>. <strong><em>Die Beispiele hier sind für das Jahr 2020, funktionieren aber noch genau so. Ersetzen Sie einfach  <code>20</code> durch <code>22</code>.</em></strong></p>
+<h4 id="option-a-repository-zunachst-in-github-anlegen-dann-clonen">Option A: Repository zunächst in Github anlegen, dann clonen<a class="headerlink" href="#option-a-repository-zunachst-in-github-anlegen-dann-clonen" title="Permanent link">&para;</a></h4>
+<p>Als erstes loggen Sie sich in Github ein. Dort gibt es in der linken oberen Ecke einen Button <code>New</code>, siehe Bild:</p>
+<p><img alt="GitHub" src="../files/44_git1.png" /></p>
+<p>Klicken Sie darauf und geben Sie die notwendigen Informationen ein (Beschreibung ist optional):</p>
+<p><img alt="GitHub" src="../files/45_git2.png" /></p>
+<p>Sie können wählen, ob das Repository <code>Public</code> (für alle lesbar) oder <code>Private</code> (nur für Eingeladene lesbar) sein soll. Klicken Sie auf den Button <code>Create repository</code>. Kopieren Sie sich nun den Remote-Pfad in Ihre Zwischenablage, hier <code>https://github.com/jfreiheit/Webtech20.git</code>. </p>
+<p>Wechseln Sie nun lokal in Ihr <code>Terminal</code> und wechseln in Ihren Workspace Ihrer IDE. Ich wähle hier den Pfad <code>/Users/jornfreiheit/Sites</code>, da dieser Pfad gleichzeitig mein <code>DocumentRoot</code>ist, d.h., wenn ich <code>localhost</code> im Browser aufrufe, dann wird in diesem Pfad nach den Webseiten "gesucht". </p>
+<div class="highlight"><pre><span></span><code>jornfreiheit@Jorns-MacBook-Pro Sites % <span class="nb">pwd</span>
+/Users/jornfreiheit/Sites
+</code></pre></div>
+<p>Geben Sie dort nun ein: </p>
+<div class="highlight"><pre><span></span><code>jornfreiheit@Jorns-MacBook-Pro Sites % git clone https://github.com/jfreiheit/Webtech20.git
+Cloning into <span class="s1">&#39;Webtech20&#39;</span>...
+warning: You appear to have cloned an empty repository.
+</code></pre></div>
+<p>also <code>git clone</code> gefolgt von dem Remote-Pfad aus Ihrer Zwischenablage. Wenn Sie in Github weder <code>README.md</code> noch <code>.gitignore</code> ausgewählt hatten, dann erhalten Sie eine Warnung, dass Sie ein leeres Repository clonen. Das ist aber kein Problem. Sie können aber auch beide Datein in Ihr Repository integrieren, die <code>.gitignore</code>verwenden wir auf jeden Fall. In dem Ordner, in den Sie geclont haben, wird nun ein Ordner <code>Webtech20</code> angelegt. Diesen Ordner können Sie nun als Workspace Ihrer IDE verwenden. Also z.B. mit <code>IntelliJ IDEA</code>:</p>
+<p><img alt="GitHub" src="../files/46_git3.png" /></p>
+<p>öffnen Sie das Projekt (<code>Open or import</code>) <code>Webtech20</code>. Es erscheint:</p>
+<p><img alt="GitHub" src="../files/47_git4.png" /></p>
+<p>Hier können Sie wählen, dass neue Dateien immer automatisch zum Git-Repoitory hinzugefügt werden - das können Sie aber auch immer manuell machen (<code>git add .</code>). Angenommen, wir erstellen uns jetzt eine Datei <code>index.html</code> (<code>File --&gt; New --&gt; HTML File</code>) mit:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">index.html</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Erster Test<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Willkommen<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Das ist die Datei index.html. Sie liegt bei mir
+    unter /Users/jornfreiheit/Sites/Webtech20.
+    Der Ordner /Users/jornfreiheit/Sites ist mein
+    DocumentRoot, deshalb kann ich diese Datei im Browser
+    unter localhost/Webtech20/index.html aufrufen.
+    Der Ordner Webtech20 wird von Git verwaltet. <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Da der Ordner <code>Sites</code> bei mir DocumentRoot ist und sich der <code>Webtech20</code>-Ordner (in dem die neue <code>index.html</code> ist) direkt darunter befindet, kann ich mir die Datei im Browser unter <code>localhost/Webtech20/index.html</code> anzeigen lassen. Das nat nichts mit Git zu tun, sondern mit dem DocumentRoot des lokalen Webservers.</p>
+<p>Wir fügen im Terminal im <code>Webtech20</code>-Ordner diese Datei dem Git-Repoitory hinzu (falls noch nicht automatisch durch unsere IDE passiert):</p>
+<div class="highlight"><pre><span></span><code>jornfreiheit@Jorns-MacBook-Pro Webtech20 % git add index.html
+jornfreiheit@Jorns-MacBook-Pro Webtech20 % git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+  new file:   .idea/.gitignore
+  new file:   .idea/Webtech20.iml
+  new file:   .idea/misc.xml
+  new file:   .idea/modules.xml
+  new file:   .idea/vcs.xml
+  new file:   index.html
+
+jornfreiheit@Jorns-MacBook-Pro Webtech20 % 
+</code></pre></div>
+<p>Außerdem sollten wir den <code>.idea</code>-Ordner von der Git-Verwaltung ausschließen. Dazu erstellen wir im <code>Webtech20</code>-Ordner eine Datei <code>.gitignore</code>, falls diese noch nicht existiert und tragen dort <code>.idea</code> ein. Fügen Sie die Datei <code>.gitignore</code> Ihrem repository hinzu, führen Sie Ihr erstes Commit aus und pushen Ihr Repository nach Github:</p>
+<div class="highlight"><pre><span></span><code>git add .ignore
+git commit -m <span class="s2">&quot;erstes commit&quot;</span>
+git push
+</code></pre></div>
+<p>In Github erkenn Sie, dass commit und push geklappt haben:</p>
+<p><img alt="GitHub" src="../files/48_git5.png" /></p>
+<p>In Zukunft fügen Sie Ihre neu erstellten Dateien und Ordner immer mit <code>git add .</code> hinzu, erstellen neue Commits mit <code>git commit -m "Commit-Nachricht"</code> und pushen dann nach Github mit <code>git push</code>. </p>
+<h4 id="option-b-repository-in-github-anlegen-und-lokal-anlegen-dann-verbinden">Option B: Repository in Github anlegen und lokal anlegen, dann verbinden<a class="headerlink" href="#option-b-repository-in-github-anlegen-und-lokal-anlegen-dann-verbinden" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Legen Sie sich wie oben beschrieben ein Repository unter GitHub an. Kopieren Sie die <em>Remote-URL</em> (z.B. <code>https://github.com/jfreiheit/Webtech20.git</code>). </li>
+<li>Erstellen Sie sich lokal einen Ordner (am besten in Ihrem <em>DocumentRoot</em>), z.B. <code>Webtech20</code> (<code>mkdir Webtech20</code>). Wechseln Sie in diesen Ordner (<code>cd Webtech20</code>) und führen Sie dort <code>git init</code> aus. Es entsteht ein <code>.git</code>-Ordner. </li>
+<li>Fügen Sie diesem lokalen Repository alle Ihre bisher in <code>Webtech20</code> erstellten Dateien mit <code>git add .</code> hinzu. </li>
+<li>Erstellen Sie ein Commit, z.B. <code>git commit -m "initial commit"</code>.</li>
+<li>Verbinden Sie Ihr lokales Repository mit dem remote-Repository auf Github durch <code>git remote add origin https://github.com/jfreiheit/Webtech20.git</code> (für <code>https://...</code> setzen Sie Ihre <em>Remote-URL</em> ein).</li>
+<li>Pushen Sie die Dateien auf Ihr remote-Repository: <code>git push --set-upstream origin master</code>. </li>
+</ol>
+<p>In Zukunft fügen Sie Ihre neu erstellten Dateien und Ordner immer mit <code>git add .</code> hinzu, erstellen neue Commits mit <code>git commit -m "Commit-Nachricht"</code> und pushen dann nach Github mit <code>git push</code>. </p>
+<h2 id="developer-tools">Developer Tools<a class="headerlink" href="#developer-tools" title="Permanent link">&para;</a></h2>
+<p>Alle Browser sind mit Werkzeugen ausgestattet, die es Web-Entwicklerinnen ermöglichen, im Browser Informationen über die Webanwendung zu erhalten. Für einige Browser ist hier angegeben, wie Sie diese Entwicklerwerkzeuge einschalten.</p>
+<h3 id="chrome">Chrome<a class="headerlink" href="#chrome" title="Permanent link">&para;</a></h3>
+<p>In Chrome sind die Entwicklerwerkzeuge unter dem Menü neben der URL-Eingabezeile unter <code>Weitere Tools --&gt; Entwicklertools</code> verfügbar (siehe folgendes Bild).</p>
+<p><img alt="Entwicklertools" src="../files/21_tools1.png" /></p>
+<p>Die eingeschalteten Entwicklertools offenbaren Ihnen umfassende Informationen über die angezeigte Webseite. Besonders interessant ist der Reiter <code>Console</code>:</p>
+<p><img alt="Entwicklertools" src="../files/22_tools2.png" /></p>
+<p>oder auch der Reiter <code>Elements</code>, der Ihnen sowohl den HTML- als auch den jeweiligen CSS-Code anzeigt:</p>
+<p><img alt="Entwicklertools" src="../files/23_tools3.png" /></p>
+<p>Weiterführende Informationen erhalten Sie unter <a href="https://developers.google.com/web/tools/chrome-devtools">https://developers.google.com/web/tools/chrome-devtools</a>.</p>
+<h3 id="firefox">Firefox<a class="headerlink" href="#firefox" title="Permanent link">&para;</a></h3>
+<p>Zu den Entwicklertools von Firefox finden Sie Informationen auf </p>
+<ul>
+<li><a href="https://developer.mozilla.org/de/docs/Tools">https://developer.mozilla.org/de/docs/Tools</a></li>
+<li><a href="https://www.mozilla.org/en-US/firefox/developer/?utm_source=firebug&amp;utm_medium=lp&amp;utm_campaign=switch&amp;utm_content=landingpage">Firefox Browser Developer</a> </li>
+</ul>
+<p>Die Entwicklertools lassen sich in Firefox öffnen unter <code>Web-Entwickler --&gt; Inspektor</code>:</p>
+<p><img alt="Entwicklertools" src="../files/24_tools4.png" /></p>
+<p>Sie haben die gleichen Möglichkeiten der Ananlyse wie bei Chrome, bei Safari und anderen Browsern:</p>
+<p><img alt="Entwicklertools" src="../files/25_tools5.png" /></p>
+<h3 id="safari">Safari<a class="headerlink" href="#safari" title="Permanent link">&para;</a></h3>
+<p>In Safari müssen Sie zunächst den Menüeintrag <code>Entwickler</code> aktivieren. Eine Anleitung dazu finden Sie z.B. <a href="https://www.heise.de/tipps-tricks/Mac-Entwicklertools-in-Safari-aktivieren-4050163.html">hier auf heise</a> . Weitere Informationen zu den Entwicklertools erhalten Sie z.B. auf</p>
+<ul>
+<li><a href="https://support.apple.com/de-de/guide/safari/sfri20948/mac">Werkzeuge im Menü „Entwickler“</a></li>
+<li><a href="https://support.apple.com/de-de/guide/safari-developer/welcome/mac">Safari Developer Help</a></li>
+<li><a href="https://developer.apple.com/safari/tools/">Web Development Tools</a></li>
+</ul>
+<p><img alt="Entwicklertools" src="../files/26_tools6.png" /></p>
+<h2 id="curl">Curl<a class="headerlink" href="#curl" title="Permanent link">&para;</a></h2>
+<p><a href="https://curl.haxx.se/">Curl</a> ist ein Open-Source-Kommandozeilenprogramm, um Daten mittels URL zu transferieren. Curl kann auf der Kommandozeile genutzt werden, um SMTP, HTTP, FTP usw. zu verwenden. Wir werden Curl insbesondere für die HTTP-Anfragemethoden GET und POST verwenden. </p>
+<p>Eine ausführliche Beschreibung von Curl ist im Buch <a href="https://curl.haxx.se/book.html">Everything curl - the book</a> frei verfügbar. Die Installation von Curl erfolgt über die <a href="https://curl.haxx.se/download.html">Curl Download Seite</a>.</p>
+<p>Zum Testen, ob Curl korrekt funktioniert, können Sie im Terminal z.B.</p>
+<div class="highlight"><pre><span></span><code>curl freiheit.f4.htw-berlin.de/curl.html
+</code></pre></div>
+<p>eingeben. Es sollte folgende Ausgabe erscheinen:</p>
+<div class="highlight"><pre><span></span><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Curl-Test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Hallo FIW!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+<p>Mit dem <code>-o</code>-Flag können Sie die Datei speichern (Sie können einen Dateinamen angeben - hier <code>curl.html</code>):</p>
+<div class="highlight"><pre><span></span><code>curl -o curl.html freiheit.f4.htw-berlin.de/curl.html
+</code></pre></div>
+<p>Da oben die lokale Datei genau so heißt wie die remote-Datei, hätte man auch </p>
+<div class="highlight"><pre><span></span><code>curl -O freiheit.f4.htw-berlin.de/curl.html
+</code></pre></div>
+<p>angeben können, also großes <code>-O</code>. Mit dem <code>-d</code>-Flag können Parameter übergeben und die entsprechende Seite mit einer POST-Anfrage aufgerufen werden. Mit dem zusätzlichen <code>-G</code>-Flag erfolgt die Anfrage nicht als POST sondern als GET. Mit dem <code>-I</code>-Flag fragen Sie den Header der Anfrage ab, z.B.:</p>
+<div class="highlight"><pre><span></span><code>curl -I freiheit.f4.htw-berlin.de/curl.html
+</code></pre></div>
+<p>gibt etwas aus in der Art:</p>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 <span class="m">200</span> OK
+Date: Thu, <span class="m">04</span> Jun <span class="m">2020</span> <span class="m">13</span>:59:43 GMT
+Server: Apache/2.4.38 <span class="o">(</span>Debian<span class="o">)</span>
+Last-Modified: Thu, <span class="m">04</span> Jun <span class="m">2020</span> <span class="m">13</span>:01:59 GMT
+ETag: <span class="s2">&quot;78-5a741c004bdb9&quot;</span>
+Accept-Ranges: bytes
+Content-Length: <span class="m">120</span>
+Vary: Accept-Encoding
+Content-Type: text/html
+</code></pre></div>
+<p>Für eine vollständige Übersicht aller Flags von Curl siehe <a href="https://curl.haxx.se/docs/manpage.html">Curl manpage</a>.</p>
+<h2 id="postman">Postman<a class="headerlink" href="#postman" title="Permanent link">&para;</a></h2>
+<p>Postman ist eine Anwendung, um Schnittstellen (<em>Application Programming Interface - API</em>), die das Backend bereitstellt, zu entwickeln und zu testen. Sie finden Postman unter <a href="https://www.postman.com/">postman.com</a>. Wir beschränken uns zunächst auf den <a href="https://www.postman.com/product/api-client/">Postman API Client</a>. Laden Sie das Tool herunter und installieren es. Rufen Sie Postman auf und geben in das Eingabefeld <code>https://postman-echo.com/get</code> ein. Lassen Sie die Auswahl links daneben auf <code>GET</code> und klicken auf den <code>Send</code>-Button. Es erscheint folgendes Bild:</p>
+<p><img alt="Postman" src="../files/27_postman.png" /></p>
+<p>Neben der <code>GET</code>-Anfrage sind folgende weitere Anfragen (siehe auch <a href="./html/#http"><strong>HTML &rarr; HTTP</strong></a>) möglich:</p>
+<ul>
+<li><code>POST</code> - sendet Daten zur Verarbeitung an den Webserver</li>
+<li><code>PUT</code> - lädt existierende Daten (eine Datei) auf den Server</li>
+<li><code>PATCH</code> - ändert Daten (eine Datei), ohne - wie bei <code>PUT</code> - diese vollständig zu ersetzen</li>
+<li><code>DELETE</code> - löscht die angegebenen Daten auf dem Server</li>
+</ul>
+<h2 id="nodejs">Node.js<a class="headerlink" href="#nodejs" title="Permanent link">&para;</a></h2>
+<p><a href="https://nodejs.org/en/">Node.js</a> ist eine JavaScript-Laufzeitumgebung. Node.js reagiert auf Ereignisse und antwortet asynchron. Das bedeutet, dass die Ausführung einer Ereignisbearbeitung nicht zum Blockieren der Laufzeitumgebung führt, sondern nebenläufig weitere Ereignisse eintreffen können, die ebenfalls asynchron behandelt werden. Dies geschieht mithilfe des <em>Callback-Patterns</em>. Callbacks sind Funktionen, die anderen Funktionen als Parameter übergeben werden (siehe <a href="./javascript/#callback-funktionen">JavaScript &rarr; Callback-Funktionen</a>). </p>
+<h2 id="angular">Angular<a class="headerlink" href="#angular" title="Permanent link">&para;</a></h2>
+<p>Um <a href="https://angular.io/">Angular</a> verwenden zu können (siehe auch <a href="https://angular.io/guide/setup-local">Angular&rarr;Getting started</a>), benötigen Sie das <a href="https://cli.angular.io/"><em>Angular Command Line Interface (CLI)</em></a>. Zur Installation des Angular CLI geben Sie 
+<div class="highlight"><pre><span></span><code>npm install -g @angular/cli
+</code></pre></div>
+ein. Den Paketmanager <code>npm</code> können Sie sich mit <code>node.js</code> installieren. Mithilfe des Angular CLI haben Sie dann die Möglichkeit, ein neues Projekt anzulegen (<code>ng new projektName</code>), eine neue Componente (<code>ng generate component componentenName</code>) usw. und das Projekt auszuführen (<code>ng serve</code>). </p>
+<p>Sollten Sie bei der Installation der Angular-CLI <code>EACCES errors</code> erhalten (<code>permission denied</code>), dann arbeiten Sie an einem Mac ;-). Geben Sie dann im Terminal ein: </p>
+<div class="highlight"><pre><span></span><code>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> ~/.npm
+sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /usr/local/lib/node_modules
+</code></pre></div>
+<p>Sollten Sie bei der Installation der Angular-CLI <code>Execution Policy</code>-Errors erhalten (oder danach bei <code>ng version</code>), dann arbeiten Sie an einem Windows-Rechner ;-). Geben Sie dann im Terminal ein: </p>
+<div class="highlight"><pre><span></span><code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+</code></pre></div>
+<p>Danach sollte <code>npm install -g @angular/cli</code> funktionieren. </p>
+<h3 id="installationen">Installationen<a class="headerlink" href="#installationen" title="Permanent link">&para;</a></h3>
+<p>Um den Paketmanager <code>npm</code> zu installieren, laden sie sich <code>node.js</code> <a href="https://nodejs.org/en/download/"><strong>hier</strong></a> herunter und installieren Sie es. Nach erfolgreicher Installation sollte sowohl </p>
+<div class="highlight"><pre><span></span><code>node -v
+</code></pre></div>
+<p>funktionieren und eine Versionsnummer ausgeben (z.B. <code>v14.15.0</code>) als auch </p>
+<div class="highlight"><pre><span></span><code>npm -v
+</code></pre></div>
+<p>(z.B. <code>6.14.8</code>). </p>
+<p>Außerdem benötigen Sie das <em>Angular-Command-Line-Interface (CLI)</em>, das Sie mithilfe des Befehls </p>
+<div class="highlight"><pre><span></span><code>npm install -g @angular/cli 
+</code></pre></div>
+<p>installieren. Danach sollte </p>
+<div class="highlight"><pre><span></span><code>ng version 
+</code></pre></div>
+<p>funktionieren und Ihnen etwas in dieser Art ausgeben:</p>
+<div class="highlight"><pre><span></span><code>     _                      _                 ____ _     ___
+    / <span class="se">\ </span>  _ __   __ _ _   _<span class="p">|</span> <span class="p">|</span> __ _ _ __     / ___<span class="p">|</span> <span class="p">|</span>   <span class="p">|</span>_ _<span class="p">|</span>
+   / △ <span class="se">\ </span><span class="p">|</span> <span class="s1">&#39;_ \ / _` | | | | |/ _` | &#39;</span>__<span class="p">|</span>   <span class="p">|</span> <span class="p">|</span>   <span class="p">|</span> <span class="p">|</span>    <span class="p">|</span> <span class="p">|</span>
+  / ___ <span class="se">\|</span> <span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span> <span class="o">(</span>_<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>      <span class="p">|</span> <span class="p">|</span>___<span class="p">|</span> <span class="p">|</span>___ <span class="p">|</span> <span class="p">|</span>
+ /_/   <span class="se">\_\_</span><span class="p">|</span> <span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>_, <span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span>_<span class="p">|</span>       <span class="se">\_</span>___<span class="p">|</span>_____<span class="p">|</span>___<span class="p">|</span>
+                <span class="p">|</span>___/
+
+
+Angular CLI: <span class="m">15</span>.0.0
+Node: <span class="m">14</span>.20.0
+Package Manager: npm <span class="m">9</span>.1.2
+OS: darwin x64
+
+Angular: 
+... 
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    <span class="m">0</span>.1500.0 <span class="o">(</span>cli-only<span class="o">)</span>
+@angular-devkit/core         <span class="m">15</span>.0.0 <span class="o">(</span>cli-only<span class="o">)</span>
+@angular-devkit/schematics   <span class="m">15</span>.0.0 <span class="o">(</span>cli-only<span class="o">)</span>
+@schematics/angular          <span class="m">15</span>.0.0 <span class="o">(</span>cli-only<span class="o">)</span>
+</code></pre></div>
+<p>Jetzt können wir unser <a href="./angular/#erstes-projekt-erstellen">erstes Angular-Projekt</a> erstellen. </p>
+<h3 id="update-angularcli">Update @angular/cli<a class="headerlink" href="#update-angularcli" title="Permanent link">&para;</a></h3>
+<p>Manchmal gibt es vielleicht Warnungen beim Erstellen eines Projektes - etwas in der Art, wie:
+<div class="highlight"><pre><span></span><code>npm WARN @angular-devkit/build-angular@0.1100.0 requires a peer of @angular/compiler-cli@^11.0.0 <span class="o">||</span> ^11.0.0-next but none is installed. You must install peer dependencies yourself.
+npm WARN @angular-devkit/build-angular@0.1100.0 requires a peer of typescript@~4.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @ngtools/webpack@11.0.0 requires a peer of @angular/compiler-cli@^11.0.0 <span class="o">||</span> ^11.0.0-next but none is installed. You must install peer dependencies yourself.
+npm WARN @ngtools/webpack@11.0.0 requires a peer of typescript@~4.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN icss-utils@5.0.0 requires a peer of postcss@^8.1.0 but none is installed. You must install peer dependencies yourself.
+npm WARN postcss-modules-extract-imports@3.0.0 requires a peer of postcss@^8.1.0 but none is installed. You must install peer dependencies yourself.
+npm WARN postcss-modules-local-by-default@4.0.0 requires a peer of postcss@^8.1.0 but none is installed. You must install peer dependencies yourself.
+npm WARN postcss-modules-scope@3.0.0 requires a peer of postcss@^8.1.0 but none is installed. You must install peer dependencies yourself.
+npm WARN postcss-modules-values@4.0.0 requires a peer of postcss@^8.1.0 but none is installed. You must install peer dependencies yourself.
+</code></pre></div></p>
+<p>Das liegt meistens daran, dass das Angular-CLI updated werden müsste. Für das Update von Angular gibt es eine <a href="https://update.angular.io/">eigene Seite</a>. Gehen Sie wie dort beschrieben vor. </p>
+<h2 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.mysql.com/de/">MySQL</a> ist eine relationale Datenbank und gehört zu den am meisten verwendeten relationalen Datenbanken bei Webanwendungen. Wir hätten uns auch für <a href="https://www.postgresql.org/">PostgreSQL</a> entscheiden können. Für einen kurzen Vergleich von MySQL und PostgreSQL siehe <a href="https://developer.okta.com/blog/2019/07/19/mysql-vs-postgres">hier</a>. Informationen zur Installation von MySQL finden Sie <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/">hier</a>. Nach der Installation finden Sie z.B. auf dem Mac unter <strong>Systemeinstellungen &rarr; MySQL</strong>:</p>
+<p><img alt="MySQL" src="../files/31_mysql.png" /></p>
+<p>Achten Sie bei der Installation von MySQL darauf, dass Sie als Authentifizierungsmethode "Legacy Password ..." wählen! Sie müssen aber MySQL auch nicht lokal installieren, sondern können auch den Studi-Server <code>studi.f4.htw-berlin.de</code> verwenden.</p>
+<h2 id="phpmyadmin">phpMyadmin<a class="headerlink" href="#phpmyadmin" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.phpmyadmin.net/"><code>phpMyadmin</code></a> ist eine graphische Oberfläche zur Verwaltung Ihrer <code>MySQL</code>-Datenbanken. Nach erfolgreicher Installation rufen Sie im Browser <code>localhost/phpmyadmin</code> auf und haben Zugriff auf Ihre Datenbanken bzw. können diese erstellen, ändern und befüllen. </p>
+<p><img alt="phpmyadmin" src="../files/32_phpmyadmin.png" /></p>
+<h2 id="mongodb">MongoDB<a class="headerlink" href="#mongodb" title="Permanent link">&para;</a></h2>
+<p>[MongoDB] ist eine <em>NoSQL</em> (<em>not only SQL</em>) Datenbank. In einer MongoDB werden nicht Relationen, sondern (JavaScript-)Objekte gespeichert. Die <em>CRUD</em>-Operationen auf einer MongoDB sind z.B. <a href="https://docs.mongodb.com/manual/crud/">hier</a> erklärt. Die MongoDB kann lokal als <em>MongoDB (Community Edition)</em> installiert werden. Zur Installationsseite geht es <a href="https://docs.mongodb.com/manual/installation/">hier</a>. Nach der Installation muss MongoDB gestartet werden. Unter Mac (für MongoDB-Version 4.4) geht es z.B. so:</p>
+<div class="highlight"><pre><span></span><code>brew services start mongodb-community@4.4
+</code></pre></div>
+<p>Um MongoDB zu stoppen, muss beim Mac <code>brew services stop mongodb-community@4.4</code> eingegeben werden. Wenn Sie dann <code>mongo</code> ins Terminal eingeben, sollte etwas in dieser Art erscheinen:</p>
+<div class="highlight"><pre><span></span><code>MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/?compressors<span class="o">=</span>disabled<span class="p">&amp;</span><span class="nv">gssapiServiceName</span><span class="o">=</span>mongodb
+Implicit session: session <span class="o">{</span> <span class="s2">&quot;id&quot;</span> : UUID<span class="o">(</span><span class="s2">&quot;0b972fa5-fad9-48bb-8a7f-c81cc0778620&quot;</span><span class="o">)</span> <span class="o">}</span>
+MongoDB server version: <span class="m">4</span>.4.5
+Welcome to the MongoDB shell.
+For interactive help, <span class="nb">type</span> <span class="s2">&quot;help&quot;</span>.
+For more comprehensive documentation, see
+    https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+    https://community.mongodb.com
+---
+The server generated these startup warnings when booting: 
+        <span class="m">2021</span>-07-01T11:40:21.328+02:00: Access control is not enabled <span class="k">for</span> the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB<span class="err">&#39;</span>s free cloud-based monitoring service, which will <span class="k">then</span> receive and display
+        metrics about your deployment <span class="o">(</span>disk utilization, CPU, operation statistics, etc<span class="o">)</span>.
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To <span class="nb">enable</span> free monitoring, run the following command: db.enableFreeMonitoring<span class="o">()</span>
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring<span class="o">()</span>
+---
+&gt;
+</code></pre></div>
+<h3 id="mongodb-atlas">MongoDB Atlas<a class="headerlink" href="#mongodb-atlas" title="Permanent link">&para;</a></h3>
+<p>Sie müssen sich MongoDB nicht on-premise installieren, sondern Sie können auch die Cloud-Version <a href="https://www.mongodb.com/atlas">MongoDB Atlas</a> verwenden. Dazu benötigen Sie einen Account für MongoDB Atlas. Folgen Sie einfach den Installationsschritten, wenn Sie unter <a href="https://www.mongodb.com/atlas/database">https://www.mongodb.com/atlas/database</a> auf <code>Try Free</code> klicken. </p>
+<p>Um sich mit Atlas zu verbinden, benötigen Sie einen öffentlichen und einen privaten API-Key. Diese müssen Sie erzeugen. Folgen Sie dazu den Anweisungen unter <a href="https://www.mongodb.com/docs/atlas/configure-api-access/">https://www.mongodb.com/docs/atlas/configure-api-access/</a>.</p>
+<p>Wenn Sie sich ein Cluster erstellt haben, dann sehen Sie in der Atlas-Webseite einen <code>Connect</code>-Button, mit dessen Hilfe Sie die Verbindung zur Datenbank erstellen können (siehe Abbildung):</p>
+<p><img alt="MongoDB" src="../files/265_mongodb.png" /></p>
+<p>Der Verbindungsstring mit Atlas hat ungefähr die folgende Form:</p>
+<div class="highlight"><pre><span></span><code>mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.g3nbd.mongodb.net/test
+</code></pre></div>
+<h3 id="mongodb-compass">MongoDB Compass<a class="headerlink" href="#mongodb-compass" title="Permanent link">&para;</a></h3>
+<p>Ein nützliches Werkzeug zur Verwaltung Ihrer Datenbanken ist <a href="https://www.mongodb.com/products/compass">MongoDB Compass</a>. Es ist eine graphische Nutzeroberfläche, um die in der MongoDB gespeicherten Daten anzuschauen und zu verwalten. Sie könnten auch alles über die <a href="https://www.mongodb.com/products/shell">MongoDB Shell</a> erledigen, aber mit Compass ist es komfortabler. Wählen Sie unter <a href="https://www.mongodb.com/products/compass">https://www.mongodb.com/products/compass</a> den Button <code>Download Now</code> und folgen Sie den Installationsanweisungen. </p>
+<h3 id="mongosh-mongodb-in-der-shell">Mongosh - MongoDB in der Shell<a class="headerlink" href="#mongosh-mongodb-in-der-shell" title="Permanent link">&para;</a></h3>
+<p>Die Verwaltung einer MongoDB kann entweder mithilfe von Compass oder mit der MongoDB Shell <a href="https://docs.mongodb.com/mongodb-shell/">mongosh</a> erfolgen. Installationsanleitungen zu <em>mongosh</em> finden Sie <a href="https://docs.mongodb.com/mongodb-shell/install/#std-label-mdb-shell-install">hier</a>. Nach der Installation von <em>mongosh</em> geben wir im Terminal </p>
+<div class="highlight"><pre><span></span><code>mongosh 
+</code></pre></div>
+<p>ein. Es erscheint etwas in der Form:</p>
+<div class="highlight"><pre><span></span><code>Current Mongosh Log ID: 61ae3471fef87d1bebfa13a1
+Connecting to:      mongodb://127.0.0.1:27017/?directConnection<span class="o">=</span>true<span class="p">&amp;</span><span class="nv">serverSelectionTimeoutMS</span><span class="o">=</span><span class="m">2000</span>
+Using MongoDB:      <span class="m">5</span>.0.3
+Using Mongosh:      <span class="m">1</span>.1.6
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To <span class="nb">help</span> improve our products, anonymous usage data is collected and sent to MongoDB periodically <span class="o">(</span>https://www.mongodb.com/legal/privacy-policy<span class="o">)</span>.
+You can opt-out by running the disableTelemetry<span class="o">()</span> command.
+
+------
+   The server generated these startup warnings when booting:
+   <span class="m">2021</span>-12-03T08:35:22.188+01:00: Access control is not enabled <span class="k">for</span> the database. Read and write access to data and configuration is unrestricted
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+test&gt; 
+</code></pre></div>
+<p>Die Warnung kann <a href="https://www.mongodb.com/community/forums/t/warning-found-mongorc-js-but-not-mongoshrc-js-mongorc-js-will-not-be-loaded/129716/4">ignoriert</a> werden. Die Datei <code>mongorc.js</code> wurde erstellt, als einmal in die Shell <code>mongo</code> eingegeben wurde. Das ist aber <code>deprecated</code> und es soll stattdessen die <code>mongosh</code> verwendet werden, was wir ja auch machen. Die Eingabe von <code>mongosh</code> ist äquivalent zu <code>mongosh "mongodb://localhost:27017"</code>. Das bedeutet, dass die MongoDB auf dem Port <code>27017</code> läuft. Der Port kann auch geändert werden, siehe dazu <a href="https://docs.mongodb.com/mongodb-shell/connect/#local-mongodb-instance-on-a-non-default-port">hier</a>.</p>
+<h2 id="weitere-hilfen">Weitere Hilfen<a class="headerlink" href="#weitere-hilfen" title="Permanent link">&para;</a></h2>
+<h3 id="prozesse-und-ports">Prozesse und Ports<a class="headerlink" href="#prozesse-und-ports" title="Permanent link">&para;</a></h3>
+<p>Wenn Sie herausbekommen wollen, welche Ports bereits belegt sind und durch welchen Prozess, dann geben Sie im Terminal ein:</p>
+<div class="highlight"><pre><span></span><code>lsof -i -P | grep -i LISTEN
+</code></pre></div>
+<p>Eventuell müssen Sie ein <code>sudo</code> voranstellen. Sie erhalten eine Ausgabe in der Form (variiert natürlich stark):</p>
+<div class="highlight"><pre><span></span><code>rapportd   372 jornfreiheit    4u  IPv4 0x5cee55fd054bd73      0t0  TCP *:57124 (LISTEN)
+rapportd   372 jornfreiheit    5u  IPv6 0x5cee55fab8990c3      0t0  TCP *:57124 (LISTEN)
+phpstorm   456 jornfreiheit   55u  IPv4 0x5cee55faabf19b3      0t0  TCP localhost:6942 (LISTEN)
+phpstorm   456 jornfreiheit  355u  IPv4 0x5cee55fb7f034f3      0t0  TCP localhost:63342 (LISTEN)
+Dropbox   2638 jornfreiheit  129u  IPv6 0x5cee55fb262a223      0t0  TCP *:17500 (LISTEN)
+Dropbox   2638 jornfreiheit  130u  IPv4 0x5cee55fb25ea393      0t0  TCP *:17500 (LISTEN)
+Dropbox   2638 jornfreiheit  185u  IPv4 0x5cee55fb7f00393      0t0  TCP localhost:17600 (LISTEN)
+Dropbox   2638 jornfreiheit  194u  IPv4 0x5cee55fb9e31753      0t0  TCP localhost:17603 (LISTEN)
+node      9070 jornfreiheit   21u  IPv6 0x5cee55fb5913843      0t0  TCP *:8080 (LISTEN)
+Python    9138 jornfreiheit    5u  IPv4 0x5cee55fcfdf7753      0t0  TCP localhost:8000 (LISTEN)
+</code></pre></div>
+<p>Wenn Sie nun z.B. einen bestimmten Prozess killen wollen, z.B. den Python-Prozess, der in <code>localhost</code> auf Port <code>8000</code> läuft, dann geben Sie </p>
+<div class="highlight"><pre><span></span><code>kill -9 9138
+</code></pre></div>
+<p>im Terminal ein. <code>9138</code> ist die <code>PID</code> des entsprechenden Prozesses.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+      
+        
+        <a href="../promises/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Promises" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              Promises
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Jörn Freiheit
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+    
+  </body>
+</html>
