@@ -365,13 +365,13 @@
 
 #### Übung 3
 
-??? question "Übungsaufgabe 3 (Grid und Box-Model)"
+??? question "Übungsaufgabe 3 (Grid und Einheiten)"
     - Erstellen Sie einen `Uebung3`-Ordner und darin eine Datei `uebung3.html`. 
     - Laden Sie sich [hier die Datei images.zip](./files/images.zip) herunter, entpacken Sie sie und schieben Sie den `images`-Ordner samt Inhalt in den `Uebung3`-Ordner.
     - Implementieren Sie die `uebung3.html` so, dass *ungefähr* folgendes Aussehen entsteht:
       ![Uebung3](./files/212_uebung3.png) 
     - Sie können die CSS-Eigenschaften innerhalb der `uebung3.html` im `<style>`-Element definieren oder wieder in einer externen Datei. 
-    - Ziele der Übung sind die Anwendung von *CSS-Grid* und ein Verständnis vom *Box-Model* sowie die Verwendung von Größen. Lassen Sie Ihrer Kreativität freien Lauf!
+    - Ziele der Übung sind die Anwendung von *CSS-Grid* (siehe z.B. [hier](https://css-tricks.com/snippets/css/complete-guide-grid/)) sowie die Verwendung von Größen und Einheiten (siehe z.B. [hier](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)). Lassen Sie Ihrer Kreativität freien Lauf!
 
 
 #### Übung 4
@@ -410,9 +410,6 @@
             ![Uebung5](./files/261_uebung5.png) <br/>
         - **Tipp:** Sie laufen in einer Schleife durch das Array, um alle Städte auszulesen. Fügen Sie darin eine Bedingung ein, dass Sie nur die Städte der Tabelle hinzufügen, die der Filter-Eingabe entsprechen.
 
-
-??? "Quellcode Lösung Übung5"
-    Die [Uebung5 finden Sie hier](https://github.com/jfreiheit/WebTechUebungen/tree/main/Uebung5).  
 
 
 #### Übung 6
@@ -690,9 +687,6 @@
 
     - Alle Bilder sind nur Anregungen, kann gerne ganz anders aussehen. Gerne können Sie auch Bootstrap einbinden und verwenden (siehe [hier](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)).
 
-
-??? "Quellcode Lösung Übung6"
-    Die [Uebung6 finden Sie hier](https://github.com/jfreiheit/WebTechUebungen/tree/main/Uebung6). Der `node_modules`-Ordner darin ist leer. Sie müssen zunächst `npm i` ausführen, um ihn wieder zu befüllen. 
 
 
 #### Übung 7
