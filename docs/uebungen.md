@@ -366,7 +366,7 @@
 #### Übung 3
 
 ??? question "Übungsaufgabe 3 (Grid und Einheiten)"
-    - Erstellen Sie einen `Uebung3`-Ordner und darin eine Datei `uebung3.html`. 
+    - Erstellen Sie einen `Uebung3`-Ordner und darin eine Datei `uebung3.html`. Kopieren Sie [diesen Inhalt](./files/uebung3.html) in `uebung3.html` (Rechtsklick auf die Seite und `Seitenquelltext anzeigen` - das `<script>`-Element unten können Sie löschen).
     - Laden Sie sich [hier die Datei images.zip](./files/images.zip) herunter, entpacken Sie sie und schieben Sie den `images`-Ordner samt Inhalt in den `Uebung3`-Ordner.
     - Implementieren Sie die `uebung3.html` so, dass *ungefähr* folgendes Aussehen entsteht:
       ![Uebung3](./files/212_uebung3.png) 
