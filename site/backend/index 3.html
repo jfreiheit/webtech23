@@ -1,0 +1,2371 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Lehrmaterial, Übungen, Aufgaben und Hilfen für WebTech">
+      
+      
+        <meta name="author" content="Jörn Freiheit">
+      
+      
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/webtech/backend/">
+      
+      
+        <link rel="prev" href="../routing/">
+      
+      
+        <link rel="next" href="../fe-be-anbindung/">
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+    
+    
+      
+        <title>Backend (MongoDB) - WebTech</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rest-api-mongodb" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="WebTech" class="md-header__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WebTech
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backend (MongoDB)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WebTech" class="md-nav__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    WebTech
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../einfuehrung/" class="md-nav__link">
+        Einführung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html/" class="md-nav__link">
+        HTML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../css/" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rwd/" class="md-nav__link">
+        RWD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript/" class="md-nav__link">
+        JavaScript
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular/" class="md-nav__link">
+        Angular
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular2/" class="md-nav__link">
+        JSON und Direktiven
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        Routing und Services
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Backend (MongoDB)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Backend (MongoDB)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ein-nodejs-projekt-mit-express" class="md-nav__link">
+    Ein Node.js-Projekt mit Express
+  </a>
+  
+    <nav class="md-nav" aria-label="Ein Node.js-Projekt mit Express">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    Router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starten-des-projektes-und-installation-von-nodemon" class="md-nav__link">
+    Starten des Projektes und Installation von nodemon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongoose-installieren" class="md-nav__link">
+    Mongoose installieren
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datenbank-erstellen" class="md-nav__link">
+    Datenbank erstellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-in-vscode" class="md-nav__link">
+    MongoDB in VSCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotenv-fur-sichere-zugangsdaten" class="md-nav__link">
+    Dotenv für sichere Zugangsdaten
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ein-model-erstellen" class="md-nav__link">
+    Ein Model erstellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zugriffe-auf-die-datenbank" class="md-nav__link">
+    Zugriffe auf die Datenbank
+  </a>
+  
+    <nav class="md-nav" aria-label="Zugriffe auf die Datenbank">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-read-all" class="md-nav__link">
+    R - read all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-create" class="md-nav__link">
+    C - create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-read-one" class="md-nav__link">
+    R - read one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#u-update" class="md-nav__link">
+    U - update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-delete-one" class="md-nav__link">
+    D - delete one
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-origin-resource-sharing-cors" class="md-nav__link">
+    Cross-Origin Resource Sharing (CORS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend_pg.md" class="md-nav__link">
+        Backend (PostgreSQL)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fe-be-anbindung/" class="md-nav__link">
+        Frontend-Backend-Anbindung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guards/" class="md-nav__link">
+        RxJS und Guards
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uebungen/" class="md-nav__link">
+        Übungen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        Werkzeuge
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ein-nodejs-projekt-mit-express" class="md-nav__link">
+    Ein Node.js-Projekt mit Express
+  </a>
+  
+    <nav class="md-nav" aria-label="Ein Node.js-Projekt mit Express">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    Router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starten-des-projektes-und-installation-von-nodemon" class="md-nav__link">
+    Starten des Projektes und Installation von nodemon
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongoose-installieren" class="md-nav__link">
+    Mongoose installieren
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datenbank-erstellen" class="md-nav__link">
+    Datenbank erstellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-in-vscode" class="md-nav__link">
+    MongoDB in VSCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotenv-fur-sichere-zugangsdaten" class="md-nav__link">
+    Dotenv für sichere Zugangsdaten
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ein-model-erstellen" class="md-nav__link">
+    Ein Model erstellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zugriffe-auf-die-datenbank" class="md-nav__link">
+    Zugriffe auf die Datenbank
+  </a>
+  
+    <nav class="md-nav" aria-label="Zugriffe auf die Datenbank">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-read-all" class="md-nav__link">
+    R - read all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-create" class="md-nav__link">
+    C - create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-read-one" class="md-nav__link">
+    R - read one
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#u-update" class="md-nav__link">
+    U - update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-delete-one" class="md-nav__link">
+    D - delete one
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-origin-resource-sharing-cors" class="md-nav__link">
+    Cross-Origin Resource Sharing (CORS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="rest-api-mongodb">REST-API (MongoDB)<a class="headerlink" href="#rest-api-mongodb" title="Permanent link">&para;</a></h1>
+<p>Die wesentlichsten Konzepte, wie Komponenten, Services und Routing für Angular-Projekte haben wir bereits kennengelernt. Ehe wir uns weiter mit dem Frontend beschäftigen, erstellen wir einen Server, der uns die Daten liefert. Derzeit haben wir unsere Mockup-Daten noch clientseitig von einem Service verwalten lassen. Das wollen wir nun ändern. Die Daten speichern wir in einer Datenbank und stellen sie über eine REST-API bereit. </p>
+<details class="note">
+<summary>Video zur Vorlesung Backend(MongoDB)</summary>
+<p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=0aa0f30ec91e4254db1e4a33d0eaff89&width=720&height=540&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=0aa0f30ec91e4254db1e4a33d0eaff89&width=720&height=540&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="540" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe></p>
+</details>
+<h2 id="rest">REST<a class="headerlink" href="#rest" title="Permanent link">&para;</a></h2>
+<p>Für diese Datenbank stellen wir die Implementierung einer Schnittstelle bereit, so dass wir die wesentlichen Datenbankanfragen darüber ausführen können. Diese wesentlichen Datenbankfragen werden mit <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> abgekürzt, für <strong>C</strong>reate, <strong>R</strong>ead, <strong>U</strong>pdate und <strong>D</strong>elete. Das bedeutet, wir implementieren Funktionalitäten, mit denen wir einen neuen Datensatz in die Datenbank einfügen (<em>create</em>), aus der Datenbank auslesen (<em>read</em>), in der Datenbank aktualisieren (<em>update</em>) und aus der Datenbank löschen (<em>delete</em>) können. </p>
+<p>Die Schnittstelle, die wir implementieren, ist eine sogenannte <a href="https://www.redhat.com/de/topics/api/what-is-a-rest-api">REST-API</a>. <em>REST</em> steht für <a href="https://de.wikipedia.org/wiki/Representational_State_Transfer"><em>Representational State Transfer</em></a> und basiert auf einigen wenigen Prinzipien:</p>
+<ol>
+<li>Alles wird als eine <em>Ressource</em> betrachtet, z.B. <code>book</code>.</li>
+<li>Jede Ressource ist durch <em>URIs</em> (<em>Uniform Resource Identifiers</em>) eindeutig identifizierbar, z.B. <code>http://localhost/books</code>.</li>
+<li>Es werden die <a href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP-Anfragemethoden">Standard-HTTP-Methoden</a> verwendet, also <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>UPDATE</code>.  </li>
+<li>Ressourcen können in verschiedenen Formaten vorliegen, z.B. in <a href="https://html.spec.whatwg.org/multipage/">HTML</a>, <a href="https://www.w3.org/TR/xml/">XML</a>, <a href="https://jsonapi.org/format/">JSON</a>, </li>
+<li>Die Kommunikation ist <em>zustandslos</em>. Jede einzelne HTTP-Anfrage wird komplett isoliert bearbeitet. Es gibt keinerlei Anfragehistorie. </li>
+</ol>
+<p>Das bedeutet, wir erstellen ein Backend (einen REST-Server), an den HTTP-Anfragen mit der eindeutig identifizierbaren Ressource gestellt werden. Das Backend erstellt daraus die entsprechende SQL-Query. Das Resultat der Datenbankanfrage wird im <code>JSON</code>- oder <code>HTML</code>- oder <code>XML</code>- oder in einem anderen Format bereitsgestellt.</p>
+<p><img alt="restapi" src="../files/61_restapi.png" /></p>
+<p>Prinzipiell gibt es also ein <em>Mapping</em>  von HTTP-Anfragen auf SQL-Anfragen:</p>
+<table>
+<thead>
+<tr>
+<th>CRUD</th>
+<th>SQL</th>
+<th>MongoDB</th>
+<th>HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>INSERT</td>
+<td>insertOne(), insertMany()</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>read</td>
+<td>SELECT</td>
+<td>findOne(), find()</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>update</td>
+<td>UPDATE</td>
+<td>updateOne(), updateMany()</td>
+<td>PUT (oder PATCH)</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>DELETE</td>
+<td>deleteOne(), deleteMany()</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>Zur Unterscheidung zwischen <code>PUT</code> und <code>PATCH</code> siehe z.B. <a href="https://www.geeksforgeeks.org/difference-between-put-and-patch-request/">hier</a> oder <a href="https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request">hier</a>.
+Wir wollen uns ein Backend erstellen, über das wir unsere Daten verwalten. Dazu überlegen wir uns zunächst ein paar sogenannte <em>Endpunkte</em> (siehe Prinzipien von REST oben) und die Zugriffsmethoden, mit denen wir auf unsere Daten zugreifen wollen.</p>
+<table>
+<thead>
+<tr>
+<th> Methode</th>
+<th> URL</th>
+<th> Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> GET</td>
+<td> /members</td>
+<td> hole alle Datensätze</td>
+</tr>
+<tr>
+<td> GET</td>
+<td> /members/11</td>
+<td>hole den Datensatz mit der id=11</td>
+</tr>
+<tr>
+<td> POST</td>
+<td> /members</td>
+<td> füge einen neuen Datensatz hinzu</td>
+</tr>
+<tr>
+<td> PUT</td>
+<td> /members/11</td>
+<td> ändere den Datensatz mit der id=11</td>
+</tr>
+<tr>
+<td> DELETE</td>
+<td> /members/11</td>
+<td> lösche den Datensatz mit der id=11</td>
+</tr>
+<tr>
+<td> DELETE</td>
+<td> /members</td>
+<td> lösche alle Datensätze</td>
+</tr>
+</tbody>
+</table>
+<p>Der Wert der <code>id</code> ist natürlich nur ein Beispiel. Es soll für alle <code>id</code>-Werte funktionieren, die in unserem Datensatz enthalten sind. </p>
+<h2 id="ein-nodejs-projekt-mit-express">Ein Node.js-Projekt mit Express<a class="headerlink" href="#ein-nodejs-projekt-mit-express" title="Permanent link">&para;</a></h2>
+<p>Wir starten damit, uns ein <code>node.js</code>-Projekt zu erstellen. Dazu erstellen wir uns zunächst einen Ordner <code>backend</code>, wechseln in diesen Ordner und führen dann <code>npm init</code> aus:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>backend
+<span class="nb">cd</span><span class="w"> </span>backend
+npm<span class="w"> </span>init
+</code></pre></div>
+<p>Sie werden ein paar Sachen gefragt. Im Prinzip können Sie immer <code>Enter</code> drücken:</p>
+<div class="highlight"><pre><span></span><code>This<span class="w"> </span>utility<span class="w"> </span>will<span class="w"> </span>walk<span class="w"> </span>you<span class="w"> </span>through<span class="w"> </span>creating<span class="w"> </span>a<span class="w"> </span>package.json<span class="w"> </span>file.
+It<span class="w"> </span>only<span class="w"> </span>covers<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>common<span class="w"> </span>items,<span class="w"> </span>and<span class="w"> </span>tries<span class="w"> </span>to<span class="w"> </span>guess<span class="w"> </span>sensible<span class="w"> </span>defaults.
+
+See<span class="w"> </span><span class="sb">`</span>npm<span class="w"> </span><span class="nb">help</span><span class="w"> </span>init<span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>definitive<span class="w"> </span>documentation<span class="w"> </span>on<span class="w"> </span>these<span class="w"> </span>fields
+and<span class="w"> </span>exactly<span class="w"> </span>what<span class="w"> </span>they<span class="w"> </span><span class="k">do</span>.
+
+Use<span class="w"> </span><span class="sb">`</span>npm<span class="w"> </span>install<span class="w"> </span>&lt;pkg&gt;<span class="sb">`</span><span class="w"> </span>afterwards<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>a<span class="w"> </span>package<span class="w"> </span>and
+save<span class="w"> </span>it<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>dependency<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>package.json<span class="w"> </span>file.
+
+Press<span class="w"> </span>^C<span class="w"> </span>at<span class="w"> </span>any<span class="w"> </span><span class="nb">time</span><span class="w"> </span>to<span class="w"> </span>quit.
+package<span class="w"> </span>name:<span class="w"> </span><span class="o">(</span>backend<span class="o">)</span><span class="w"> </span>
+version:<span class="w"> </span><span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span><span class="w"> </span>
+description:<span class="w"> </span>Backend<span class="w"> </span>REST-API
+entry<span class="w"> </span>point:<span class="w"> </span><span class="o">(</span>index.js<span class="o">)</span><span class="w"> </span>
+<span class="nb">test</span><span class="w"> </span>command:<span class="w"> </span>
+git<span class="w"> </span>repository:<span class="w"> </span>
+keywords:<span class="w"> </span>restapi,<span class="w"> </span>backend
+author:<span class="w"> </span>J.<span class="w"> </span>Freiheit
+license:<span class="w"> </span><span class="o">(</span>ISC<span class="o">)</span><span class="w"> </span>
+About<span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span>to<span class="w"> </span>/Users/jornfreiheit/Sites/WT21/backend/package.json:
+
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;backend&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;version&quot;</span>:<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;Backend REST-API&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;main&quot;</span>:<span class="w"> </span><span class="s2">&quot;index.js&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;scripts&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;test&quot;</span>:<span class="w"> </span><span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;keywords&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;restapi&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;backend&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;author&quot;</span>:<span class="w"> </span><span class="s2">&quot;J. Freiheit&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;license&quot;</span>:<span class="w"> </span><span class="s2">&quot;ISC&quot;</span>
+<span class="o">}</span>
+
+
+Is<span class="w"> </span>this<span class="w"> </span>OK?<span class="w"> </span><span class="o">(</span>yes<span class="o">)</span><span class="w"> </span>
+</code></pre></div>
+<p>Die <code>package.json</code> wurde erstellt. Nun benötigen wir noch das Modul <a href="https://expressjs.com/de/">Express</a>. Express bietet uns eine unkomplizierte <em>Middleware</em> für die Weiterverwaltung von <code>http</code>-Anfragen an die Datenbank und zurück. </p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>express<span class="w"> </span>--save
+</code></pre></div>
+<p>Sie erhalten eine Meldung in der Form:</p>
+<div class="highlight"><pre><span></span><code>%<span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span>express<span class="w"> </span>--save
+
+added<span class="w"> </span><span class="m">50</span><span class="w"> </span>packages,<span class="w"> </span>and<span class="w"> </span>audited<span class="w"> </span><span class="m">51</span><span class="w"> </span>packages<span class="w"> </span><span class="k">in</span><span class="w"> </span>844ms
+
+found<span class="w"> </span><span class="m">0</span><span class="w"> </span>vulnerabilities
+</code></pre></div>
+<p>In der <code>package.json</code> wurde die entsprechende Abhängigkeit eingetragen: </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">package.json</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backend&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Backend REST-API&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;restapi&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;backend&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J. Freiheit&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+<span class="hll"><span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="nt">&quot;express&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.18.2&quot;</span>
+</span><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Öffnen Sie nun das <code>backend</code>-Projekt in Ihrer IDE und erstellen Sie sich dort eine Datei <code>server.js</code> mit folgendem Inhalt:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">server.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Das bedeutet, wir importieren <code>express</code> (Zeile <code>1</code>), erzeugen uns davon ein Objekt und speichern dieses in der Variablen <code>app</code> (Zeile <code>4</code>). Wir legen in einer Konstanten <code>PORT</code> die Portnummer <code>3000</code> fest (Zeile <code>5</code> - die Portnummer können Sie wählen). Das <code>backend</code> ist somit unter <code>http://localhost:3000</code> verfügbar. Das eigentliche Starten des Webservers erfolgt in den Zeilen <code>10-16</code> durch Aufruf der <code>listen()</code>-Funktion von <code>express</code>. Die Syntax der <code>listen()</code>-Funktion ist generell wie folgt:</p>
+<div class="highlight"><pre><span></span><code>app.listen<span class="o">([</span>port<span class="o">[</span>,<span class="w"> </span>host<span class="o">[</span>,<span class="w"> </span>backlog<span class="o">]]][</span>,<span class="w"> </span>callback<span class="o">])</span>
+</code></pre></div>
+<p>Wir übergeben als ersten Parameter die <code>PORT</code>-Nummer (<code>3000</code>) und als zweiten Parameter eine (anonyme) Funktion als sogenannten <em>callback</em>. <em>Callbacks</em> sind <a href="../promises/#callbacks">hier</a> näher erläutert. Die anonyme Funktion wird durch die <code>listen()</code>-Funktion aufgerufen. Sollte ein Fehler aufgetreten sein (z.B. wenn der Port bereits belegt ist), wird der anonymen Funktion ein <code>error</code>-Objekt übergeben. Ist das der Fall, wird der Fehler auf der Konsole ausgegeben. Wird der anonymen Funktion kein Objekt übergeben, wurde der Webserver korrekt gestartet und die entsprechende Meldung erscheint auf der Konsole. </p>
+<p>Die Definitionsfunktion in <em>Arrow-Notation</em> </p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ist äquivalent zu </p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>error</code> ist der Name des hier gewählten Parameters. Beachten Sie auch die verwendete Syntax <code>${PORT}</code> im sogenannte <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">template literal</a>. Beachten Sie, dass <em>template literals</em> nicht in einfachen (<code>'</code>) oder doppelten (<code>"</code>) Anführungsstrichen stehen, sondern in <code>&#96;</code> (<em>backticks</em>). </p>
+<h3 id="router">Router<a class="headerlink" href="#router" title="Permanent link">&para;</a></h3>
+<p>Noch lässt sich unser Programm aber nicht ausführen. Wir benötigen im Projektordner noch eine Datei <code>routes.js</code>. Diese wird nämlich in der <code>server.js</code> bereits in Zeile <code>2</code> eingebunden und in Zeile <code>8</code> verwendet. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">routes.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// eine GET-Anfrage</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello FIW!&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Beim <code>Router</code> handelt es sich um eine <em>Middleware</em> (siehe <a href="https://expressjs.com/de/guide/using-middleware.html">hier</a>), die die Routen verwaltet und <code>request</code>-Objekte an die entsprechende Routen weiterleitet und <code>response</code>-Objekte empfängt. In unserer <code>routes.js</code> haben wir zunächst eine <code>GET</code>-Anfrage implementiert (Zeile <code>5</code>). Das <code>request</code>-Objekt heißt hier <code>req</code>. Das verwenden wir aber gar nicht. Das <code>respones</code>-Objekt heißt hier <code>res</code> und wird durch die Anfrage erzeugt. Wir senden in der <code>response</code> ein JavaScript-Objekt zurück, das einen Schlüssel <code>message</code> enthält. </p>
+<p>In der <code>server.js</code> haben wir mit <code>app.use(express.json())</code> (Zeile <code>7</code>) angegeben, dass alle JavaScript-Objekte in der <code>response</code> nach JSON umgewandelt werden sollen. Wenn nun die URL <code>localhost:3000</code> aufgerufen wird, dann wird ein <code>request</code> ausgelöst, den wir hier mit <code>Hello FIW!</code> als <code>response</code> beantworten (Zeilen <code>5-8</code>). </p>
+<p>Wichtig ist, dass wir <code>router</code> mit <code>module.exports</code> exportieren, damit es von anderen Modulen importiert und genutzt werden kann. Siehe dazu z.B. <a href="https://www.sitepoint.com/understanding-module-exports-exports-node-js/">hier</a>. Meine Empfehlung ist, <strong>(noch) nicht</strong> das <a href="https://www.sitepoint.com/understanding-es6-modules/">neue ESM6-Format</a> zu nutzen! </p>
+<p>Noch "läuft" unser Backend aber noch nicht. Wir müssen es erst starten. </p>
+<h3 id="starten-des-projektes-und-installation-von-nodemon">Starten des Projektes und Installation von nodemon<a class="headerlink" href="#starten-des-projektes-und-installation-von-nodemon" title="Permanent link">&para;</a></h3>
+<p>Das Projekt lässt sich nun starten. Wir geben dazu im Terminal im <code>backend</code>-Ordner</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p>ein. Im Terminal erscheint </p>
+<div class="highlight"><pre><span></span><code>Server<span class="w"> </span>started<span class="w"> </span>and<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">3000</span><span class="w"> </span>
+</code></pre></div>
+<p>und wenn Sie im Browser die URL <code>http://localhost:3000/</code> eingeben, wird dort</p>
+<p><img alt="backend" src="../files/91_backend.png" /></p>
+<p>angezeigt. Sie können auch Postman öffnen und <code>http://localhost:3000</code> eintragen (<code>GET</code>-Methode):</p>
+<p><img alt="backend" src="../files/92_postman.png" /></p>
+<p>Wann immer wir jetzt jedoch etwas an der Implementierung ändern, müssen wir im Terminal zunächst den Webserver mit </p>
+<div class="highlight"><pre><span></span><code>Strg-C<span class="w">      </span>//<span class="w"> </span>bzw.<span class="w"> </span>Control-C
+</code></pre></div>
+<p>stoppen, um ihn dann wieder mit <code>node server.js</code> zu starten. Um das zu umgehen, gibt es das Paket <a href="https://www.npmjs.com/package/nodemon">nodemon</a>. Da es nur sinnvoll während der Entwicklung eingesetzt werden kann (und sollte), installieren wir es als eine <em>development dependency</em>:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>nodemon
+</code></pre></div>
+<p>Die <code>package.json</code> sieht daraufhin so aus:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">package.json</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backend&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Backend REST-API&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;server.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;restapi&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;backend&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J. Freiheit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;express&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.18.2&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="hll"><span class="w">    </span><span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="nt">&quot;nodemon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^2.0.20&quot;</span>
+</span><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Zur Verwendung von <code>nodemon</code> fügen wir in die <code>package.json</code> unter <code>"scripts"</code> noch die Eigenschaft <code>watch</code> (frei gewählt) und den dazugehörigen Wert <code>nodemon server.js</code> ein:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">package.json</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backend&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Backend REST-API&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;server.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="nt">&quot;watch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodemon ./server.js&quot;</span><span class="p">,</span>
+</span><span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;restapi&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;backend&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J. Freiheit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;express&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.18.2&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;nodemon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^2.0.20&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Nun lässt sich die Anwendung mithilfe von <code>nodemon</code> per </p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>watch
+</code></pre></div>
+<p>starten und muss auch nicht mehr gestoppt und neu gestartet werden, wenn Änderungen an der Implementierungen durchgeführt wurden. Die Ausgabe im Terminal nach Eingabe von <code>npm run watch</code> ist ungefähr so:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>backend@1.0.0<span class="w"> </span>watch
+&gt;<span class="w"> </span>nodemon<span class="w"> </span>./server.js
+
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span><span class="m">2</span>.0.20
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>to<span class="w"> </span>restart<span class="w"> </span>at<span class="w"> </span>any<span class="w"> </span>time,<span class="w"> </span>enter<span class="w"> </span><span class="sb">`</span>rs<span class="sb">`</span>
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>watching<span class="w"> </span>path<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>*.*
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>watching<span class="w"> </span>extensions:<span class="w"> </span>js,mjs,json
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>starting<span class="w"> </span><span class="sb">`</span>node<span class="w"> </span>./server.js<span class="sb">`</span>
+Server<span class="w"> </span>started<span class="w"> </span>and<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">3000</span><span class="w"> </span>...<span class="w"> </span>
+</code></pre></div>
+<p>Hier nur zum Verständnis. Angenommen, wir ändern bspw. in der <code>server.js</code> die Zeile <code>8</code> zu </p>
+<div class="highlight"><pre><span></span><code><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+</code></pre></div>
+<p>, dann würden alle Routen, die wir in <code>routes.js</code> definieren, unter <code>localhost:3000/api</code> verfügbar sein. Wenn wir dann also z.B. in der <code>routes.js</code> die Zeile <code>5</code> zu </p>
+<div class="highlight"><pre><span></span><code><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/fiw&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>ändern, dann ist der GET-Endpunkt <code>localhost:3000/api/fiw</code>. </p>
+<h3 id="mongoose-installieren">Mongoose installieren<a class="headerlink" href="#mongoose-installieren" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.mongodb.com/de-de">MongoDB</a> ist die am meisten verwendete <em>NoSQL (not only SQL)</em> Datenbank. Sie basiert nicht auf Relationen, Tabellen und ihren Beziehungen zueinander (ist also keine <em>relationale</em> Datenbank), sondern speichert Dokumente in JSON-ähnlichem Format. Die <a href="https://github.com/mongodb/mongo">Community Edition der MongoDB</a> ist Open Source und kostenlos verfügbar. 
+Sollten Sie mit <em>Visual Studio Code</em> arbeiten, sollten Sie sich am besten die <a href="https://code.visualstudio.com/docs/azure/mongodb">MongoDB for VS Code</a>-Ereiterung installieren. </p>
+<p>Zur Verwendung von <em>MongoDB</em> im Backend verwenden wir das Modul <a href="https://mongoosejs.com/">Mongoose</a>. Wir installieren <em>Mongoose</em> mithilfe von</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>mongoose<span class="w"> </span>--save
+</code></pre></div>
+<p>In die <code>package.json</code> wird das Paket und die entsprechende Abhängigkeit eingetragen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">package.json</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;backend&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Backend REST-API&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;server.js&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;watch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodemon ./server.js&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;restapi&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;backend&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J. Freiheit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;express&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^4.17.1&quot;</span><span class="p">,</span>
+<span class="hll"><span class="w">        </span><span class="nt">&quot;mongoose&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^6.0.14&quot;</span>
+</span><span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;nodemon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^2.0.15&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p><em>Mongoose</em> stellt eine einfach zu verwendende Schnittstelle zwischen Node.js und MongoDB bereit. Die
+MongoDB benötigen wir aber trotzdem (wir könnten jedoch auch eine Cloud von MongoDB oder z.B. <code>mlab.com</code> verwenden). Bevor wir uns mit der MongoDB verbinden, erstellen wir zunächst noch eine Datenbank. </p>
+<p>Um Datenbanken zu erstellen, zu befüllen, anzusehen und zu verwalten, können Sie entweder <a href="../tools/#mongodb-compass">MongoDB Compass</a> oder <a href="../tools/#mongosh-mongodb-in-der-shell">MongoDB Shell</a> verwenden. Ich empfehle Compass, weil es komfortabler ist. Im Folgenden ist der etwas kompliziertere Weg mit der MongoDB Shell gezeigt. Der hat aber den Vorteil, dass man die queries sieht, die verwendet werden. </p>
+<p>Sollten Sie Compass verwenden, dann nennen sie Ihre Datenbank und die Collection einfach jeweils <code>members</code> und fügen die Daten mithilfe <a href="../files/members.json">dieser Datei</a> ein. Das Ergebnis sieht dann so aus:</p>
+<p><img alt="MongoDB" src="../files/266_mongodb.png" /></p>
+<h3 id="datenbank-erstellen">Datenbank erstellen<a class="headerlink" href="#datenbank-erstellen" title="Permanent link">&para;</a></h3>
+<p>Wenn <code>mongosh</code> gestartet ist, erscheint im Terminal <code>test&gt;</code>. Das bedeutet, dass Sie auf der Datenbank <code>test</code> operieren. Mit dem Befehl <code>db</code> können Sie sich die Datenbank anschauen, auf der Sie gerade operieren. Das ist zu Beginn die <code>test</code>-Datenbank. Wir wollen eine neue Datenbank <code>members</code> erstellen. Dazu nutzen wir den Befehl <code>use &lt;db&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>use<span class="w"> </span>members
+</code></pre></div>
+<p>(ohne das <code>&gt;</code> - das soll nur symbolisieren, dass wir in der MongoDB-Shell sind). Es entsteht die Datenbank <code>members</code> und es wird direkt in diese Datenbank gewechselt. </p>
+<div class="highlight"><pre><span></span><code>test&gt;<span class="w"> </span>db
+<span class="nb">test</span>
+test&gt;<span class="w"> </span>use<span class="w"> </span>members
+switched<span class="w"> </span>to<span class="w"> </span>db<span class="w"> </span>members
+members&gt;<span class="w"> </span>db
+members
+members&gt;<span class="w"> </span>
+</code></pre></div>
+<p>Wir befüllen diese Datenbank unter Verwendung des Befehls:</p>
+<div class="highlight"><pre><span></span><code>db.collection.insertMany<span class="o">(</span>
+<span class="w">   </span><span class="o">[</span><span class="w"> </span>&lt;document<span class="w"> </span><span class="m">1</span>&gt;<span class="w"> </span>,<span class="w"> </span>&lt;document<span class="w"> </span><span class="m">2</span>&gt;,<span class="w"> </span>...<span class="w"> </span><span class="o">]</span>
+<span class="o">)</span>
+</code></pre></div>
+<p>Dabei sind die <code>&lt;documente&gt;</code> Objekte in <a href="/angular2/#javascript-object-notation-json">JavaScript Object Notation (JSON)</a> und <code>collection</code> stellt einen Namen (ähnlich einer Tabelle in relationalen Datenbanken) dar. Insgesamt sieht der befehl mit unseren Daten so aus:</p>
+<details>
+<summary>Daten einfügen</summary>
+<div class="codehilite"><pre><span></span><code>db.members.insertMany([
+    {
+     &quot;forename&quot;: &quot;Catherine&quot;,
+     &quot;surname&quot;: &quot;Williams&quot;,
+     &quot;email&quot;: &quot;cwilliamsl@360.cn&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Adam&quot;,
+     &quot;surname&quot;: &quot;Anderson&quot;,
+     &quot;email&quot;: &quot;aanderson8@google.fr&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Susan&quot;,
+     &quot;surname&quot;: &quot;Andrews&quot;,
+     &quot;email&quot;: &quot;sandrewsn@google.co.jp&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Catherine&quot;,
+     &quot;surname&quot;: &quot;Andrews&quot;,
+     &quot;email&quot;: &quot;candrewsp@noaa.gov&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Alan&quot;,
+     &quot;surname&quot;: &quot;Bradley&quot;,
+     &quot;email&quot;: &quot;abradley1c@globo.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Anne&quot;,
+     &quot;surname&quot;: &quot;Brooks&quot;,
+     &quot;email&quot;: &quot;abrooks16@bravesites.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Russell&quot;,
+     &quot;surname&quot;: &quot;Brown&quot;,
+     &quot;email&quot;: &quot;rbrownq@nifty.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Ryan&quot;,
+     &quot;surname&quot;: &quot;Burton&quot;,
+     &quot;email&quot;: &quot;rburton18@foxnews.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Roy&quot;,
+     &quot;surname&quot;: &quot;Campbell&quot;,
+     &quot;email&quot;: &quot;rcampbell1@geocities.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Russell&quot;,
+     &quot;surname&quot;: &quot;Campbell&quot;,
+     &quot;email&quot;: &quot;rcampbell17@eventbrite.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Bonnie&quot;,
+     &quot;surname&quot;: &quot;Coleman&quot;,
+     &quot;email&quot;: &quot;bcoleman11@fc2.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Ernest&quot;,
+     &quot;surname&quot;: &quot;Coleman&quot;,
+     &quot;email&quot;: &quot;ecoleman15@businessweek.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Richard&quot;,
+     &quot;surname&quot;: &quot;Cruz&quot;,
+     &quot;email&quot;: &quot;rcruz7@unc.edu&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Sean&quot;,
+     &quot;surname&quot;: &quot;Cruz&quot;,
+     &quot;email&quot;: &quot;scruz10@answers.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Rebecca&quot;,
+     &quot;surname&quot;: &quot;Cunningham&quot;,
+     &quot;email&quot;: &quot;rcunninghamd@mac.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Margaret&quot;,
+     &quot;surname&quot;: &quot;Evans&quot;,
+     &quot;email&quot;: &quot;mevansh@pcworld.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Jeffrey&quot;,
+     &quot;surname&quot;: &quot;Ford&quot;,
+     &quot;email&quot;: &quot;jford14@cnet.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Andrea&quot;,
+     &quot;surname&quot;: &quot;Gardner&quot;,
+     &quot;email&quot;: &quot;agardnerv@woothemes.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Deborah&quot;,
+     &quot;surname&quot;: &quot;George&quot;,
+     &quot;email&quot;: &quot;dgeorge6@furl.net&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Sean&quot;,
+     &quot;surname&quot;: &quot;Gibson&quot;,
+     &quot;email&quot;: &quot;sgibsony@alexa.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Virginia&quot;,
+     &quot;surname&quot;: &quot;Graham&quot;,
+     &quot;email&quot;: &quot;vgrahamk@aol.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Steven&quot;,
+     &quot;surname&quot;: &quot;Hamilton&quot;,
+     &quot;email&quot;: &quot;shamiltonu@state.tx.us&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Virginia&quot;,
+     &quot;surname&quot;: &quot;Hawkins&quot;,
+     &quot;email&quot;: &quot;vhawkinsf@ehow.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Edward&quot;,
+     &quot;surname&quot;: &quot;Hicks&quot;,
+     &quot;email&quot;: &quot;ehicksc@pcworld.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Mark&quot;,
+     &quot;surname&quot;: &quot;Johnson&quot;,
+     &quot;email&quot;: &quot;mjohnsonj@hostgator.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Ruth&quot;,
+     &quot;surname&quot;: &quot;Jordan&quot;,
+     &quot;email&quot;: &quot;rjordan1a@smugmug.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Antonio&quot;,
+     &quot;surname&quot;: &quot;Kim&quot;,
+     &quot;email&quot;: &quot;akim4@odnoklassniki.ru&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Jennifer&quot;,
+     &quot;surname&quot;: &quot;Marshall&quot;,
+     &quot;email&quot;: &quot;jmarshallt@gnu.org&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Eric&quot;,
+     &quot;surname&quot;: &quot;Matthews&quot;,
+     &quot;email&quot;: &quot;ematthews5@independent.co.uk&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Raymond&quot;,
+     &quot;surname&quot;: &quot;Mcdonald&quot;,
+     &quot;email&quot;: &quot;rmcdonald2@ihg.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Eric&quot;,
+     &quot;surname&quot;: &quot;Miller&quot;,
+     &quot;email&quot;: &quot;emillere@creativecommons.org&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Jonathan&quot;,
+     &quot;surname&quot;: &quot;Morales&quot;,
+     &quot;email&quot;: &quot;jmoralesa@ovh.net&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Marie&quot;,
+     &quot;surname&quot;: &quot;Morgan&quot;,
+     &quot;email&quot;: &quot;mmorganb@cloudflare.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Amanda&quot;,
+     &quot;surname&quot;: &quot;Nelson&quot;,
+     &quot;email&quot;: &quot;anelson13@indiatimes.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Lisa&quot;,
+     &quot;surname&quot;: &quot;Olson&quot;,
+     &quot;email&quot;: &quot;lolsonr@telegraph.co.uk&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Alice&quot;,
+     &quot;surname&quot;: &quot;Ortiz&quot;,
+     &quot;email&quot;: &quot;aortizw@histats.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Peter&quot;,
+     &quot;surname&quot;: &quot;Phillips&quot;,
+     &quot;email&quot;: &quot;pphillipss@1688.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Matthew&quot;,
+     &quot;surname&quot;: &quot;Porter&quot;,
+     &quot;email&quot;: &quot;mporter9@europa.eu&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Tammy&quot;,
+     &quot;surname&quot;: &quot;Ray&quot;,
+     &quot;email&quot;: &quot;trayx@weather.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Mark&quot;,
+     &quot;surname&quot;: &quot;Richardson&quot;,
+     &quot;email&quot;: &quot;mrichardson1d@ihg.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Joan&quot;,
+     &quot;surname&quot;: &quot;Roberts&quot;,
+     &quot;email&quot;: &quot;jroberts12@alibaba.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Kathleen&quot;,
+     &quot;surname&quot;: &quot;Rose&quot;,
+     &quot;email&quot;: &quot;kroseg@pinterest.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Steve&quot;,
+     &quot;surname&quot;: &quot;Sanders&quot;,
+     &quot;email&quot;: &quot;ssanders1b@wikispaces.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Shirley&quot;,
+     &quot;surname&quot;: &quot;Scott&quot;,
+     &quot;email&quot;: &quot;sscottm@macromedia.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Lillian&quot;,
+     &quot;surname&quot;: &quot;Stephens&quot;,
+     &quot;email&quot;: &quot;lstephens19@hugedomains.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Nicole&quot;,
+     &quot;surname&quot;: &quot;Thompson&quot;,
+     &quot;email&quot;: &quot;nthompson3@admin.ch&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Marie&quot;,
+     &quot;surname&quot;: &quot;Thompson&quot;,
+     &quot;email&quot;: &quot;mthompsonz@yelp.com&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Alan&quot;,
+     &quot;surname&quot;: &quot;Vasquez&quot;,
+     &quot;email&quot;: &quot;avasquezo@miibeian.gov.cn&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Mildred&quot;,
+     &quot;surname&quot;: &quot;Watkins&quot;,
+     &quot;email&quot;: &quot;mwatkins0@miibeian.gov.cn&quot;
+    },
+    {
+     &quot;forename&quot;: &quot;Eugene&quot;,
+     &quot;surname&quot;: &quot;Williams&quot;,
+     &quot;email&quot;: &quot;ewilliamsi@deliciousdays.com&quot;
+    }
+ ])
+</code></pre></div>
+
+</details>
+<p>Im Terminal erscheint eine Ausgabe in der folgenden Form:</p>
+<details>
+<summary>Ausgabe im Terminal</summary>
+<div class="codehilite"><pre><span></span><code>{
+  acknowledged: true,
+  insertedIds: {
+    &#39;0&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d4&quot;),
+    &#39;1&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d5&quot;),
+    &#39;2&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d6&quot;),
+    &#39;3&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d7&quot;),
+    &#39;4&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d8&quot;),
+    &#39;5&#39;: ObjectId(&quot;61af491bfef87d1bebfa13d9&quot;),
+    &#39;6&#39;: ObjectId(&quot;61af491bfef87d1bebfa13da&quot;),
+    &#39;7&#39;: ObjectId(&quot;61af491bfef87d1bebfa13db&quot;),
+    &#39;8&#39;: ObjectId(&quot;61af491bfef87d1bebfa13dc&quot;),
+    &#39;9&#39;: ObjectId(&quot;61af491bfef87d1bebfa13dd&quot;),
+    &#39;10&#39;: ObjectId(&quot;61af491bfef87d1bebfa13de&quot;),
+    &#39;11&#39;: ObjectId(&quot;61af491bfef87d1bebfa13df&quot;),
+    &#39;12&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e0&quot;),
+    &#39;13&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e1&quot;),
+    &#39;14&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e2&quot;),
+    &#39;15&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e3&quot;),
+    &#39;16&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e4&quot;),
+    &#39;17&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e5&quot;),
+    &#39;18&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e6&quot;),
+    &#39;19&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e7&quot;),
+    &#39;20&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e8&quot;),
+    &#39;21&#39;: ObjectId(&quot;61af491bfef87d1bebfa13e9&quot;),
+    &#39;22&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ea&quot;),
+    &#39;23&#39;: ObjectId(&quot;61af491bfef87d1bebfa13eb&quot;),
+    &#39;24&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ec&quot;),
+    &#39;25&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ed&quot;),
+    &#39;26&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ee&quot;),
+    &#39;27&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ef&quot;),
+    &#39;28&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f0&quot;),
+    &#39;29&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f1&quot;),
+    &#39;30&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f2&quot;),
+    &#39;31&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f3&quot;),
+    &#39;32&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f4&quot;),
+    &#39;33&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f5&quot;),
+    &#39;34&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f6&quot;),
+    &#39;35&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f7&quot;),
+    &#39;36&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f8&quot;),
+    &#39;37&#39;: ObjectId(&quot;61af491bfef87d1bebfa13f9&quot;),
+    &#39;38&#39;: ObjectId(&quot;61af491bfef87d1bebfa13fa&quot;),
+    &#39;39&#39;: ObjectId(&quot;61af491bfef87d1bebfa13fb&quot;),
+    &#39;40&#39;: ObjectId(&quot;61af491bfef87d1bebfa13fc&quot;),
+    &#39;41&#39;: ObjectId(&quot;61af491bfef87d1bebfa13fd&quot;),
+    &#39;42&#39;: ObjectId(&quot;61af491bfef87d1bebfa13fe&quot;),
+    &#39;43&#39;: ObjectId(&quot;61af491bfef87d1bebfa13ff&quot;),
+    &#39;44&#39;: ObjectId(&quot;61af491bfef87d1bebfa1400&quot;),
+    &#39;45&#39;: ObjectId(&quot;61af491bfef87d1bebfa1401&quot;),
+    &#39;46&#39;: ObjectId(&quot;61af491bfef87d1bebfa1402&quot;),
+    &#39;47&#39;: ObjectId(&quot;61af491bfef87d1bebfa1403&quot;),
+    &#39;48&#39;: ObjectId(&quot;61af491bfef87d1bebfa1404&quot;),
+    &#39;49&#39;: ObjectId(&quot;61af491bfef87d1bebfa1405&quot;)
+  }
+}
+members&gt;
+</code></pre></div>
+
+</details>
+<p>Die Datenbank <code>members</code> existiert nun und ist mit Daten befüllt. Wir können uns z.B. alle diese Daten mit </p>
+<div class="highlight"><pre><span></span><code>db.members.find<span class="o">()</span>
+</code></pre></div>
+<p>anzeigen lassen oder z.B. mit </p>
+<div class="highlight"><pre><span></span><code>db.members.find<span class="o">(</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>forename:<span class="w"> </span><span class="s2">&quot;Sean&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">)</span>
+</code></pre></div>
+<p>alle Einträge anzeigen lassen, in denen <code>forename</code> den Wert <code>'Sean'</code> hat:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>
+<span class="w">  </span><span class="o">{</span>
+<span class="w">    </span>_id:<span class="w"> </span>ObjectId<span class="o">(</span><span class="s2">&quot;61af491bfef87d1bebfa13e1&quot;</span><span class="o">)</span>,
+<span class="w">    </span>forename:<span class="w"> </span><span class="s1">&#39;Sean&#39;</span>,
+<span class="w">    </span>surname:<span class="w"> </span><span class="s1">&#39;Cruz&#39;</span>,
+<span class="w">    </span>email:<span class="w"> </span><span class="s1">&#39;scruz10@answers.com&#39;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="o">{</span>
+<span class="w">    </span>_id:<span class="w"> </span>ObjectId<span class="o">(</span><span class="s2">&quot;61af491bfef87d1bebfa13e7&quot;</span><span class="o">)</span>,
+<span class="w">    </span>forename:<span class="w"> </span><span class="s1">&#39;Sean&#39;</span>,
+<span class="w">    </span>surname:<span class="w"> </span><span class="s1">&#39;Gibson&#39;</span>,
+<span class="w">    </span>email:<span class="w"> </span><span class="s1">&#39;sgibsony@alexa.com&#39;</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">]</span>
+members&gt;<span class="w"> </span>
+</code></pre></div>
+<h3 id="mongodb-in-vscode">MongoDB in VSCode<a class="headerlink" href="#mongodb-in-vscode" title="Permanent link">&para;</a></h3>
+<p>Falls Sie <em>Visual Studio Code</em> verwenden und darin die <a href="https://code.visualstudio.com/docs/azure/mongodb">MongoDB for VS Code</a>-Erweiterung installiert haben, können Sie auf der linken Seite auf das MongoDB-Blatt klicken und das <code>Advanced Connection Settings</code> mit dem Formular <code>Open form</code> anklicken.</p>
+<p>Sie geben <code>mongodb://127.0.0.1:27017</code> ein und dass Sie keine Authentifizierung verwenden. Öffnen Sie die <code>connection</code> und darin <code>members</code> und es erscheint</p>
+<p><img alt="mongodb" src="../files/220_mongodb.png" /></p>
+<p>Um sich in Node.js mit der MongoDB zu verbinden, geben Sie </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">server.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">mongoose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="hll"><span class="c1">// connect to mongoDB</span>
+</span><span class="hll"><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mongodb+srv://&lt;username&gt;:&lt;passwort&gt;@cluster0.g3nbd.mongodb.net&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dbName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;members&#39;</span><span class="w"> </span><span class="p">});</span>
+</span><span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+</span><span class="hll"><span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class="hll"><span class="p">});</span>
+</span><span class="hll"><span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;connected to DB&#39;</span><span class="p">);</span>
+</span><span class="hll"><span class="p">});</span>
+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>ein. Sie müssen natürlich Ihren Nutzerinnennamen und Ihr Passwort einsetzen. Sollten Sie eine MongoDB lokal installiert haben, dann verbinden Sie sich mit <code>mongodb://127.0.0.1:27017</code> (bzw. <code>mongodb://127.0.0.1:27017/members</code>). Im Terminal sollte dann</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>restarting<span class="w"> </span>due<span class="w"> </span>to<span class="w"> </span>changes...
+<span class="o">[</span>nodemon<span class="o">]</span><span class="w"> </span>starting<span class="w"> </span><span class="sb">`</span>node<span class="w"> </span>./server.js<span class="sb">`</span>
+Server<span class="w"> </span>started<span class="w"> </span>and<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">3000</span><span class="w"> </span>...
+connected<span class="w"> </span>to<span class="w"> </span>DB
+</code></pre></div>
+<p>erscheinen. </p>
+<h3 id="dotenv-fur-sichere-zugangsdaten">Dotenv für sichere Zugangsdaten<a class="headerlink" href="#dotenv-fur-sichere-zugangsdaten" title="Permanent link">&para;</a></h3>
+<p>Für die "geheimen" Zugangsdaten (die jetzt noch gar nicht "geheim" sind) verwenden wir das <a href="https://www.npmjs.com/package/dotenv">dotenv</a>-Paket:</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>dotenv<span class="w"> </span>--save
+</code></pre></div>
+<p>Im Projektordner erstellen wir und eine Datei <code>.env</code> (mit Punkt!) und schreiben darin entweder für die lokale MongoDB</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">.env</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nx">DB_CONNECTION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongodb</span><span class="o">:</span><span class="c1">//127.0.0.1:27017/members</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>oder für die Atlas-Verbindung</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">.env</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nx">DB_CONNECTION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongodb</span><span class="o">+</span><span class="nx">srv</span><span class="o">:</span><span class="c1">//&lt;username&gt;:&lt;passwort&gt;@cluster0.g3nbd.mongodb.net</span>
+<span class="nx">DATABASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">members</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Beachten Sie, dass der Wert nicht in Hochkomma steht und dass auch kein Semikolon folgt! 
+Wir fügen <code>dotenv</code> n die <code>server.js</code> ein und greifen mithilfe von <code>process.env.DB_CONNECTION</code> auf den Wert von <code>DB_CONNECTION</code> zu (und mit <code>process.env.DATEBASE</code> auf den Wert von <code>DATABASE</code>) :</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">server.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mongoose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+<span class="hll"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="c1">// connect to mongoDB</span>
+<span class="hll"><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_CONNECTION</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dbName</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE</span><span class="w"> </span><span class="p">});</span>
+</span><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;connected to DB&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>In Zeil <code>3</code> wird das <code>dotenv</code>-Paket importiert. Mithilfe der <code>config()</code>-Funktion wird die <code>.env</code>-datei eingelesen. Auf die in der <code>.env</code>-Datei hinterlegten Schlüssel-Werte-Paare (mit <code>=</code> dazwischen) kann dann mittels <code>process.env.&lt;Schlüssel&gt;</code> zugegriffen werden (siehe Zeile <code>14</code>). </p>
+<p>Beachten Sie, die <code>.env</code>-Datei in die <code>.gitignore</code> einzutragen. Die <code>.env</code>-Datei sollte <strong>nicht</strong> committed werden!</p>
+<h3 id="ein-model-erstellen">Ein Model erstellen<a class="headerlink" href="#ein-model-erstellen" title="Permanent link">&para;</a></h3>
+<p>Mongoose ist Schema-basiert. Ein Schema kann man sich wie ein Datenmodell vorstellen. Tatsächlich wird es verwendet, um ein entsprechendes Mongoose-Model zu erstellen. Ein Schema wird unter Aufruf des Konstruktors (<code>new Schema()</code>) in Mongoose erstellt. Unter Verwendung des Schemas wird dann mithilfe der <code>model()</code>-Funktion das Datenmodell erzeugt. </p>
+<p>Wir werden im Folgenden zeigen, wie ein Schema für <code>members</code> erstellt wird. Das Datenmodell heißt dann <code>Member</code>. Um später auch weitere Schemata, z.B. für <code>user</code> o.ä. zu entwicklen und diese zu trennen, erstellen wir das Schema in einem eigenen Ordner <code>models</code>. Das bedeutet, wir erstellen im Projektordner </p>
+<ul>
+<li>ein Ordner <code>models</code> und</li>
+<li>darin eine Datei <code>models/members.js</code></li>
+</ul>
+<p>Die Datei <code>members.js</code> bekommt folgenden Inhalt:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">models/members.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">mongoose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">ipaddress</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Member&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">schema</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Weiterführende Informationen zu Mongoose-Models finden Sie z.B. <a href="https://mongoosejs.com/docs/models.html">hier</a>. Das Thema Schema wird z.B. <a href="https://mongoosejs.com/docs/guide.html">hier</a> näher erläutert. </p>
+<h3 id="zugriffe-auf-die-datenbank">Zugriffe auf die Datenbank<a class="headerlink" href="#zugriffe-auf-die-datenbank" title="Permanent link">&para;</a></h3>
+<p>Nun haben wir alles, was wir benötigen, um unsere Anfragen zu implementieren. Wir nutzen den <code>express.Router</code>, um die Routen zu definieren und können mithilfe des Mongoose-Models auf die MongoDB zugreifen. Wir werden nun sukzessive alle Anfragen in die <code>routes.js</code> einfügen. </p>
+<h4 id="r-read-all">R - read all<a class="headerlink" href="#r-read-all" title="Permanent link">&para;</a></h4>
+<p>Wir beginnen mit der Anfrage, alle Daten aus der Datenbank auszulesen. Für die MongoDB erfolgt dies mit der Funktion <code>find()</code>. In <code>routes.js</code> ändern wir unsere <code>GET</code>-Anfrage wie folgt: </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">routes.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./models/members&#39;</span><span class="p">);</span>
+</span>
+<span class="c1">// get all members</span>
+<span class="hll"><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">allMembers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
+</span><span class="hll"><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allMembers</span><span class="p">);</span>
+</span><span class="hll"><span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">allMembers</span><span class="p">);</span>
+</span><span class="hll"><span class="p">});</span>
+</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Beachten Sie, dass wir dazu nun das <code>Member</code>-Model in die <code>routes.js</code> einbinden (Zeile <code>3</code>). Die Route wird mit <code>localhost:3000/members</code> definiert. Die anonyme Callback-Funktion enthält noch zwei Schlüsselwörter: <code>async</code> und <code>await</code>. Die Funktion <code>find()</code> ist ein sogenanntes <em>Promise</em> (siehe dazu <a href="../promises/#promises">hier</a>). Die Funktion <code>find()</code> wird asynchron ausgeführt und "irgendwann" ist entweder das Ergebnis dieser Funktion verfügbar oder die Funktion gibt einen Fehler zurück. Auf eines der beiden wird gewartet (<code>await</code>). Nur eine als <code>async</code> deklarierte Funktion darf einen <code>await</code>-Aufruf enthalten (siehe dazu z.B. <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Statements/async_function">hier</a>).</p>
+<p>Die Ausgabe der Werte auf die Konsole (Zeile <code>8</code>) ist natürlich nicht erforderlich und Sie können sie auch löschen, wenn Sie wollen. Wenn Sie nun in Postman <code>GET http://localhost:3000/members</code> aufrufen, erscheinen alle Einträge aus der Datenbank:</p>
+<p><img alt="postman" src="../files/94_postman.png" /></p>
+<h4 id="c-create">C - create<a class="headerlink" href="#c-create" title="Permanent link">&para;</a></h4>
+<p>Als nächstes implementieren wir einen Endpunkt, an dem wir einen neuen Datensatz in die Datenbank anlegen können. Dafür gibt es die http-Methode <code>POST</code>. Wir führen also nicht mehr eine <code>GET</code>-, sondern eine <code>POST</code>-Anfrage durch. Bei dieser <code>POST</code>-Anfrage wird der neue Datensatz an den Webserver mitgeschickt. Dies erfolgt im <code>body</code> des <code>request</code>-Objektes. Das Schreiben des Datensatzes in die Datenbank erfolgt mithilfe der <code>save()</code>-Funktion von MongoDB. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">routes.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// post one member</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newMember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Member</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">ipaddress</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">newMember</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">newMember</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>In den Zeilen <code>15-17</code> werden die Daten aus dem <code>body</code> des <code>request</code>-Objektes ausgelesen und mit diesen Daten ein neues <code>Member</code>-Objekt erzeugt. Dieses neue <code>Member</code>-Objekt (<code>newMember</code>) wird in Zeile <code>19</code> in die Datenbank gespeichert und in Zeile <code>20</code> als <code>response</code> zurückgeschickt.  </p>
+<p>Nun geben wir in Postman <code>POST http://localhost:3000/members</code> ein und befüllen den <code>Body</code> z.B. mit:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;firstname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Maria&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Musterfrau&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;maria@musterfrau.fr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ipaddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;146.146.11.46&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Achten Sie darauf, dass in der zweiten Menüzeile rechts <code>JSON</code> ausgewählt ist (im Bild blau) - nicht <code>Text</code>. Wir klicken auf <code>Send</code> und es erscheint:</p>
+<p><img alt="postman" src="../files/95_postman.png" /></p>
+<p>Schauen Sie auch in Compass nach, ob der Datensatz dort erscheint:</p>
+<p><img alt="phpmyadmin" src="../files/267_mongodb.png" /></p>
+<h4 id="r-read-one">R - read one<a class="headerlink" href="#r-read-one" title="Permanent link">&para;</a></h4>
+<p>Wir erweitern die <code>routes.js</code> um einen Endpunkt, der uns für eine gegebene <code>id</code> den entsprechenden Datensatz zurückliefert. Die <code>_id</code> werden von MongoDB automatisch vergeben und sind recht kryptisch, also z.B. <code>"61b0e4fcc050789546f979d3"</code>. Wir können natürlich nach jedem beliebigen Wert für jeden Schlüssel in der Datenbank suchen. Wir nehmen hier beispielhaft die <code>_id</code>. </p>
+<p>Die <code>id</code> wird aus der URL des Endpunktes ausgelesen, d.h. wenn wir bspw. den Endpunkt <code>GET http://localhost:3000/members/61b0e4fcc050789546f979d3</code> eingeben, dann soll der Datensatz mit der <code>_id: 61b0e4fcc050789546f979d3</code> im JSON-Format zurückgegeben werden. Wir nutzen dazu parametrisierte Routen und lesen die <code>id</code> aus der Parameterliste aus. Paremtrisierte Routen werden per <code>:</code> und dann den Namen des Parameters (hier <code>id</code>) erstellt. Um dann den Wert des Parametrs <code>id</code> aus der Parameterliste auszulesen, wird <code>params</code> verwendet. Im folgenden Code lassen wir <code>req.params</code> auf die Konsole ausgeben, um die Funktionsweise zu erläutern. Diese Ausgabe kann natürlich gelöscht werden (Zeile <code>27</code>). </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">routes.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// get one member via id</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">member</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">member</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Zum Finden eines einzelnen Datensatzes wird in MongoDB die Funktion <code>findOne()</code> verwendet (siehe <a href="https://docs.mongodb.com/manual/reference/method/db.collection.findOne">hier</a>). Wird der Datensatz gefunden, d.h. existiert die entsprechende <code>_id</code>, dann wird dieser in der <code>response</code> zurückgesendet (Zeile <code>28</code>). Existiert er nicht, wird der HTTP-Statuscode <code>404</code> gesendet (Zeile <code>30</code>) und ein JSON mit der <code>error</code>-Nachricht <code>Member does not exist!</code> (Zeile <code>31</code>). </p>
+<p>Nach Neustart des Servers geben wir in Postman z.B. <code>GET http://localhost:3000/members/639a0121ff0ff0884ce0dd24</code> ein (bei Ihnen sind die <code>_id</code>-Werte andere!) und erhalten:</p>
+<p><img alt="postman" src="../files/97_postman.png" /></p>
+<p>Probieren Sie auch einmal <code>GET http://localhost:3000/members/0</code> aus, um die Fehlermeldung als JSON zu sehen. </p>
+<h4 id="u-update">U - update<a class="headerlink" href="#u-update" title="Permanent link">&para;</a></h4>
+<p>Um einen bereits existierenden Datensatz zu ändern, kann entweder die HTTP-Anfrage <code>PUT</code> oder <code>PATCH</code> verwendet werden. Zur Unterscheidung zwischen <code>PUT</code> und <code>PATCH</code> siehe z.B. <a href="https://www.geeksforgeeks.org/difference-between-put-and-patch-request/">hier</a> oder <a href="https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request">hier</a>. Um einen Datensatz in der MongoDB zu ändern, stehen prinzipiell mehrere Funktionen zur Verfüging:</p>
+<ul>
+<li><code>updateOne()</code>: ändert einzelne (oder alle) Teile eines Datensatzes und sendet die <code>_id</code> zurück, falls ein neur Datensatz angelegt wurde,</li>
+<li><code>findOneAndUpdate()</code>: ändert einzelne (oder alle) Teile eines Datensatzes und sendet den kompletten Datensatz zurück,</li>
+<li><code>replaceOne()</code>: ändert den kompletten Datensatz. </li>
+</ul>
+<p>In der folgenden Implementierung haben wir uns für die HTTP-Anfragemethode <code>PATCH</code> und für die MongoDB-Funktion <code>updateOne()</code> entschieden. Diese Funktion erwartet als ersten Parameter einen <code>&lt;filter&gt;</code>, d.h. die Werte, nach denen nach einem Datensatz gesucht werden soll. Im folgenden Beispiel ist der Filter die <code>_id</code>. Dazu wird erneute ein Parameter <code>id</code> für die URL definiert. Der zweite Parameter der <code>updateOne()</code>-Funktion sind die zu ändernden Werte für diesen Datensatz. In der folgenden Implementierung werden diese zu ändernden Werte als ein JSON dem <code>body</code> des <code>request</code>-Objektes übergeben. Um zu ermöglichen, dass ein, zwei oder drei Schlüssel-Werte-Paare in diesem JSON enthalten sein können, prüfen wir die Einträge im <code>body</code> und setzen daraus ein neues <code>member</code>-Objekt zusammen, wenn es bereits in der Datenbank existiert (deshalb zunächst <code>findOne()</code>):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">router.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// update one member</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">})</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">ipaddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">member</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">member</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Wir können diese Funktion in Postman ausprobieren, indem wir im <code>body</code> z.B. das JSON </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lastname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mustermann&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;maria@mustermann.fr&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>mit unserem Request übergeben und <code>PATCH http://localhost:3000/members/639a0121ff0ff0884ce0dd24</code> wählen (bei Ihnen eine andere <code>id</code>!). Der Datensatz mit der <code>_id=639a0121ff0ff0884ce0dd24</code> wird dann aktualisiert. </p>
+<p>Vor Ausführung der Anfrage:</p>
+<p><img alt="postman" src="../files/98a_postman.png" /></p>
+<p>Nach Ausführung der Anfrage:</p>
+<p><img alt="postman" src="../files/98b_postman.png" /></p>
+<p>Schauen Sie auch in der Datenbank nach (z.B. in VSCode) und wählen auch ruhig nochmal <code>GET http://localhost:3000/members</code> (z.B. in Postman).</p>
+<h4 id="d-delete-one">D - delete one<a class="headerlink" href="#d-delete-one" title="Permanent link">&para;</a></h4>
+<p>Jetzt implementieren wir noch den Endpunkt, um einen Datensatz zu löschen. Dazu werden die HTTP-Anfragemethode <code>DELETE</code> und die MongoDB-Funktion <code>deleteOne()</code> verwendet. Im folgenden Beispiel wird der Datensatz erneut über die <code>_id</code> ermittelt und dafür erneut die parametrisierte URL ausgelesen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">routes.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// delete one member via id</span>
+<span class="nx">router</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">deleteOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">204</span><span class="p">).</span><span class="nx">send</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Wenn wir nun in Postman z.B. <code>DELETE http://localhost:3000/members/639a0121ff0ff0884ce0dd24</code> wählen (bei Ihnen eine andere <code>id</code>!), wird der Datensatz mit der <code>_id=639a0121ff0ff0884ce0dd24</code> aus der Datenbank gelöscht. </p>
+<p>Hier nochmal die vollständige <code>routes.js</code>:</p>
+<details>
+<summary>routes.js</summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./models/members&#39;</span><span class="p">);</span>
+
+<span class="c1">// get all members</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">allMembers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allMembers</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">allMembers</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// post one member</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newMember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Member</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">ipaddress</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">newMember</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">newMember</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// get one member via id</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">member</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">member</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+<span class="c1">// update one member</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">})</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">member</span><span class="p">.</span><span class="nx">ipaddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">ipaddress</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">member</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">member</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// delete one member via id</span>
+<span class="nx">router</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">Member</span><span class="p">.</span><span class="nx">deleteOne</span><span class="p">({</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">204</span><span class="p">).</span><span class="nx">send</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member does not exist!&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Wir haben unser Backend erfolgreich als REST-Server implementiert, der alle CRUD-Funktionalitäten umsetzt. Wir werden im nächsten Schritt das Frontend nun so gestalten, dass es auf die REST-API zugreift und das Backend für die Datenverwaltung verwendet. </p>
+</div>
+<h3 id="cross-origin-resource-sharing-cors">Cross-Origin Resource Sharing (CORS)<a class="headerlink" href="#cross-origin-resource-sharing-cors" title="Permanent link">&para;</a></h3>
+<p>Die <em>Same Origin Policy (SOP)</em> ist ein Sicherheitskonzept, das clientseitig Skriptsprachen (also z.B. JavaScript oder CSS) untersagt, Ressourcen aus verschiedenen Herkunften zu verwenden, also von verschiedenen Servern. Dadurch soll verhindert werden, dass fremde Skripte in die bestehende Client-Server-Kommunikation eingeschleust werden. Gleiche <em>Herkunft (origin)</em> bedeutet, dass das gleiche Protokoll (z.B. <code>http</code> oder <code>https</code>), von der gleichen Domain (z.B. <code>localhost</code> oder <code>htw-berlin</code>) sowie dem gleichen Port (z.B. <code>80</code> oder <code>4200</code>) verwendet werden. Es müssen alle drei Eigenschaften übereinstimmen. </p>
+<p>Mit dem Aufkommen von Single Page Applications und dem darin benötigten AJAX kam jedoch der Bedarf auf, die SOP aufzuweichen. Es sollte möglich sein, dass z.B. JavaScript sowohl client-seitig das DOM ändert als auch einen Request an den Server (das Backend) sendet. Der Kompromiss, der dafür gefunden wurde, nennt sich <em>Cross-Origin Resource Sharing (CORS)</em>. Damit ist es möglich, für einige oder alle Anfragen zu definieren, dass sie im Sinne der SOP trotzdem erlaub sein sollen. </p>
+<p>Um CORS für Ihr Backend zu aktivieren, wechseln Sie im Terminal in Ihren <code>backend</code>-Ordner und geben dort</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>cors
+</code></pre></div>
+<p>ein. Öffnen Sie dann die <code>server.js</code> und fügen Sie die hervorgehobenen Zeilen ein:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">server.js</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="hll"><span class="kd">const</span><span class="w"> </span><span class="nx">cors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
+</span><span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mongoose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="hll"><span class="c1">// enable cors for all requests</span>
+</span><span class="hll"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="c1">// connect to mongoDB</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_CONNECTION</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dbName</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;connected to DB&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server started and listening on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ... `</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Wenn Sie z.B. nur die <code>get</code>-Anfrage teilen wollen, dann wählen Sie nicht <code>app.use(cors());</code>, sondern </p>
+<div class="highlight"><pre><span></span><code><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">cors</span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello FIW!&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+</code></pre></div>
+<p>Mehr zum CORS-Paket von node.js bzw. express finden Sie <a href="https://expressjs.com/en/resources/middleware/cors.html">hier</a>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Jörn Freiheit
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>
