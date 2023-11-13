@@ -1,0 +1,1737 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Lehrmaterial, Übungen, Aufgaben und Hilfen für WebTech">
+      
+      
+        <meta name="author" content="Jörn Freiheit">
+      
+      
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/webtech/html/">
+      
+      
+        <link rel="prev" href="../einfuehrung/">
+      
+      
+        <link rel="next" href="../css/">
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+    
+    
+      
+        <title>HTML - WebTech</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#html" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="WebTech" class="md-header__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WebTech
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HTML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WebTech" class="md-nav__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    WebTech
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../einfuehrung/" class="md-nav__link">
+        Einführung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HTML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HTML
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#einleitung" class="md-nav__link">
+    Einleitung
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchische-anordnung-der-html-elemente" class="md-nav__link">
+    Hierarchische Anordnung der HTML-Elemente
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grundgerust-einer-html-seite" class="md-nav__link">
+    Grundgerüst einer HTML-Seite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadaten-im-head" class="md-nav__link">
+    Metadaten im Head
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-und-inline-elemente" class="md-nav__link">
+    Block- und Inline-Elemente
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einige-ausgewahlte-elemente" class="md-nav__link">
+    Einige ausgewählte Elemente
+  </a>
+  
+    <nav class="md-nav" aria-label="Einige ausgewählte Elemente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperlinks-anchorelement" class="md-nav__link">
+    Hyperlinks (Anchorelement)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilder-image" class="md-nav__link">
+    Bilder (Image)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabellen" class="md-nav__link">
+    Tabellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen" class="md-nav__link">
+    Listen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-elemente" class="md-nav__link">
+    Container-Elemente
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eingabe-bzw-steuerelemente" class="md-nav__link">
+    Eingabe- bzw. Steuerelemente
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attribute" class="md-nav__link">
+    Attribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#besondere-zeichen" class="md-nav__link">
+    Besondere Zeichen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-pfade" class="md-nav__link">
+    Relative Pfade
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-code-html" class="md-nav__link">
+    Clean Code HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weitere-informationen-uber-html" class="md-nav__link">
+    Weitere Informationen über HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-vertiefung" class="md-nav__link">
+    HTTP (Vertiefung)
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP (Vertiefung)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-anfragemethoden" class="md-nav__link">
+    HTTP-Anfragemethoden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-statusmeldungen" class="md-nav__link">
+    HTTP-Statusmeldungen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urls" class="md-nav__link">
+    URLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-name-service-dns" class="md-nav__link">
+    Domain Name Service (DNS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../css/" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rwd/" class="md-nav__link">
+        RWD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript/" class="md-nav__link">
+        JavaScript
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular/" class="md-nav__link">
+        Angular
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular2/" class="md-nav__link">
+        JSON und Direktiven
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        Routing und Services
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend/" class="md-nav__link">
+        Backend (MongoDB)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend_pg.md" class="md-nav__link">
+        Backend (PostgreSQL)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fe-be-anbindung/" class="md-nav__link">
+        Frontend-Backend-Anbindung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guards/" class="md-nav__link">
+        RxJS und Guards
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uebungen/" class="md-nav__link">
+        Übungen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        Werkzeuge
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#einleitung" class="md-nav__link">
+    Einleitung
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchische-anordnung-der-html-elemente" class="md-nav__link">
+    Hierarchische Anordnung der HTML-Elemente
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grundgerust-einer-html-seite" class="md-nav__link">
+    Grundgerüst einer HTML-Seite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadaten-im-head" class="md-nav__link">
+    Metadaten im Head
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-und-inline-elemente" class="md-nav__link">
+    Block- und Inline-Elemente
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#einige-ausgewahlte-elemente" class="md-nav__link">
+    Einige ausgewählte Elemente
+  </a>
+  
+    <nav class="md-nav" aria-label="Einige ausgewählte Elemente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperlinks-anchorelement" class="md-nav__link">
+    Hyperlinks (Anchorelement)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilder-image" class="md-nav__link">
+    Bilder (Image)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabellen" class="md-nav__link">
+    Tabellen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen" class="md-nav__link">
+    Listen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-elemente" class="md-nav__link">
+    Container-Elemente
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eingabe-bzw-steuerelemente" class="md-nav__link">
+    Eingabe- bzw. Steuerelemente
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attribute" class="md-nav__link">
+    Attribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#besondere-zeichen" class="md-nav__link">
+    Besondere Zeichen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-pfade" class="md-nav__link">
+    Relative Pfade
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-code-html" class="md-nav__link">
+    Clean Code HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weitere-informationen-uber-html" class="md-nav__link">
+    Weitere Informationen über HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-vertiefung" class="md-nav__link">
+    HTTP (Vertiefung)
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP (Vertiefung)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-anfragemethoden" class="md-nav__link">
+    HTTP-Anfragemethoden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-statusmeldungen" class="md-nav__link">
+    HTTP-Statusmeldungen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urls" class="md-nav__link">
+    URLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-name-service-dns" class="md-nav__link">
+    Domain Name Service (DNS)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">&para;</a></h1>
+<h2 id="einleitung">Einleitung<a class="headerlink" href="#einleitung" title="Permanent link">&para;</a></h2>
+<p>HTML steht für <b>H</b>yper<b>T</b>ext <b>M</b>arkup <b>L</b>anguage. HTML ist eine sogenannte <em>Auszeichnungssprache</em>. Das bedeutet, dass Textelementen sogenannte <em>Tags</em> (HTML-Elemente) zugeordnet werden, um dem Text, der von einem solchen Tag umschlossen wird, eine Bedeutung zuzuweisen - der Text wird ausgezeichnet.</p>
+<p><strong>Beispiel:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Große Überschrift<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Im obigen Beispiel wurde der Text Große Überschrift durch das HTML-Element <code>h1</code> ausgezeichnet. Die Bedeutung dieses Elementes ist, dass es sich bei dem ausgezeichneten Text um eine Überschrift handelt. Es gibt 6 HTML-Elemente, die Überschriften charakterisieren: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, <code>h6</code>. Die Nummern geben die Größe der Überschrift an: <code>h1</code> ist die größte Überschrift, <code>h6</code> die kleinste. Klicken Sie im folgenden Fenster auf den Reiter <strong>"Result"</strong>, um die Unterschiede zu sehen:</p>
+<iframe width="100%" height="300" src="//jsfiddle.net/jfreiheit/fze5kd0L/2/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest="" frameborder="0"></iframe>
+
+<h2 id="hierarchische-anordnung-der-html-elemente">Hierarchische Anordnung der HTML-Elemente<a class="headerlink" href="#hierarchische-anordnung-der-html-elemente" title="Permanent link">&para;</a></h2>
+<p>HTML-Elemente bestehen - bis auf wenige Ausnahmen - aus einem Start-Tag <code>&lt;tag&gt;</code> und einem Ende-Tag <code>&lt;/tag&gt;</code> (tag steht hier für den Namen eines beliebigen Elementes). Wird ein neues HTML-Element <code>el2</code> innerhalb eines anderen HTML-Elementes <code>el1</code> geöffnet, so muss <code>el2</code> auch geschlossen werden, bevor <code>el1</code> geschlossen wird.  </p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">el1</span><span class="p">&gt;</span> diese Anordnung der
+    <span class="p">&lt;</span><span class="nt">el2</span><span class="p">&gt;</span>
+          Elemente ist korrekt
+    <span class="p">&lt;/</span><span class="nt">el2</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">el1</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">el1</span><span class="p">&gt;</span> diese Anordnung der
+    <span class="p">&lt;</span><span class="nt">el2</span><span class="p">&gt;</span>
+           Elemente ist falsch
+<span class="p">&lt;/</span><span class="nt">el1</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">el2</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<p>Es gibt nur wenige HTML-Elemente, die nicht aus einem Start- und einem Ende-Tag bestehen, sondern sogenannte <em>stand alone Tags</em> sind. Ein typisches Beispiel ist der Zeilenumbruch <code>&lt;br&gt;</code>. Um einerseits zu symbolisieren, dass es sich um Start- und Ende-Tag in einem handelt, insbesondere aber, um <a href="https://de.wikipedia.org/wiki/Extensible_Hypertext_Markup_Language">XHTML</a>-konform zu sein, geben wir für solche stand-alone Tags den Slash vor der schließenden spitzen Klammer an, d.h. wir schreiben <code>&lt;br /&gt;</code>.</p>
+<h2 id="grundgerust-einer-html-seite">Grundgerüst einer HTML-Seite<a class="headerlink" href="#grundgerust-einer-html-seite" title="Permanent link">&para;</a></h2>
+<p>Prinzipiell besteht eine HTML-Seite aus einem <code>&lt;head&gt;</code>- und einem <code>&lt;body&gt;</code>-Bereich. Im <code>&lt;head&gt;</code>-Bereich können Metadaten über die Seite definiert werden. Der <code>&lt;body&gt;</code>-Bereich definiert den sichtbaren Bereich der Seite, also das, was im Browser dargestellt wird. Eingeschlossen werden der <code>&lt;head&gt;</code>- und der <code>&lt;body&gt;</code>-Bereich von einem <code>&lt;html&gt;</code>-Element.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Seitentitel<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Das ist eine große Überschrift<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Das ist ein Absatz.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Das obige Beispiel zeigt ein Grundgerüst einer HTML-Seite. <code>&lt;!DOCTYPE html&gt;</code> gibt dem Browser an, dass es sich um eine HTML-Datei handelt, die vom Browser <strong>"gerendert"</strong>, d.h. dargestellt wird.</p>
+<p>Der <code>&lt;head&gt;</code>-Bereich enthält in diesem Beispiel nur ein <code>&lt;title&gt;</code>-Element. Dieser Titel wird im Browser im Reiter (Tab) gezeigt. Außerdem wird der Titel in der Ergebnisliste einer Suchmaschine verwendet.</p>
+<p>Das <code>&lt;body&gt;</code>-Element, also der im Browser dargestellte Bereich, enthält eine Überschrift (<code>&lt;h1&gt;</code>) und einen Absatz (<code>&lt;p&gt;</code>).</p>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe:</p>
+<p>Erstellen Sie eine Datei <code>index.html</code> und fügen Sie obigen HTML-Code ein. Rufen Sie die Datei im Browser auf.</p>
+</div>
+<h2 id="metadaten-im-head">Metadaten im Head<a class="headerlink" href="#metadaten-im-head" title="Permanent link">&para;</a></h2>
+<p>Das <code>&lt;head&gt;</code>-Element ist der Container für (Meta-)Daten über das Webdokument. Das <code>&lt;head&gt;</code>-Element kommt in das <code>&lt;html&gt;</code>-Element und vor das <code>&lt;body&gt;</code>-Element. Die Metadaten werden nicht dargestellt. 
+Typische HTML-Elemente für Metadaten sind: </p>
+<ul>
+<li><code>&lt;title&gt;</code> : Titel des Dokumentes (im Tab und in der Such-Ergebnisliste, </li>
+<li><code>&lt;style&gt;</code> : für Format-Angaben (CSS), </li>
+<li><code>&lt;meta&gt;</code> : für die Festlegung von Zeichenkodierungen, Schlüsselwörter, Autor usw., </li>
+<li><code>&lt;link&gt;</code> : zum Einbinden externer CSS-Dateien, </li>
+<li><code>&lt;script&gt;</code> : zum Definieren von Client-seitigen JavaScript-Funktionen, </li>
+<li><code>&lt;base&gt;</code> : zum Festlegen, der URL, von der aus alle Pfadangaben relativ sind. </li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Beispiel Metadaten</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code> <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;meta data&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;HTML, head, title, meta, link, style&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;author&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Jörn Freiheit&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;30&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mystyle.css&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#29e0e6</span><span class="p">;}</span><span class="w">        </span>
+<span class="w">    </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff6a3b</span><span class="p">;}</span><span class="w">        </span>
+<span class="w">    </span><span class="nt">ul</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0000ff</span><span class="p">;}</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">myFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;demo&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hallo FIW!&quot;</span><span class="p">;</span><span class="w">        </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">base</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;localhost/Webtech20&quot;</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Metadaten<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="block-und-inline-elemente">Block- und Inline-Elemente<a class="headerlink" href="#block-und-inline-elemente" title="Permanent link">&para;</a></h2>
+<p>Generell wird zwischen zwei Arten von HTML-Elementen unterschieden:</p>
+<ul>
+<li>Blockelemente</li>
+<li>Inline-Elemente</li>
+</ul>
+<p><strong>Blockelemente</strong> verwenden die gesamte Breite der Browseransicht (des sogenannten <strong>Viewports</strong>). Das bedeutet, dass ein Blockelement stets in einer neuen Zeile beginnt und neben einem Blockelement kein weiteres Element ist (sondern in einer neuen Zeile beginnt).</p>
+<p><strong>Inline-Elemente</strong> nehmen genau so viel Breite ein, wie nötig (Breite des Inhalts) und beginnen nicht in einer neuen Zeile und enden auch nicht mit einem Zeilenumbruch.</p>
+<p>Beispiele für Inline- und Blockelemente (Reiter "Result" wählen, um Ergebnis zu sehen):</p>
+<iframe width="100%" height="300" src="//jsfiddle.net/jfreiheit/fze5kd0L/4/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest="" frameborder="0"></iframe>
+
+<p>Eine Übersicht über alle HTML-Elemente mit Erläuterungen findet sich <a href="https://developer.mozilla.org/de/docs/Web/HTML/Element"><strong>hier</strong></a>.</p>
+<div class="admonition question">
+<p class="admonition-title">kleine Übungsaufgabe:</p>
+<p>Erweitern Sie Ihre Datei <code>index.html</code> und fügen Sie mindestens folgende Elemente ein:</p>
+<ul>
+<li>2 verschiedene Überschriften (<code>h1</code>, ..., <code>h6</code>)</li>
+<li>eine nummerierte Liste (ordered list - <code>ol</code>) mit 3 Einträgen (list items - <code>li</code>)</li>
+<li>eine Strichpunktliste (unordered list - <code>ul</code>) mit 3 Einträgen (<code>li</code>)</li>
+<li>eine Tabelle (<code>table</code>); diese besteht aus einem Tabellenkopf (table head - <code>thead</code>) und einem Tabellenkörper (table body - <code>tbody</code>)</li>
+<li>der thead enthält eine Zeile (table row - <code>tr</code>) als Tabellenüberschrift, wobei jede einzelne Überschrift (eine Spalte) als <code>th</code> definiert wird</li>
+<li>der tbody enthält mehrere Zeilen (<code>tr</code>); jede Zeile enthält so viele Dateneinträge (table data - <code>td</code>) wie es Spalten gibt</li>
+<li>einen Hyperlink (anchor - <code>a</code>), der ein Verweis auf die HTW-Seite enthält</li>
+<li>ein Bild (image - <code>img</code>)</li>
+</ul>
+<p>Rufen Sie die Datei im Browser auf.</p>
+</div>
+<h2 id="einige-ausgewahlte-elemente">Einige ausgewählte Elemente<a class="headerlink" href="#einige-ausgewahlte-elemente" title="Permanent link">&para;</a></h2>
+<h4 id="hyperlinks-anchorelement">Hyperlinks (Anchorelement)<a class="headerlink" href="#hyperlinks-anchorelement" title="Permanent link">&para;</a></h4>
+<p>Das HTML-Element für Hyperlinks ist <code>&lt;a&gt;</code>. Ein Beispiel für die Anwendung dieses Elementes ist</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.htw-berlin.de&quot;</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span><span class="p">&gt;</span>HTW Berlin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Das Beispiel erstellt einen Hyperlink. Auf der Webseite sichtbar ist der Inhalt des Elementes, nämlich <code>HTW Berlin</code>. Wird auf den Link geklickt, so öffnet sich die Webseite der HTW (<code>www.htw-berlin.de</code>) in einem neuen Browser-Reiter (<code>target="_blank"</code>).</p>
+<p>Weitere Beispiele:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fiw.htw-berlin.de/fileadmin/HTW/Zentral/Rechtsstelle/Amtliche_Mitteilungsblaetter/2014/17_14.pdf&quot;</span><span class="p">&gt;</span>Studienordnung FIW<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:freiheit@htw-berlin.de&quot;</span><span class="p">&gt;</span>E-Mail an Jörn Freiheit<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Das Anchorelement ist ein Inline-Element.</p>
+<h4 id="bilder-image">Bilder (Image)<a class="headerlink" href="#bilder-image" title="Permanent link">&para;</a></h4>
+<p>Das HTML-Element für Bilder ist <code>&lt;img&gt;</code>. Ein Beispiel für die Anwendung dieses Elementes ist</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../Logos/fiw.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FIW-Logo&quot;</span><span class="p">/&gt;</span>
+</code></pre></div>
+<p>Das Beispiel zeigt das FIW-Logo auf der Webseite an. Es ist in der Datei <code>fiw.jpg</code> gespeichert, welche im Ordner <code>Logos</code> liegt. Der Ordner <code>Logos</code> befindet sich auf der gleichen Ordnerebene wie der Ordner, der die HTML-Datei enthält. Diesen Ordner muss man deshalb zunächst mithilfe von <code>..</code> verlassen. Das Attribut <code>alt</code> wird verwendet, um einen alternatioven Text anzugeben, der angezeigt wird, falls das Bild nicht geladen werden kann. Wichtig ist das <code>alt</code>-Attribut aber insbesondere für die Barrierefreiheit. Ein Screenreader liest diesen Alternativtext vor. Sollte es sich bei dem Bild nur um ein dekoratives Element handeln (also nicht wirklich einen sinnvollen Inhalt haben), sollte man aus Gründen der Barrierfreiheit dafür <code>alt=""</code> angeben, dann überspringt der Screenreader dieses Bild. </p>
+<p>Es sei erwähnt, dass es auch sowohl das <code>height</code>- als auch das <code>width</code>-Attribut für <code>&lt;img&gt;</code> gibt, um die Höhe bzw. die Breite des Bildes zu setzen. Dies sollte aber besser CSS überlassen werden. </p>
+<p>Beachten Sie auch, dass es sich bei dem <code>&lt;img&gt;</code>-Element um ein <em>stand alone Element</em> handelt. Wir beenden das Element deshalb mit <code>/&gt;</code>, um XML-konform zu sein. Das <code>&lt;img&gt;</code>-Element ist ein Inline-Element.</p>
+<h4 id="tabellen">Tabellen<a class="headerlink" href="#tabellen" title="Permanent link">&para;</a></h4>
+<p>Tabellen (<code>&lt;table&gt;</code>) bestehen aus einen Tabellenkopf (<code>&lt;thead&gt;</code>) und einem Tabellenkörper (<code>&lt;tbody&gt;</code>). Der Tabellenkopf enthält eine Tabellenzeile (<code>&lt;tr&gt;</code>) mit beliebig vielen Einträgen, den jeweiligen Spaltenüberschriften (<code>&lt;th&gt;</code>). Der Tabellenkörper enthält beliebig viele Zeilen (<code>&lt;tr&gt;</code>), die in jeder Spalten Dateneinträge (<code>&lt;td&gt;</code>) enthalten. Ein Beispiel für eine Tabelle:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 1<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 2<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 3<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Das Formatieren der Tabellen (Rahmen, rechtsbündig usw.) sollte stets CSS überlassen werden.</p>
+<h4 id="listen">Listen<a class="headerlink" href="#listen" title="Permanent link">&para;</a></h4>
+<p>Es gibt nummerierte Listen (<em>ordered list</em> <code>&lt;ol&gt;</code>) und nicht-nummerierte Listen (<em>unordered list</em> <code>&lt;ul&gt;</code>). Die Einträge in einer Liste sind die <em>list items</em> <code>&lt;li&gt;</code>. Listen können auch ineinander verschachtelt werden. Dabei ist nur zu beachten, dass Listen immer nur <em>list items</em> enthalten sollen und die list items dann selbst wieder eine neue Liste enthalten können.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">ordered list</label><label for="__tabbed_2_2">unordered list</label><label for="__tabbed_2_3">verschachtelte Liste</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="container-elemente">Container-Elemente<a class="headerlink" href="#container-elemente" title="Permanent link">&para;</a></h4>
+<p>Einige Elemente dienen nur der besseren Strukturierung des HTML-Codes und der besseren "Ansprechbarkeit" im CSS (d.h. für diese Elemente können dann eigene CSS-Eigenschaften zugewisen werden). Vor HTML 5 wurde dafür das Element <code>&lt;div&gt;</code> verwendet. Es existiert noch immer. Mit HTML 5 wurden aber weitere Container-Elemente hinzugefügt:</p>
+<ul>
+<li><code>&lt;main&gt;</code> - für den Hauptinhalt, sollte genau einmal im Dokument vorkommen</li>
+<li><code>&lt;section&gt;</code> - für größere Abschnitte (Teile); kann z.B. article enthalten</li>
+<li><code>&lt;article&gt;</code> - für Abschnitte (z.B. Blog-Einträge) in main </li>
+<li><code>&lt;aside&gt;</code> - für z.B. News an der Seite</li>
+<li><code>&lt;footer&gt;</code> - für die Fußzeile (mit Impressum, Copyright, usw.)</li>
+<li><code>&lt;header&gt;</code> - für die Kopfzeile (mit Logo, Navigation usw.)</li>
+<li><code>&lt;nav&gt;</code> - für das Navigationsmenü</li>
+</ul>
+<p>Container-Elemente sind nicht "sichtbar", jedoch Block-Elemente. Es ist empfehlenswert, die eigene Webseite mit solchen Container-Elementen zu strukturieren, um erstens einen besseren Überblick über die Seite zu bewahren und insbesondere gezielter die Formatierungseigenschaften von CSS verwenden zu können. Dies schließt das Layout ein. Die folgende Abbildung zeigt, wofür solche Container-Elemente gedacht sind.</p>
+<p><img alt="layout" src="../files/208_layout.gif" /></p>
+<p>Die Elemente ordnen sich aber z.B. nicht von alleine nebeneinander an. Dafür verwenden wir später CSS. Mithilfe von Container strukturieren wir jedoch den HTML-Code (vergleichbar mit <code>JPanel</code> in Java). Beispiel (aus <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float">W3School</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>CSS Template<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>CSS Layout Float<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Resize the browser window to see the responsive effect (you will learn more about this in our next chapter - HTML Responsive.)<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Cities<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>London<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Paris<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Tokyo<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>London<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Footer<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>In dem Beispiel dienen die Container nur der Strukturierung. Alles, was in den <em>Header</em> gehört, ist im <code>&lt;header&gt;</code>-Element (nicht zu verwechseln mit <code>&lt;head&gt;</code>!) und alles, was zum <em>Footer</em> gehört, kommt in das <code>&lt;footer&gt;</code>-Element. Der Hauptteil ist im <code>&lt;section&gt;</code>-Element, welches noch in <code>&lt;nav&gt;</code> und <code>&lt;article&gt;</code> unterteilt ist. </p>
+<h4 id="eingabe-bzw-steuerelemente">Eingabe- bzw. Steuerelemente<a class="headerlink" href="#eingabe-bzw-steuerelemente" title="Permanent link">&para;</a></h4>
+<p>Es gibt viele Steuerelemente in HTML und die Auswahl wird kontinuierlich größer. Steuerelemente werden mit dem HTML-Element <code>&lt;input&gt;</code> definiert. Der Typ des Steuerelementes wird mit Attribut <code>type</code> definiert. Beispiele:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Click&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;reset&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;color&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../Logos/fiw.jpg&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;40&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FIW-Logo&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;100&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Name&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;E-Mail&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="p">/&gt;</span>
+</code></pre></div>
+<p>Probieren Sie am besten diese Beispiele aus und schauen Sie sich die Darstellung an. Beachten Sie auch, dass die Elemente in den unterschiedlichen Browsern unterschiedlich dargestellt werden.</p>
+<h2 id="attribute">Attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h2>
+<p>Wir haben in den obigen Beispielen bereits Attribute gesehen. In <code>&lt;a&gt;</code> wurden z.B. die Attribute <code>href</code> und <code>target</code> verwendet und in <code>&lt;img&gt;</code> die Attribute <code>src</code> und <code>alt</code>. Attribute werden innerhalb der spitzen Klammern des Begin-Tags angegeben und haben die Form:</p>
+<div class="highlight"><pre><span></span><code>attribut = &quot;wert&quot;
+</code></pre></div>
+<p>Das heißt, auf der linken Seite steht das Attribut und auf der rechten Seite der Wert des Attributs in doppelten Hochkommata. Es gibt Attribute, die ohne Wert verwendet werden können, z.B. <code>checked</code> für ein Eingabeelement <code>&lt;input&gt;</code>, z.B.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;SG&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;FIW&quot;</span> <span class="na">checked</span> <span class="p">/&gt;</span> FIW<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Um XML-konform zu sein, sollte man eigentlich besser <code>&lt;input type="checkbox" name="SG" value="FIW" checked="checked" /&gt;</code> verwenden, macht aber niemand. Das Attribut <code>checked</code>ist ein Beispiel für ein Attribut, das speziell für ein HTML-Element zur Verfügung steht (hier für <code>&lt;input&gt;</code>). Die meisten Attribute existieren speziell für HTML-Elemente. </p>
+<p>Darüber hinaus gibt es noch sogenannte <em>globale</em> Attribute, die für alle HTML-Elemente verwendet werden können. Beispiele solcher Attribute sind </p>
+<table>
+<thead>
+<tr>
+<th>globales Attribut</th>
+<th>Erläuterung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>weist dem Element eine id zu; eine id sollte innerhalb eines HTML-Dokumentes eindeutig sein</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td> weist dem Element eine oder mehrere Klassen zu, deren Eigenschaften in CSS definiert werden können</td>
+</tr>
+<tr>
+<td> <code>hidden</code></td>
+<td> setzt das Element auf unsichtbar, es wird nicht angezeigt</td>
+</tr>
+<tr>
+<td> <code>title</code></td>
+<td> weist einem Element textuelle Informationen zu, die bei längerem Mouseover angezeigt werden (tooltip)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="besondere-zeichen">Besondere Zeichen<a class="headerlink" href="#besondere-zeichen" title="Permanent link">&para;</a></h2>
+<p>Für einige Sonderzeichen gibt es vordefinierte Entitäten. Die folgende Tabelle zeigt ein paar Sonderzeichen. Sie können Sie beispielsweise per <code>&lt;span&gt;&amp;euro;&lt;/span&gt;</code> ergibt <code><span>&euro;</span></code> aufrufen. Es beginnt also immer mit einem <code>&amp;</code> und endet mit einem <code>;</code>.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Entität</th>
+            <th>Zeichen</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>&amp;euro;</td>
+        <td>&euro;</td>
+    </tr>
+    <tr>
+        <td>&amp;amp;</td>
+        <td>&amp;</td>
+    </tr>
+    <tr>
+        <td>&amp;lt;</td>
+        <td>&lt;</td>
+    </tr>
+        <tr>
+        <td>&amp;gt;</td>
+        <td>&gt;</td>
+    </tr>
+    <tr>
+        <td>&amp;quot;</td>
+        <td>&quot;</td>
+    </tr>
+    <tr>
+        <td>&amp;forall;</td>
+        <td>&forall;</td>
+    </tr>
+    <tr>
+        <td>&amp;exist;</td>
+        <td>&exist;</td>
+    </tr>
+    <tr>
+        <td>&amp;empty;</td>
+        <td>&empty;</td>
+    </tr>
+    <tr>
+        <td>&amp;isin;</td>
+        <td>&isin;</td>
+    </tr>
+    <tr>
+        <td>&amp;notin;</td>
+        <td>&notin;</td>
+    </tr>
+    <tr>
+        <td>&amp;ni;</td>
+        <td>&ni;</td>
+    </tr>
+    <tr>
+        <td>&amp;prod;</td>
+        <td>&prod;</td>
+    </tr>
+    <tr>
+        <td>&amp;sum;</td>
+        <td>&sum;</td>
+    </tr>
+    </tr>
+        <tr>
+        <td>&amp;copy;</td>
+        <td>&copy;</td>
+    </tr>
+    <tr>
+        <td>&amp;reg;</td>
+        <td>&reg;</td>
+    </tr>
+    <tr>
+        <td>&amp;trade;</td>
+        <td>&trade;</td>
+    </tr>
+    <tr>
+        <td>&amp;larr;</td>
+        <td>&larr;</td>
+    </tr>
+    <tr>
+        <td>&amp;uarr;</td>
+        <td>&uarr;</td>
+    </tr>
+    <tr>
+        <td>&amp;rarr;</td>
+        <td>&rarr;</td>
+    </tr>
+    <tr>
+        <td>&amp;darr;</td>
+        <td>&darr;</td>
+    </tr>
+    <tr>
+        <td>&amp;harr;</td>
+        <td>&harr;</td>
+    </tr>
+    <tr>
+        <td>&amp;crarr;</td>
+        <td>&crarr;</td>
+    </tr>
+    <tr>
+        <td>&amp;spades;</td>
+        <td>&spades;</td>
+    </tr>
+    <tr>
+        <td>&amp;clubs;</td>
+        <td>&clubs;</td>
+    </tr>
+    <tr>
+        <td>&amp;hearts;</td>
+        <td>&hearts;</td>
+    </tr>
+        <tr>
+        <td>&amp;diams;</td>
+        <td>&diams;</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="admonition question">
+<p class="admonition-title">Übung</p>
+<p>Erstellen Sie die obige Tabelle in HTML (die ersten paar Zeilen genügen). Die Herausforderung besteht darin, einerseits den Code darzustellen und andererseits das Zeichen. </p>
+</div>
+<p>In der UTF-8-Tabelle sind nicht nur Sonderzeichen enthalten, sondern auch Emojis. Diese werden über den Hexadezimalcode eingebunden, z.B. <code>&amp;#x1F600;</code> ergibt &#x1F600;. Das Vorgehen ist das Folgende: Sie schauen z.B. <a href="https://unicode.org/emoji/charts/full-emoji-list.html">hier</a> nach und suchen sich das passende Emoji in der Spalte <code>Browser</code>. Von dem links daneben stehenden Unicode (z.B. <code>U+1F600</code>) benötigen Sie nur den Hexadezimalwert (<code>1F600</code>). Diesen fügen Sie nach <code>&amp;#x</code> ein und hängen ein <code>;</code> an. Also bspw. <code>&amp;#x1F44D;</code> ergibt &#x1F44D;.</p>
+<h2 id="relative-pfade">Relative Pfade<a class="headerlink" href="#relative-pfade" title="Permanent link">&para;</a></h2>
+<p>Wenn Sie z.B. Bilder in den HTML-Code einbinden oder Hyperlinks auf andere HTML-Dokumente angeben, dann müssen Sie angeben, wo diese jeweilige Ressource verfügbar ist. Beispiel:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;fiw.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FIW-Logo&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;index.html&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Beachten Sie, dass sowohl in dem <code>src</code>-Attribut als auch in dem <code>href</code>-Attribut Pfade zur Ressource angegeben werden. Das heißt, dass z.B. <code>fiw.jpg</code> entspricht <code>./fiw.jpg</code> bzw. <code>index.html</code> entspricht <code>./index.html</code>. Das wiederum bedeutet, dass beide Ressourcen in demselben Ordner leigen müssen, in dem auch das aufrufende Dokument liegt. Das ist natürlich nur (sehr) selten der Fall.</p>
+<p>Angenommen, wir haben eine Verzeichnisstruktur wie in der folgenden Abbildung gezeigt:</p>
+<p><img alt="pfade" src="../files/209_pfade.png" width="400" /></p>
+<ul>
+<li>Angenommen, wir wollen aus der <code>index.html</code> heraus auf die <code>uebung1.html</code> verlinken, dann ist der Pfad <code>Uebung1/uebung1.html</code>, denn der Ordner <code>Uebung1</code> befindet sich direkt neben der <code>index.html</code>. </li>
+<li>Angenommen, wir wollen aus der <code>uebung1.html</code> heraus auf die <code>uebung2.html</code> verlinken, dann ist der Pfad <code>../Uebung2/uebung2.html</code>, denn der Ordner <code>Uebung2</code> befindet sich direkt neben dem Ordner <code>Uebung1</code> (aus dem wir zunächst heraus müssen) und darin die <code>uebung2.html</code>. </li>
+<li>Angenommen, wir wollen in der <code>uebung3.html</code> das Bild <code>fiw.jpg</code> einbinden, dann ist der Pfad <code>../Uebung1/images/fiw.jpg</code>, denn der Ordner <code>Uebung1</code> befindet sich direkt neben dem Ordner <code>Uebung3</code> (aus dem wir zunächst heraus müssen) und darin der Ordner <code>images</code> und darin das <code>fiw.jpg</code>. </li>
+</ul>
+<p>Geben Sie innerhalb Ihrer Webanwendung alle Pfade stets relativ und nie absolut an! Solche Pfade, wie z.B. <code>C:\Documents\xampp\htdocs\WT\Uebung1\uebung1.html</code> dürfen keinesfalls verwendet werden, denn sobald Sie Ihre Anwendung auf einen anderen Server überführen, würden solche absoluten Pfade nicht mehr stimmen.</p>
+<h2 id="clean-code-html">Clean Code HTML<a class="headerlink" href="#clean-code-html" title="Permanent link">&para;</a></h2>
+<p>Es ist noch nicht so lange her, da gab es zwei unterschiedliche Strömungen in der Weiterentwicklung von HTML: einerseits sollte HTML als Standard weiterentwickelt werden und andererseits gab es Bestrebungen, HTML dichter an XML zu koppeln. So entstand zunächst XHTML. Zum Glück wurden diese beiden Entwicklungen jedoch wieder zusammengeführt. Übrig blieben <em>Konventionen</em>, die eingehalten werden sollten, damit HTML auch XHTML-konform ist. Wir wollen diese Konventionen unbedingt beachten:</p>
+<ul>
+<li>alle HTML-Dokumente beginnen mit <code>&lt;!DOCTYPE html&gt;</code></li>
+<li>die Elemente <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;title&gt;</code> und <code>&lt;body&gt;</code> sind Pflicht, </li>
+<li>alle Elemente müssen korrekt verschachtelt sein (also innere Elemente erst schließen bevor das äußere Element geschlossen wird),</li>
+<li>alle Elemente müssen geschlossen werden (<em>Stand-alone-Elemente</em> sollten dann z.B. so geschrieben werden: <code>&lt;br/&gt;</code>),</li>
+<li>alle Elementnamen sollen vollständig kleingeschrieben werden,</li>
+<li>jedes Attribut sollte einen Wert haben und die Werte sollten in Anführungsstrichen stehen.</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Übung</p>
+<p>Was ist hier jeweils falsch?</p>
+<ul>
+<li><code>&lt;b&gt;&lt;i&gt;Some text&lt;/b&gt;&lt;/i&gt;</code></li>
+<li><code>&lt;p&gt;This is a paragraph
+    &lt;p&gt;This is another paragraph</code></li>
+<li><code>A break: &lt;br&gt;
+    A horizontal rule: &lt;hr&gt;
+    An image: &lt;img src="happy.gif" alt="Happy face"&gt;</code></li>
+<li><code>&lt;P&gt;This is a paragraph&lt;/P&gt;</code></li>
+<li><code>&lt;input type="checkbox" name="vehicle" value="car" checked /&gt;
+    &lt;input type="text" name="lastname" disabled /&gt;</code></li>
+</ul>
+</div>
+<p>Sie können Ihre HTML-Seite validieren lassen. Dazu gibt es Online-Validatoren, z.B. <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fwww.w3schools.com%2Fhtml%2Fhtml_validate.html">hier</a>. </p>
+<h2 id="weitere-informationen-uber-html">Weitere Informationen über HTML<a class="headerlink" href="#weitere-informationen-uber-html" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../files/01_WT_HTML.pdf">Folien HTML</a></li>
+<li>um das untenstehende Beispiel auszuführen, benötigen Sie die Datei <a href="../files/fiw.jpg"><strong>fiw.jpg</strong></a>, die Sie in einem <code>Logos</code>-Ordner ablegen sollten, um wenig Änderungsaufwand bei der folgenden HTML-Datei zu haben</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">alle Beispiele in einem</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>HTML Einführung<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Hyperlinks<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.htw-berlin.de&quot;</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span><span class="p">&gt;</span>HTW Berlin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fiw.htw-berlin.de/fileadmin/HTW/Zentral/Rechtsstelle/Amtliche_Mitteilungsblaetter/2014/17_14.pdf&quot;</span><span class="p">&gt;</span>Studienordnung FIW<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:freiheit@htw-berlin.de&quot;</span><span class="p">&gt;</span>E-Mail an Jörn Freiheit<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Bilder<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../Logos/fiw.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FIW-Logo&quot;</span><span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Tabelle<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 1<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 2<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Spalte 3<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>1_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>2_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_1<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_2<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>3_3<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Listen<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>eins_drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_eins<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_zwei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>drei_drei<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Eingabeelemente<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;SG&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;AI&quot;</span><span class="p">/&gt;</span> AI<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;SG&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;FIW&quot;</span> <span class="na">checked</span><span class="p">/&gt;</span> FIW<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Click&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;reset&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;color&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../Logos/fiw.jpg&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;40&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FIW-Logo&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;100&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Name&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;E-Mail&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="p">/&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="http-vertiefung">HTTP (Vertiefung)<a class="headerlink" href="#http-vertiefung" title="Permanent link">&para;</a></h2>
+<p>HTTP steht für Hypertext Transfer Protocol. Es wurde von <a href="https://de.wikipedia.org/wiki/Tim_Berners-Lee"><strong>Tim Berners Lee</strong></a> zusammen mit HTML, dem <a href="https://de.wikipedia.org/wiki/CERN_httpd"><strong>ersten Webserver</strong></a> und dem <a href="https://de.wikipedia.org/wiki/WorldWideWeb"><strong>ersten Browser</strong></a> Anfang der 1990er Jahre am CERN entwickelt. Die Idee von HTTP ist einfach: der Nutzer stellt unter Eingabe einer URL (die Adresse des Webservers) eine Anfrage (<em>request</em>) an den Webserver. Der Webserver antwortet darauf mit einer <em>response</em>. Diese enthält einige Metadaten und die angefragte Webseite (im HTML-Format), wenn die Anfrage ordnungsgemäß beantwortet werden kann. </p>
+<h3 id="http-anfragemethoden">HTTP-Anfragemethoden<a class="headerlink" href="#http-anfragemethoden" title="Permanent link">&para;</a></h3>
+<p>Für die Anfrage des Browsers an den Webserver stellt HTTP verschiedene Anfragemethoden zur Verfügung. Diese unterscheiden sich in ihrer Bedeutung dahingehend, was mit der angefragten Ressource (den Daten oder der Webseite) geschehen soll. </p>
+<table>
+  <thead>
+    <tr>
+      <th> Anfragemethode </th> 
+      <th> Erläuterung </th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+  <td> <code>GET</code> </td> 
+  <td> ist die einfachste und meistverwendete Anfragemethode; dient dazu, eine Ressource (typischerweise eine HTML-Datei) vom Webserver anzufordern; z.B. `GET /index.html` fordert die `index.html` vom Webserver an. </td>
+</tr>
+<tr>
+  <td> <code>POST</code>    </td>      
+  <td> fordert ebenfalls eine Ressource vom Webserver an; der Unterschied zwischen <code>GET</code> und <code>POST</code> besteht beim Mitsenden von Daten, z.B. Suchanfragen oder Login-Daten. Während beim <code>GET</code> die übermittelten Daten in die URL geschrieben werden, werden diese bei einem <code>POST</code> in den HTTP-Header eingefügt. Das heißt, dass beim `GET` die an den Webserver übergebenen Daten sichtbar sind, beim <code>POST</code> nicht. Für die Übertragung sensibler Daten sollte also <code>POST</code> verwendet werden. </td> 
+</tr>
+<tr>
+  <td> <code>HEAD</code>  </td>       
+  <td> fragt nur den Response-Header ab, nicht die Daten selbst. So kann z.B. bei einem Download zunächst die Größe der Datei abgefragt werden, bevor man die Datei selbst (mit <code>GET</code> oder <code>POST</code>) herunterlädt. </td> 
+</tr> 
+  </tbody>
+</table>
+
+<p>Neben diesen "HTTP-Standardmethoden" gibt es noch spezielle Anfragemethoden, die beim einfachen Surfen keine Rolle spielen, für uns in der Webprogrammierung jedoch von Bedeutung sind. Wir werden diese im Zusammenhang mit dem Programmierparadigma <code>REST</code> (<em>Representational State Transfer</em>) verwenden. Sie unterscheiden sich dahingehend, wie mit den angeforderten Ressourcen umgegangen wird, also ob sie unverändert bleiben, angelegt oder geändert werden.</p>
+<table>
+  <thead>
+    <tr>
+      <th> Anfragemethode </th> 
+      <th> Erläuterung </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <code>GET</code> </td> 
+      <td> lässt die angefragte Ressource unverändert und ruft sie nur ab  </td>
+    </tr>
+    <tr>                                                                                          
+      <td> <code>POST</code>   </td>       
+      <td> erstellt eine neue Ressource oder verändert sie; wir werden <code>POST</code> zum Erstellen verwenden    </td>  
+    </tr>
+    <tr>
+      <td> <code>PUT</code>   </td>        
+      <td> sehr ähnlich zu <code>POST</code>, aber <code>POST</code> ist ein wenig genereller. Wird mit <code>PUT</code> eine neue Ressource angelegt, so wird der Name in der URL angegeben, während bei <code>POST</code> der Name durch den Server vergeben kann; wir werden <code>PUT</code> zum Ändern verwenden </td> 
+    </tr>
+    <tr>
+      <td> <code>DELETE</code>  </td>
+      <td> löscht die angegebene Ressource vom Server   </td> 
+    </tr> 
+  </tbody>
+</table>
+
+<p>Wichtig ist zu beachten, dass HTTP ein <strong>zustandsloses Protokoll</strong> ist. Das bedeutet, dass die Anfragen prinzipiell unabhängig voneinander sind und dass es keine Anfragehostorie gibt. Wird soetwas benötigt, wie z.B. beim Online-Einkauf, dann muss dies über andere Mechanismen (z.B. Anmelden/Registrieren) realisiert werden. </p>
+<h3 id="http-statusmeldungen">HTTP-Statusmeldungen<a class="headerlink" href="#http-statusmeldungen" title="Permanent link">&para;</a></h3>
+<p>HTTP sieht verschiedene Meldungen des Servers an den Client vor. Diese werden im Response-Header versendet. Hier ein paar Beispiele:</p>
+<table>
+  <thead>
+    <tr>
+      <th> HTTP Statusmeldung </th> 
+      <th> Erläuterung </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <code>200 OK</code> </td>  
+      <td> Request wurde vollständig und erfolgreich bearbeitet </td> 
+    </tr>
+    <tr>
+      <td> <code>201 Created</code> </td> 
+      <td> Request wurde bearbeitet und die neue Ressource wurde erstellt </td> 
+    </tr>
+    <tr>
+      <td> <code>301 Moved Permanently</code> </td> 
+      <td> die angeforderte Ressource wurde an eine andere URL bewegt </td> 
+    </tr>
+    <tr>
+      <td> <code>400 Bad Request</code> </td> 
+      <td> Der Request kann nicht bearbeitet werden, da er (syntaktische) Fehler enthält. </td> 
+    </tr>
+    <tr>
+      <td> <code>401 Unauthorized</code> </td>  
+      <td> Request ist ok, aber der Zugriff auf die Ressource ist nicht autorisiert </td> 
+    </tr>
+    <tr>
+      <td> <code>404 Not Found</code> </td>  
+      <td> die angegebene Ressource existiert nicht </td> 
+    </tr>
+    <tr>
+      <td> <code>500 Internal Server Error</code> </td>  
+      <td> der Webserver ist down bzw. hat einen Fehler </td> 
+    </tr> 
+  </tbody>
+</table>
+
+<h3 id="urls">URLs<a class="headerlink" href="#urls" title="Permanent link">&para;</a></h3>
+<p>URL steht für <em>Uniform Resource Locator</em> und ist eine Adresse, die auf eine Ressource auf einem Server zeigt sowie das Protokoll, mit dem auf diese Adresse zugegriffen wird. Der allgemeine Aufbau einer URL sieht so aus: </p>
+<div class="highlight"><pre><span></span><code>&lt;schema&gt;:&lt;ressourcen-adresse&gt;
+</code></pre></div>
+<p><code>&lt;schema&gt;</code> können verschiedene Protokolle sein, z.B. <code>http</code>, <code>https</code>, <code>ftp</code>, <code>mailto</code>, <code>news</code>, <code>file</code> usw. Für die Zugriffe auf Webservern wierden  <code>http</code> bzw. <code>https</code> verwendet. </p>
+<p>Die <code>&lt;ressourcen-adresse&gt;</code> kann unterschiedlich komplex sein. Der allgemeine Fall für den Zugriff auf eine Ressource auf einem Webserver kann so aussehen:</p>
+<div class="highlight"><pre><span></span><code>//user:password@www.example.org:80/index.html?key1=value1&amp;key2=value2
+</code></pre></div>
+<p>Darin möchte ein Nutzer <code>user</code> mit dem Passwort <code>password</code> auf den Server (host) <code>www.example.org</code> über den Port <code>80</code> auf die Ressource <code>index.html</code> zugreifen (mit GET) und übergibt dabei 2 Werte, nämlich <code>value1</code> für den Schlüssel (die Variable) <code>key1</code> und <code>value2</code> für den Schlüssel <code>key2</code>. In den meisten Fällen wird weder <code>user</code> noch <code>password</code> angegeben, oft auch nicht der Port und viele Anfragen auch ohne angehängte Schlüssel-Werte-Paare.</p>
+<p>Die URL darf bestimmte Zeichen nicht enthalten, z.B. Leerzeichen, Klammern usw. Diese werden <em>maskiert</em>, d.h. in sogenante Prozentdarstellung umgewandelt. Ein Leerzeichen wird in <code>%20</code> umgewandelt, ein Punkt in <code>%2E</code> usw. Daraus ergeben sich manchmal etwas "kryptische" URLs (siehe z.B. <a href="https://www.w3schools.com/tags/ref_urlencode.ASP"><strong>https://www.w3schools.com/tags/ref_urlencode.ASP</strong> </a>).</p>
+<h3 id="domain-name-service-dns">Domain Name Service (DNS)<a class="headerlink" href="#domain-name-service-dns" title="Permanent link">&para;</a></h3>
+<p>Prinzipiell sind die Rechner im Internet durch IP-Adressen adressiert. <code>IPv4</code>-Adressen bestehen aus vier Zahlenblöcken (jeweils im Bereich von 0 bis 255), die durch einen Punkt getrennt sind. <code>IPv4</code>-Adressen werden in 32 Bit gespeichert. Es gibt somit theoretisch 2^32 = 4.294.967.296 verschiedene Adressen, d.h. gut 4 Mrd adressierbare Rechner im Internet. Da dies nicht ausreicht, wurde in Version 6 des IP-Protokolls eine neue Dressierbarkeit eingeführt, in dem nun 128 Bit für die Speicherung einer Adresse zur Verfügung stehen. Eine <code>IPv6</code>-Adresse besteht aus acht Blöcken, welche durch Doppelpunkte getrennt sind. Jeder Block besteht aus 4 Hexadezimalstellen. </p>
+<p>Damit man sich zum Surfen im World Wide Web nicht IP-Adressen merken muss, wurden Webservern Namen zugeordnet. Somit muss man nicht die IP-Adressen in das Adressfeld als URL eingeben, sondern kann sprechende Namen verwenden, wie z.B. <code>htw-berlin.de</code>. <code>de</code>ist dabei eine sogenannte Top-Level-Domain und <code>htw-berlin</code>eine Subdomain. Den DNS kann man sich wie ein Telefonbuch vorstellen, in dem für eine sprechende Adresse die zueghörige IP-Adresse steht. Die Anfrage wird dann per TCP/IP an die IP-Adresse geschickt. </p>
+<p>Abfrage nach dem Root-DNS-Server für die Domain <code>htw-berlin.de</code>:</p>
+<div class="highlight"><pre><span></span><code>%<span class="w"> </span>dig<span class="w"> </span>htw-berlin.de<span class="w"> </span>@a.root-servers.net
+
+<span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.10.6<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>htw-berlin.de<span class="w"> </span>@a.root-servers.net
+<span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+<span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+<span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">38694</span>
+<span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">6</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">13</span>
+<span class="p">;;</span><span class="w"> </span>WARNING:<span class="w"> </span>recursion<span class="w"> </span>requested<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>available
+
+<span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+<span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">4096</span>
+<span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+<span class="p">;</span>htw-berlin.de.<span class="w">     </span>IN<span class="w">  </span>A
+
+<span class="p">;;</span><span class="w"> </span>AUTHORITY<span class="w"> </span>SECTION:
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>s.de.net.
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>n.de.net.
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>a.nic.de.
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>f.nic.de.
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>l.de.net.
+de.<span class="w">     </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>z.nic.de.
+
+<span class="p">;;</span><span class="w"> </span>ADDITIONAL<span class="w"> </span>SECTION:
+s.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">195</span>.243.137.26
+s.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span><span class="m">2003</span>:8:14::53
+n.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">194</span>.146.107.6
+n.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span><span class="m">2001</span>:67c:1011:1::53
+a.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">194</span>.0.0.53
+a.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span><span class="m">2001</span>:678:2::53
+f.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">81</span>.91.164.5
+f.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span>2a02:568:0:2::53
+l.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">77</span>.67.63.105
+l.de.net.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span><span class="m">2001</span>:668:1f:11::105
+z.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">194</span>.246.96.1
+z.nic.de.<span class="w">   </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">  </span>2a02:568:fe02::de
+
+<span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">140</span><span class="w"> </span>msec
+<span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">198</span>.41.0.4#53<span class="o">(</span><span class="m">198</span>.41.0.4<span class="o">)</span>
+<span class="p">;;</span><span class="w"> </span>WHEN:<span class="w"> </span>Tue<span class="w"> </span>Sep<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">08</span>:44:58<span class="w"> </span>CEST<span class="w"> </span><span class="m">2020</span>
+<span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">412</span>
+</code></pre></div>
+<p>Die Domain <code>htw-berlin.de</code> wird von mehreren DNS verwaltet: <code>s.de.net</code>, <code>n.de.net</code>, <code>a.nic.de</code>, ... (siehe AUTHORITY SECTION). Beispielsweise leitet der Root-DNS-Server <code>a.nic.de</code> die Auflösung der Domain an die beiden DNS <code>infobloxv.htw-berlin.de</code> (IP-Adresse <code>141.45.65.100</code>) und <code>dns-2.dfn.de</code> weiter:</p>
+<div class="highlight"><pre><span></span><code>%<span class="w"> </span>dig<span class="w"> </span>htw-berlin.de<span class="w"> </span>@a.nic.de
+
+<span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.10.6<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>htw-berlin.de<span class="w"> </span>@a.nic.de
+<span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+<span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+<span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">1455</span>
+<span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">2</span>
+<span class="p">;;</span><span class="w"> </span>WARNING:<span class="w"> </span>recursion<span class="w"> </span>requested<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>available
+
+<span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+<span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">4096</span>
+<span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+<span class="p">;</span>htw-berlin.de.<span class="w">     </span>IN<span class="w">  </span>A
+
+<span class="p">;;</span><span class="w"> </span>AUTHORITY<span class="w"> </span>SECTION:
+htw-berlin.de.<span class="w">    </span><span class="m">86400</span><span class="w"> </span>IN<span class="w">  </span>NS<span class="w">  </span>infobloxv.htw-berlin.de.
+htw-berlin.de.<span class="w">    </span><span class="m">86400</span><span class="w"> </span>IN<span class="w">  </span>NS<span class="w">  </span>dns-2.dfn.de.
+
+<span class="p">;;</span><span class="w"> </span>ADDITIONAL<span class="w"> </span>SECTION:
+infobloxv.htw-berlin.de.<span class="w"> </span><span class="m">86400</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">141</span>.45.65.100
+
+<span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">2</span><span class="w"> </span>msec
+<span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">194</span>.0.0.53#53<span class="o">(</span><span class="m">194</span>.0.0.53<span class="o">)</span>
+<span class="p">;;</span><span class="w"> </span>WHEN:<span class="w"> </span>Tue<span class="w"> </span>Sep<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">08</span>:45:47<span class="w"> </span>CEST<span class="w"> </span><span class="m">2020</span>
+<span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">106</span>
+</code></pre></div>
+<p>Die aktuelle IP-Adresse des Servers <code>htw-berlin.de</code> ist <code>141.45.66.214</code>:</p>
+<div class="highlight"><pre><span></span><code>%<span class="w"> </span>dig<span class="w"> </span>htw-berlin.de<span class="w"> </span>@dns-2.dfn.de
+
+<span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.10.6<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>htw-berlin.de<span class="w"> </span>@dns-2.dfn.de
+<span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+<span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+<span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">21529</span>
+<span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>aa<span class="w"> </span>rd<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
+<span class="p">;;</span><span class="w"> </span>WARNING:<span class="w"> </span>recursion<span class="w"> </span>requested<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>available
+
+<span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+<span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">4096</span>
+<span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+<span class="p">;</span>htw-berlin.de.<span class="w">     </span>IN<span class="w">  </span>A
+
+<span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+htw-berlin.de.<span class="w">    </span><span class="m">28800</span><span class="w"> </span>IN<span class="w">  </span>A<span class="w"> </span><span class="m">141</span>.45.66.214
+
+<span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">11</span><span class="w"> </span>msec
+<span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">193</span>.174.75.54#53<span class="o">(</span><span class="m">193</span>.174.75.54<span class="o">)</span>
+<span class="p">;;</span><span class="w"> </span>WHEN:<span class="w"> </span>Tue<span class="w"> </span>Sep<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">08</span>:46:53<span class="w"> </span>CEST<span class="w"> </span><span class="m">2020</span>
+<span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">58</span>
+</code></pre></div>
+<p>Die IP-Adresse der Domain (und die verantwortlichen DNS) hätte man auch mit <code>nslookup</code> herausbekommen:</p>
+<div class="highlight"><pre><span></span><code>%<span class="w"> </span>nslookup<span class="w"> </span>-q<span class="o">=</span>any<span class="w"> </span>htw-berlin.de
+
+Server:<span class="w">   </span><span class="m">141</span>.45.2.100
+Address:<span class="w">  </span><span class="m">141</span>.45.2.100#53
+
+htw-berlin.de
+<span class="w">  </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>infoblox1.htw-berlin.de
+<span class="w">  </span>mail<span class="w"> </span><span class="nv">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>net-rz.htw-berlin.de
+<span class="w">  </span><span class="nv">serial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2009121336</span>
+<span class="w">  </span><span class="nv">refresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10800</span>
+<span class="w">  </span><span class="nv">retry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3600</span>
+<span class="w">  </span><span class="nv">expire</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2419200</span>
+<span class="w">  </span><span class="nv">minimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">900</span>
+Name:<span class="w"> </span>htw-berlin.de
+Address:<span class="w"> </span><span class="m">141</span>.45.66.214
+htw-berlin.de<span class="w"> </span>mail<span class="w"> </span><span class="nv">exchanger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="w"> </span>mail1.rz.htw-berlin.de.
+htw-berlin.de<span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ZOOM_verify_stchLGrGQgO-9ACdBPKPRw&quot;</span>
+htw-berlin.de<span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v=spf1 ip4:141.45.10.64/26 ip4:141.45.70.64/26 ~all&quot;</span>
+htw-berlin.de<span class="w"> </span><span class="nv">nameserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>dns-2.dfn.de.
+htw-berlin.de<span class="w"> </span><span class="nv">nameserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>infobloxv.htw-berlin.de.
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Jörn Freiheit
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>
