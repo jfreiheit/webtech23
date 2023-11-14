@@ -1,2 +1,4 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 files/*.zip filter=lfs diff=lfs merge=lfs -text
+doc/files/*.zip filter=lfs diff=lfs merge=lfs -text
+docs/files/*.zip filter=lfs diff=lfs merge=lfs -text

@@ -39,6 +39,78 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 
 ## Code aus der Vorlesung
 
+??? question "Code Vorlesung 14.11.2023"
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>JavaScript</title>
+
+	</head>
+
+	<body>
+	    <h1>JavaScript</h1>
+	    <main>
+	        <h4>Eigenschaften</h4>
+	        <ul>
+	            <li>Skriptsprache (aus Performanzgründen aber compiliert - z.B. V8 in Chrome, SpiderMonkey in Firefox)</li>
+	            <li>dynamische Typisierung</li>
+	            <li>keine unterschiedlichen Referenztypen</li>
+	            <li>Vererbung durch <code>prototype</code></li>
+	            <li>Objekteigenschaften und -funktionen können einfach dem Objekt hinzugefügt werden</li>
+	        </ul>
+	        <h4>Nützliche Links</h4>
+	        <ul>
+	            <li><a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/">ECMA-262</a>
+	            </li>
+	            <li><a href="https://dom.spec.whatwg.org/">Document Object Model (DOM)</a></li>
+	            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a></li>
+	            <li><a href="https://www.w3schools.com/js/default.asp">JavaScript Tutorial</a></li>
+	            <li><a href="https://learnjavascript.online/">Learn JavaScript</a></li>
+	            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">JavaScript Reference</a>
+	            </li>
+	            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType?retiredLocale=de">Objekttypen im DOM</a>
+	            </li>
+	        </ul>
+	        <h4>Ergebnisliste</h4>
+	        <ul id="ulresult">
+	            <li id="liresult1"></li>
+	        </ul>
+	        <input onchange="inputToList()" type="text" id="input"  placeholder="Name" />
+	        <button type="button">Klick Mich!</button>
+	    </main>
+	    <script>
+	        function helloFIW(name = 'World') {
+	            console.log('Hello ' + name)
+	        }
+
+	        function inputToList() {
+	            let input = document.getElementById('input');
+	            let inputValue = input.value;
+	            console.log('value :', inputValue)
+	            let output = document.querySelector('#liresult1');
+	            if(output.innerHTML == "") {
+	                output.innerHTML = inputValue;
+	                output.style.color = 'red';
+	            } else {
+	                let newLi = document.createElement('li');
+	                let liste = document.querySelector('#ulresult');
+	                console.log('ul : ', liste);
+	                let newText = document.createTextNode(inputValue);
+	                newLi.appendChild(newText);
+	                liste.appendChild(newLi);
+	            }
+	            input.value = "";
+	        }
+	    </script>
+	</body>
+
+	</html>
+	```
+
 ## Semesteraufgabe
 
 Am Ende des Kurses geben Sie eine Webanwendung ab. Diese wird bewertet und bildet die Modulnote für "WebTech" (es gibt also keine Klausur o.ä.). Überlegen Sie sich früh, was Sie implementieren wollen. Ihrer Kreativität sind keine Grenzen gesetzt. Es können 2 Studentinnen gemeinsam ein Projekt durchführen und abgeben. Sie erhalten dann (höchstwahrscheinlich) die gleiche Note. Es muss an den Commits erkennbar sein, welchen Anteil am Ergebnis jede der beiden Studentinnen hatte.
