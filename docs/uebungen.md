@@ -806,7 +806,7 @@
 #### Übung 5
     
 ??? question "Übungsaufgabe 5 (JavaScript, DOM)"
-    - Laden Sie [hier](./files/Uebung5.zip) die Datei `Uebung5.zip` herunter, entpacken Sie sie und schieben den Ordner `Uebung5` in Ihren Projektordner.
+    - Laden Sie [hier](https://github.com/jfreiheit/WT23/blob/main/Uebung5.zip) die Datei `Uebung5.zip` herunter, entpacken Sie sie und schieben den Ordner `Uebung5` in Ihren Projektordner.
     - In der Datei `uebung5.html` sind einige Dinge vorbereitet:
         - eine Tabelle mit leerem `<tbody>`. Der `<tbody>` hat die `id='tbody'`,
         - wird die Seite geladen, wird die `init()`-Funktion aufgerufen (`onload='init()'`),
