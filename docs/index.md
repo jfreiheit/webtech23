@@ -111,6 +111,89 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 	</html>
 	```
 
+
+??? question "Code Vorlesung 21.11.2023"
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	    <title>Asynchron</title>
+	</head>
+	<body class="container">
+	    <h1>Themen</h1>
+	<div class="list-group">
+	   <a class="list-group-item list-group-item-action" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">asynchron</a>
+	    <a class="list-group-item list-group-item-action" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch-API</a>
+	    <a class="list-group-item list-group-item-action" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics">Objekte</a>
+	    <a class="list-group-item list-group-item-action" href="https://www.json.org/json-de.html">JSON</a>
+	    <a class="list-group-item list-group-item-action" href="https://angular.io/">Angular</a>
+	</div>
+	<script>
+	    function asyncBehaviour() {
+
+	        let a = 1;
+	        let b = 1;
+
+	        setTimeout(  () => {
+	            console.log('timeout a = ', a)
+	        }, 100)
+
+	        fetch('https://jsonplaceholder.typicode.com/posts')
+	        .then( response => {
+	            console.log(response)
+	            return response.json() // Rueckgabe des body unserer Response
+	        })
+	        .then ( body => {
+	            console.log('body', body)
+	            return body[0]
+	        })
+	        .then( obj0 => console.log(obj0))
+
+	        console.log("a = ", a)
+	        console.log("b = ", b)
+
+	        a = 10;
+	    }
+
+	    let person = {
+	        name: "Musterfrau",
+	        vorname: "Maria",
+	        adresse: {
+	            strasse: "Wilhelminenhofstr.",
+	            nummer: 75,
+	            plz: 12459,
+	            stadt: "Berlin"
+	        },
+	        getName: () => `${person.vorname} ${person.name}` 
+	    }
+
+	    person.alter = 42
+
+	    console.log('person', person)
+	    console.log('name', person.name)
+	    console.log('strasse', person.adresse?.strasse)
+	    console.log('name + vorname', person.getName())
+
+	    let personJSON = JSON.stringify(person)
+	    console.log(personJSON)
+	    let personObj = JSON.parse(personJSON)
+	    console.log(personObj)
+
+	    asyncBehaviour();
+	</script>
+	</body>
+	</html>
+	```
+
+
+??? question "Code Vorlesung 28.11.2023"
+	Angulat-Projekt `first` - siehe [hier](https://github.com/jfreiheit/WT23)
+
+
 ## Semesteraufgabe
 
 Am Ende des Kurses geben Sie eine Webanwendung ab. Diese wird bewertet und bildet die Modulnote für "WebTech" (es gibt also keine Klausur o.ä.). Überlegen Sie sich früh, was Sie implementieren wollen. Ihrer Kreativität sind keine Grenzen gesetzt. Es können 2 Studentinnen gemeinsam ein Projekt durchführen und abgeben. Sie erhalten dann (höchstwahrscheinlich) die gleiche Note. Es muss an den Commits erkennbar sein, welchen Anteil am Ergebnis jede der beiden Studentinnen hatte.

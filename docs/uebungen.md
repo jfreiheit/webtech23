@@ -831,7 +831,32 @@
 
 #### Übung 6
     
-??? question "Übungsaufgabe 6 (JSON, Direktiven, Bindings)"
+??? question "Übungsaufgabe 6 (Angular - Komponenten)"
+    - Erstellen Sie ein neues Angular-Projekt `Uebung6` (siehe  [hier](../angular/#erstes-projekt-erstellen)). 
+    - Erstellen Sie mindestens folgende Komponenten: `header`, `nav`, `footer`, `table` und `form`. 
+    - Gestalten Sie `header`, `nav` und `footer` so, dass es ungefähr so aussieht:
+
+        ![uebung6](./files/286_uebung6.png){ width=50% }
+
+        Diese drei Komponenten sollen mittels Komponentenselektoren in die `AppComponent` eingebunden werden.
+
+    - Erstellen Sie für die `TableComponent` die Route `read` und für die `FormComponent` die Route `create`, so dass für `localhost:4200/create` ungefähr folgende Ansicht erscheint:
+
+        ![uebung6](./files/287_uebung6.png){ width=50% }
+
+        Diese Komponente enthält ein Formular. Für `localhost:4200/read` erscheint ungefähr folgende Ansicht:
+
+        ![uebung6](./files/288_uebung6.png){ width=50% }
+
+        Diese Komponente enthält eine Tabelle. Es ist nur der Tabellenkopf mit den Spaltenüberschriften zu sehen. 
+
+    - In der nächsten Übung befüllen wir die Tabelle mithilfe eines Services. 
+
+
+
+#### Übung 7
+    
+??? question "Übungsaufgabe 7 (JSON, Direktiven, Bindings)"
     - Erstellen Sie ein neues Angular-Projekt `Uebung6` (siehe  [hier](../angular/#erstes-projekt-erstellen)). 
     - Erstellen Sie mindestens eine `main`-Komponente (gerne auch noch `header` und `footer` - so ähnlich wie auf den Bildern, kann aber ganz anders aussehen). 
     - Erstellen Sie im `assets`-Ordner eine Datei `members.json` mit folgendem Inhalt:
@@ -1106,9 +1131,9 @@
 
 
 
-#### Übung 7
+#### Übung 8
     
-??? question "Übungsaufgabe 7 (REST-API)"
+??? question "Übungsaufgabe 8 (REST-API)"
     - Erstellen Sie eine REST-API mit folgenden Endpunkten:
 
         - `GET /users`          /* gebe alle `user`-Einträge zurück */
@@ -1119,8 +1144,8 @@
 
     - Geben Sie am Anfang Folgendes im Terminal innerhalb Ihres Projekteordners ein (ohne die Kommentare):
 
-        - `mkdir Uebung7`
-        - `cd Uebung7`
+        - `mkdir Uebung8`
+        - `cd Uebung8`
         - `npm i`                    /* Erstellt das [Node.js](https://nodejs.dev/en/download/)-Projekt  */
         - `npm i express --save`     /* [express.js](https://expressjs.com/de/)  */
         - `npm i nodemon --save-dev` /* [nodemon](https://www.npmjs.com/package/nodemon) */
