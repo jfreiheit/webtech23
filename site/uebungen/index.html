@@ -1546,8 +1546,7 @@
 <details class="question">
 <summary>Übungsaufgabe 7 (JSON, Direktiven, Bindings)</summary>
 <ul>
-<li>Erstellen Sie ein neues Angular-Projekt <code>Uebung6</code> (siehe  <a href="../angular/#erstes-projekt-erstellen">hier</a>). </li>
-<li>Erstellen Sie mindestens eine <code>main</code>-Komponente (gerne auch noch <code>header</code> und <code>footer</code> - so ähnlich wie auf den Bildern, kann aber ganz anders aussehen). </li>
+<li>Erstellen Sie ein neues Angular-Projekt <code>Uebung7</code> (siehe  <a href="../angular/#erstes-projekt-erstellen">hier</a>) oder nutzen Sie Ihre Implementierung aus <code>Uebung6</code>. </li>
 <li>
 <p>Erstellen Sie im <code>assets</code>-Ordner eine Datei <code>members.json</code> mit folgendem Inhalt:</p>
 <details>
@@ -1810,14 +1809,12 @@
 <p>Erstellen Sie einen Service <code>members.service.ts</code>, in dem die <code>members.json</code> per <code>fetch()</code> eingelesen wird und der eine Funktion zur Verfügung stellt, die alle <code>members</code> als Array zurückgibt. Erstellen Sie ein passendes <code>Members</code>-Interface, um die Typsicherheit zu verbessern.</p>
 </li>
 <li>
-<p>Erstellen Sie in der <code>main</code>-Komponente eine Tabelle mit 3 Spalten (Vorname, Nachname, E-Mail-Adresse) und fügen Sie die Daten aus der <code>members.json</code> in die Tabelle mithilfe der Strukturdirektive <code>*ngFor</code> (siehe <a href="../angular2/#strukturdirektiven">hier</a>) und Interpolation (siehe <a href="../angular2/#interpolation">hier</a>) ein. </p>
+<p>Befüllen Sie mit den Daten aus <code>members.json</code> eine Tabelle:</p>
+<p><img alt="uebung7" src="../files/289_uebung7.png" /></p>
 </li>
-<li>Fügen Sie oberhalb der Tabelle einen Button hinzu. Verwenden Sie <code>buttonText</code> aus der <code>main.component.ts</code> als  Text im Button. Behandeln Sie das Klick-Ereignis des Buttons in der <code>tableOnOff()</code>-Funktion (siehe <a href="../angular2/#event-bindings">hier</a>). </li>
 <li>
-<p>Ändern Sie in der <code>tableOnOff()</code>-Funktion die Werte von <code>tableOn</code> und <code>buttonText</code>. Vewenden Sie die Strukturdirektive <code>*ngIf</code> so, dass abhängig vom Wert von <code>tableOn</code> entweder die Tabelle erscheint oder das folgende Bild erscheint: 
-    <img alt="uebung7" src="../files/218_uebung7.png" /></p>
-<p>Achten Sie auch auf die Änderung der Inschrift des Buttons:
-<img alt="uebung7" src="../files/219_uebung7.png" /> </p>
+<p>Implementieren Sie für das Suchfeld die Behandlung des <code>input</code>-Ereignisses so, dass nur die Teilnehmerinnen in der Tabelle erscheinen, deren Vor- oder Nachnamen den Suchstring enthalten:</p>
+<p><img alt="uebung7" src="../files/290_uebung7.png" /></p>
 </li>
 <li>
 <p>Alle Bilder sind nur Anregungen, kann gerne ganz anders aussehen. Gerne können Sie auch Bootstrap einbinden und verwenden (siehe <a href="https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap">hier</a>).</p>

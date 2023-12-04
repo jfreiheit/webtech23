@@ -857,8 +857,7 @@
 #### Übung 7
     
 ??? question "Übungsaufgabe 7 (JSON, Direktiven, Bindings)"
-    - Erstellen Sie ein neues Angular-Projekt `Uebung6` (siehe  [hier](../angular/#erstes-projekt-erstellen)). 
-    - Erstellen Sie mindestens eine `main`-Komponente (gerne auch noch `header` und `footer` - so ähnlich wie auf den Bildern, kann aber ganz anders aussehen). 
+    - Erstellen Sie ein neues Angular-Projekt `Uebung7` (siehe  [hier](../angular/#erstes-projekt-erstellen)) oder nutzen Sie Ihre Implementierung aus `Uebung6`. 
     - Erstellen Sie im `assets`-Ordner eine Datei `members.json` mit folgendem Inhalt:
 
         ??? "assets/members.json"
@@ -1119,13 +1118,13 @@
 
     - Erstellen Sie einen Service `members.service.ts`, in dem die `members.json` per `fetch()` eingelesen wird und der eine Funktion zur Verfügung stellt, die alle `members` als Array zurückgibt. Erstellen Sie ein passendes `Members`-Interface, um die Typsicherheit zu verbessern.
 
-    - Erstellen Sie in der `main`-Komponente eine Tabelle mit 3 Spalten (Vorname, Nachname, E-Mail-Adresse) und fügen Sie die Daten aus der `members.json` in die Tabelle mithilfe der Strukturdirektive `*ngFor` (siehe [hier](../angular2/#strukturdirektiven)) und Interpolation (siehe [hier](../angular2/#interpolation)) ein. 
-    - Fügen Sie oberhalb der Tabelle einen Button hinzu. Verwenden Sie `buttonText` aus der `main.component.ts` als  Text im Button. Behandeln Sie das Klick-Ereignis des Buttons in der `tableOnOff()`-Funktion (siehe [hier](../angular2/#event-bindings)). 
-    - Ändern Sie in der `tableOnOff()`-Funktion die Werte von `tableOn` und `buttonText`. Vewenden Sie die Strukturdirektive `*ngIf` so, dass abhängig vom Wert von `tableOn` entweder die Tabelle erscheint oder das folgende Bild erscheint: 
-        ![uebung7](./files/218_uebung7.png)
+    - Befüllen Sie mit den Daten aus `members.json` eine Tabelle:
 
-        Achten Sie auch auf die Änderung der Inschrift des Buttons:
-        ![uebung7](./files/219_uebung7.png) 
+        ![uebung7](./files/289_uebung7.png)
+
+    - Implementieren Sie für das Suchfeld die Behandlung des `input`-Ereignisses so, dass nur die Teilnehmerinnen in der Tabelle erscheinen, deren Vor- oder Nachnamen den Suchstring enthalten:
+
+        ![uebung7](./files/290_uebung7.png)
 
     - Alle Bilder sind nur Anregungen, kann gerne ganz anders aussehen. Gerne können Sie auch Bootstrap einbinden und verwenden (siehe [hier](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)).
 
