@@ -194,6 +194,104 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 	Angulat-Projekt `first` - siehe [hier](https://github.com/jfreiheit/WT23)
 
 
+??? question "Code Vorlesung 05.12.2023"
+	=== "shared/my.service.ts"
+	```js
+	import { Injectable } from '@angular/core';
+	import { Member } from './member';
+
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class MyService {
+
+	  async getAllMembers(): Promise<Member[]> {
+	    let response = await fetch('../../assets/members.json')
+	    let membersArray = response.json();
+	    return membersArray;
+	  }
+	}
+	```
+
+	=== "shard/member.ts"
+	```js
+	export interface Member {
+	  firstname: string;
+	  lastname: string;
+	  email: string;
+	  ipaddress: string;
+	}
+	```
+
+	=== "table.component.ts"
+	```js
+	import { Component, OnInit, inject } from '@angular/core';
+	import { CommonModule } from '@angular/common';
+	import { MyService } from '../shared/my.service';
+	import { Member } from '../shared/member';
+	import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+	@Component({
+	  selector: 'app-table',
+	  standalone: true,
+	  imports: [CommonModule, ReactiveFormsModule],
+	  templateUrl: './table.component.html',
+	  styleUrl: './table.component.css'
+	})
+	export class TableComponent implements OnInit{
+
+	  members: Member[] = [];
+	  filterMem: Member[] = [];
+	  search = new FormControl('');
+	  private myservice = inject(MyService);
+
+
+	  async ngOnInit(): Promise<void> {
+	    this.members = await this.myservice.getAllMembers();
+	    this.filterMem = this.members;
+	    console.log('members', this.filterMem)
+	  }
+
+	  filterMembers(): void{
+	    let searchstring = this.search.value ? this.search.value : "";
+	    console.log(searchstring)
+	    this.filterMem = this.members.filter( (member) =>
+	      member.firstname.toLowerCase().includes(searchstring) );
+	    console.log(this.filterMem)
+	  }
+	}
+	```
+
+	=== "table.component.html"
+	```html
+	<h1>Alle Teilnehmerinnen</h1>
+	<input type="text" placeholder="Filtern" [formControl]="search" (input)="filterMembers()"/>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Nr</th>
+	      <th>Vorname</th>
+	      <th>Nachname</th>
+	      <th>E-Mail</th>
+	      <th>IP-Adresse</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let member of filterMem; let i = index;">
+	      <td>{{ i }}</td>
+	      <td>{{ member.firstname }}</td>
+	      <td>{{ member.lastname }}</td>
+	      <td>{{ member.email }}</td>
+	      <td>{{ member.ipaddress }}</td>
+	    </tr>
+	  </tbody>
+	</table>
+	```
+
+??? hint "Video aus Vorlesung 05.12.2023"
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="10_Services" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+	
 ## Semesteraufgabe
 
 Am Ende des Kurses geben Sie eine Webanwendung ab. Diese wird bewertet und bildet die Modulnote für "WebTech" (es gibt also keine Klausur o.ä.). Überlegen Sie sich früh, was Sie implementieren wollen. Ihrer Kreativität sind keine Grenzen gesetzt. Es können 2 Studentinnen gemeinsam ein Projekt durchführen und abgeben. Sie erhalten dann (höchstwahrscheinlich) die gleiche Note. Es muss an den Commits erkennbar sein, welchen Anteil am Ergebnis jede der beiden Studentinnen hatte.
