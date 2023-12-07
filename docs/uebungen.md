@@ -790,6 +790,194 @@
     - Ziele der Übung sind die Anwendung von *CSS-Grid* (siehe z.B. [hier](https://css-tricks.com/snippets/css/complete-guide-grid/)) sowie die Verwendung von Größen und Einheiten (siehe z.B. [hier](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)). Lassen Sie Ihrer Kreativität freien Lauf!
 
 
+??? note "Eine mögliche Lösung für Übung 3"
+    === "uebung3.html"
+        ```html
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Uebung 3</title>
+            <style>
+                .wrapper {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    column-gap: 1em;
+                    row-gap: 1em;
+                }
+                
+                .citycard {
+                    display: grid;
+                    grid-template-rows: 4fr 1fr;
+                    /* background-color: rgb(251, 237, 220); */
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+                }
+
+                .cityimage {
+                    text-align: center;
+                }
+
+                .cityimage img {
+                    margin: 1em;
+                    width: 5em;
+
+                }
+
+                .citycard:nth-Child(even) .cityname{
+                    text-align: center;
+                    background-color: aliceblue;
+                }
+
+                .citycard:nth-Child(odd) .cityname{
+                    text-align: center;
+                    background-color: rgb(244, 220, 220);
+                }
+
+                .cityname:hover {
+                    background-color: blue;
+                    color: white;
+                }
+
+                @media (min-width: 1600px) {
+                    .wrapper {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+            <header>
+                <h2>STÄDTE</h2>
+            </header>
+            <main>
+
+
+                <section class="wrapper">
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/berlin.png" alt="Berlin">
+                        </div>
+                        <div class="cityname">
+                            <p>Berlin</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/bernau.png" alt="Bernau">
+                        </div>
+                        <div class="cityname">
+                            <p>Bernau</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/brandenburg.png" alt="Brandenburg">
+                        </div>
+                        <div class="cityname">
+                            <p>Brandenburg</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/bremen.png" alt="Bremen">
+                        </div>
+                        <div class="cityname">
+                            <p>Bremen</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/bremerhaven.png" alt="Bremerhaven">
+                        </div>
+                        <div class="cityname">
+                            <p>Bremerhaven</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/madrid.png" alt="Madrid">
+                        </div>
+                        <div class="cityname">
+                            <p>Madrid</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/magdeburg.png" alt="Magdeburg">
+                        </div>
+                        <div class="cityname">
+                            <p>Magdeburg</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/mainz.png" alt="Mainz">
+                        </div>
+                        <div class="cityname">
+                            <p>Mainz</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/mannheim.png" alt="Mannheim">
+                        </div>
+                        <div class="cityname">
+                            <p>Mannheim</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/Marburg.png" alt="Marburg">
+                        </div>
+                        <div class="cityname">
+                            <p>Marburg</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/newyork.png" alt="New York">
+                        </div>
+                        <div class="cityname">
+                            <p>New York</p>
+                        </div>
+                    </div>
+
+                    <div class="citycard">
+                        <div class="cityimage">
+                            <img src="./images/stockholm.png" alt="Stockholm">
+                        </div>
+                        <div class="cityname">
+                            <p>Stockholm</p>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+            <footer>
+
+            </footer>
+        </body>
+
+        </html>
+        ```
+
 
 #### Übung 4
 
@@ -801,6 +989,88 @@
         ![Uebung4](./files/257_uebung4.png){ width="300" } 
     - Wird der `Abbrechen`-Button gedrückt, werden alle bereits eingegebenen Daten wieder aus den Textfeldern entfernt.   
     - Ziele der Übung sind die Anwendung von *CSS-Bootstrap* und *JavaScript*.
+
+
+
+??? note "Eine mögliche Lösung für Übung 4"
+    === "uebung4.html"
+        ```html
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../css/bootstrap.min.css">
+            <title>Übung 4</title>
+        </head>
+        <body>
+            <div class="container">
+                <h1 class="my-3">Teilnehmerin Registrierung</h1>
+                <div class="row">
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input class="form-control" type="text" placeholder="First name" id="first" />
+                    </div>
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input class="form-control" type="text" placeholder="Last name" id="last" />
+                    </div>
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input class="form-control" type="email" placeholder="E-Mail" id="email" />
+                    </div>
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input class="form-control" type="text" placeholder="IP-Address" id="ipaddr" />
+                    </div>
+
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input class="btn btn-secondary" type="text" value="Abbrechen"/>
+                    </div>
+                    <div class="my-3 col-12 col-sm-6 col-md-4 col-lg-3">
+                        <input onclick="register()" class="btn btn-success" type="text" value="Registrieren" />
+                    </div>
+                </div>
+                <h2 class="my-4">Eingegebene Werte</h2>
+                <div id="output"></div>
+            </div>
+            <script>
+                function register() 
+                {
+
+                    // Eingaben auslesen
+                    console.log("Registrieren geklickt");
+                    let firstInput = document.getElementById('first');
+                    let firstValue = firstInput.value;
+                    let lastValue = document.querySelector('#last').value;
+                    let emailValue = document.querySelector('#email').value;
+                    let ipaddrValue = document.querySelector('#ipaddr').value;
+
+                    // Eingaben auf Konsole ausgeben
+                    console.log('firstValue : ', firstValue)
+                    console.log('lastValue : ', lastValue)
+                    console.log('emailValue : ', emailValue)
+                    console.log('ipaddrValue : ', ipaddrValue)
+
+                    if(firstValue == "") {
+                        firstInput.classList.remove('is-valid')
+                        firstInput.classList.add('is-invalid')
+                    } else {
+                        firstInput.classList.remove('is-invalid')
+                        firstInput.classList.add('is-valid')
+                    }
+
+                    let output = document.getElementById('output');
+                    output.innerHTML = `
+                    <ul>
+                        <li>${firstValue}</li>
+                        <li>${lastValue}</li>
+                        <li>${emailValue}</li>
+                        <li>${ipaddrValue}</li>
+                    </ul>`; 
+
+                }
+            </script>
+        </body>
+        </html>
+        ```
+
 
 
 #### Übung 5
@@ -826,6 +1096,140 @@
         - Wird also z.B. `12` eingegeben, dann erscheinen nur die Städte, deren Gründungsjahr mit `12` beginnt:  <br/>
             ![Uebung5](./files/261_uebung5.png) <br/>
         - **Tipp:** Sie laufen in einer Schleife durch das Array, um alle Städte auszulesen. Fügen Sie darin eine Bedingung ein, dass Sie nur die Städte der Tabelle hinzufügen, die der Filter-Eingabe entsprechen.
+
+
+
+??? note "Eine mögliche Lösung für Übung 5"
+    === "uebung5.html"
+        ```html
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="../css/bootstrap.min.css" rel="stylesheet">
+            <title>Übung 5</title>
+            <style>
+                img {
+                    width: 50px;
+                }
+            </style>
+        </head>
+        <body class="container" onload="init()">
+            <h1>Städte</h1>
+            <div class="row my-4">
+                <div class="col-2">
+                    <label for="filter">Filter:</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="filter" oninput="createTable()"/>
+                </div>     
+            </div>
+            <table class="table table-striped table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Nr</th>
+                        <th scope="col">Jahr</th>
+                        <th scope="col">Stadt</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Bild</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    
+                </tbody>
+            </table>
+            <script>
+                let staedtearr = [];
+
+                async function getStaedte() {
+
+                    const request = new Request('staedte.json', {
+                            method: 'GET',      // GET ist default
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                    const response = await fetch('staedte.json');
+                    console.log(response);
+                    return response.json();
+                }
+
+                function createTable() {
+                    let input = document.getElementById('filter').value; 
+
+                    if(staedtearr.length > 0)
+                    {
+                        let tbody = document.getElementById('tbody');
+                        tbody.innerHTML = '';
+                        let nr = 1;
+                        for(let stadtObj of staedtearr) {
+                            console.log('stadt : ', stadtObj.stadt)
+                            if(input.toLowerCase() == stadtObj.stadt.substring(0,input.length).toLowerCase()) {
+                                let tr = document.createElement('tr');
+
+                                let td1 = document.createElement('td');
+                                td1.innerText = nr++;
+                                tr.appendChild(td1);
+
+                                let td2 = document.createElement('td');
+                                td2.innerText = stadtObj.jahr;
+                                tr.appendChild(td2);
+
+                                let td3 = document.createElement('td');
+                                td3.innerText = stadtObj.stadt;
+                                tr.appendChild(td3);
+
+                                let td4 = document.createElement('td');
+                                td4.innerHTML = `<a class="btn btn-success btn-sm" href="${stadtObj.link}">Link</a>`;
+                                tr.appendChild(td4);
+
+                                let td5 = document.createElement('td');
+                                td5.innerHTML = `<img src="${stadtObj.bild}" als="${stadtObj.stadt}" />`;
+                                tr.appendChild(td5);
+
+                                tbody.appendChild(tr);
+                            }
+                        }
+                        
+                        
+                        // hier muessen jetzt die einzelnen Zeilen in die Tabelle eingelesen werden
+                        // das Staedte-Array muss ausgelesen werden (z.B. for(stadt of staedtearr)
+                        // Tipp: zunaechst einfach alle anzeigen lassen und erst dann das Filtern einbauen
+                        // Filtern: die Eingabe mit dem jeweiligen Gruendungsjahr bzw. der jeweiligen Stadt
+                        // vergleichen (siehe z.B. substring(0, input.length) und toLowerCase())
+                        // wenn match, dann entsprechende Zeile einfuegen; sonst nicht
+                    }
+                }
+
+                function init() {
+
+                    getStaedte()
+                    .then( jsonObj => {
+                        console.log( 'body --> ', jsonObj);
+                        return jsonObj.staedte;
+                    })
+                    .then (alleStaedteAlsArray => {
+                        console.log('staedte array -->', alleStaedteAlsArray);
+                        staedtearr = alleStaedteAlsArray;
+                        createTable();
+                    })
+                            
+                    // hier getStaedte() aufrufen und
+                    // staedtearr befuellen!
+                    // siehe Promises!
+
+                    
+
+                }
+
+                
+            </script>
+        </body>
+        </html>
+        ```
+
 
 
 
@@ -1132,47 +1536,105 @@
 
 #### Übung 8
     
-??? question "Übungsaufgabe 8 (REST-API)"
-    - Erstellen Sie eine REST-API mit folgenden Endpunkten:
+??? question "Übungsaufgabe 8 (REST-API mit PostgreSQL)"
 
-        - `GET /users`          /* gebe alle `user`-Einträge zurück */
-        - `POST /users`         /* erstelle einen neuen `user` */
-        - `GET /users/:name`    /* gibt den `user` mit `username == name` zurück */
-        - `DELETE /users/:id`   /* löscht den `user` mit `_id == id` */
-        - `PUT /users/:id`      /* ändert Daten von `user` mit `_id == id` */
+    <ul>
+    <li>Erstellen Sie eine [REST-API](../webtech/backend_pg/#rest-api-postgresql) mit folgenden Endpunkten:</li>
 
-    - Geben Sie am Anfang Folgendes im Terminal innerhalb Ihres Projekteordners ein (ohne die Kommentare):
+    <table>
+        <thead>
+        <tr>
+        <th>Endpunkt</th>
+        <th>Erläuterung </th>
+        </tr>
+        </thead>
+        <tbody>
+         <tr>
+         <td>`GET /users`  </td>        
+         <td>gebe alle `user`-Einträge zurück</td>
+         </tr>
+         <tr>
+         <td>`POST /users`  </td>        
+         <td>erstelle einen neuen `user` </td>
+         </tr>
+         <tr>
+         <td>`GET /users/:name`  </td>        
+         <td>gibt den `user` mit `username == name` zurück </td>
+         </tr>
+         <tr>
+         <td>`DELETE /users/:id`  </td>        
+         <td>löscht den `user` mit `_id == id` </td>
+         </tr>
+         <tr>
+         <td>`PUT /users/:id`  </td>        
+         <td>ändert Daten von `user` mit `_id == id` </td>
+         </tr>
+        </tbody>
+    </table>
 
-        - `mkdir Uebung8`
-        - `cd Uebung8`
-        - `npm i`                    /* Erstellt das [Node.js](https://nodejs.dev/en/download/)-Projekt  */
-        - `npm i express --save`     /* [express.js](https://expressjs.com/de/)  */
-        - `npm i nodemon --save-dev` /* [nodemon](https://www.npmjs.com/package/nodemon) */
-        - `npm i mongoose --save`    /* [mongoose](https://mongoosejs.com/) */
-        - `npm i dotenv --save`      /* [dotenv](https://www.npmjs.com/package/dotenv)  */
+    <li>Geben Sie am Anfang Folgendes im Terminal innerhalb Ihres Projekteordners ein (ohne die Kommentare):</li>
 
-    - Vewenden Sie [MongoDB](https://www.mongodb.com/home) als Datenbankmanagementsystem. Installieren Sie sich entweder eine lokale Instanz ([MongoDB Community Server](https://www.mongodb.com/try/download/community)) oder verwenden Sie [MongoDB Atlas](https://www.mongodb.com/atlas/database). Für Letzteres benötigen Sie einen MongoDB-Account.
+    <table>
+        <thead>
+        <tr>
+        <th>Anweisung</th>
+        <th>Webseite</th>
+        </tr>
+        </thead>
+        <tbody>
+         <tr>
+         <td>`mkdir Uebung8`  </td>        
+         <td>Ordner `Uebung8`erstellen</td>
+         </tr>
+         <tr>
+         <td>`npm i`  </td>        
+         <td>Erstellt das [Node.js](https://nodejs.dev/en/download/)-Projekt  </td>
+         </tr>
+         <tr>
+         <td>`npm i express`  </td>        
+         <td>[express.js](https://expressjs.com/de/)</td>
+         </tr>
+         <tr>
+         <td>`npm i nodemon --save-dev`  </td>        
+         <td>[nodemon](https://www.npmjs.com/package/nodemon) </td>
+         </tr>
+         <tr>
+         <td>`npm i dotenv`  </td>        
+         <td>[dotenv](https://www.npmjs.com/package/dotenv) </td>
+         </tr>
+         <tr>
+         <td>`npm i cors`  </td>        
+         <td>[cors](https://www.npmjs.com/package/cors)  </td>
+         </tr>
+         <tr>
+         <td>`npm i pg`  </td>        
+         <td>[pg](https://www.npmjs.com/package/pg) </td>
+         </tr>
+         <tr>
+         <td>`npm i pg-format`  </td>        
+         <td>[pg-format](https://www.npmjs.com/package/pg-format) </td>
+         </tr>
+        </tbody>
+    </table>
 
-    - Erstellen Sie folgendes Mongoose-Schema (Datenmodell):
+    <li>Vewenden Sie [PostgreSQL](https://www.postgresql.org) als Datenbankmanagementsystem. Sie können sich entweder eine lokale Instanz [installieren](https://www.postgresql.org/download/) oder den HTW-Server [Ocean.f4.htw-berlin.de](https://ocean.f4.htw-berlin.de/) nutzen. </li>
 
-        ```js            
-        const schema = new mongoose.Schema({
-            username: String,
-            password: String,
-            email: String,
-            role: String
-        });
-        ```
+    <li>Implementieren Sie obige CRUD-Funktionalitäten. </li>
 
-    - Beachten Sie!: Es soll **kein** neuer `User` angelegt werden, wenn der `username` bereits verwendet wird und/oder wenn die `email` bereits verwendet wird:
+    <li>Beachten Sie!: Es soll **kein** neuer `User` angelegt werden, wenn der `username` bereits verwendet wird und/oder wenn die `email` bereits verwendet wird:
+        <ul>
+        <li>Weder `username` noch `email` exitieren bereits (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus `_id`, `__v`):</li>
+            ![Uebung7](./files/268_uebung7.png){ width=50% }
+        <li>`username` existiert bereits:</li>
+            ![Uebung7](./files/269_uebung7.png){ width=50% }
+        <li>`email` existiert bereits:</li>
+            ![Uebung7](./files/270_uebung7.png){ width=50% }
+        </ul></li>
+    <li>`GET /user/:name` sucht nach dem `username` (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus `_id`, `__v`):</li>        
+            ![Uebung7](./files/272_uebung7.png){ width=50% } 
+    </ul>
 
-        - Weder `username` noch `email` exitieren bereits:
-            ![Uebung7](./files/268_uebung7.png)
-        - `username` existiert bereits:
-            ![Uebung7](./files/269_uebung7.png)
-        - `email` existiert bereits:
-            ![Uebung7](./files/270_uebung7.png)
 
-    - `GET /user/:name` sucht nach dem `username`:
 
-        -  ![Uebung7](./files/272_uebung7.png)
+
+

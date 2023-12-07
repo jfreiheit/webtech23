@@ -370,7 +370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backend_pg.md" class="md-nav__link">
+      <a href="../backend_pg/" class="md-nav__link">
         Backend (PostgreSQL)
       </a>
     </li>
@@ -1474,6 +1474,199 @@
 <li>Ziele der Übung sind die Anwendung von <em>CSS-Grid</em> (siehe z.B. <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">hier</a>) sowie die Verwendung von Größen und Einheiten (siehe z.B. <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units">hier</a>). Lassen Sie Ihrer Kreativität freien Lauf!</li>
 </ul>
 </details>
+<details class="note">
+<summary>Eine mögliche Lösung für Übung 3</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">uebung3.html</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Uebung 3<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">.</span><span class="nc">wrapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
+<span class="w">            </span><span class="k">grid-template-columns</span><span class="p">:</span><span class="w"> </span><span class="nf">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">fr</span><span class="p">);</span>
+<span class="w">            </span><span class="k">column-gap</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">            </span><span class="k">row-gap</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">citycard</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
+<span class="w">            </span><span class="k">grid-template-rows</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="n">fr</span><span class="w"> </span><span class="mi">1</span><span class="n">fr</span><span class="p">;</span>
+<span class="w">            </span><span class="c">/* background-color: rgb(251, 237, 220); */</span>
+<span class="w">            </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">7</span><span class="kt">px</span><span class="w"> </span><span class="mi">29</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">cityimage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">cityimage</span><span class="w"> </span><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">            </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">em</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">citycard</span><span class="p">:</span><span class="nd">nth-Child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span><span class="w"> </span><span class="p">.</span><span class="nc">cityname</span><span class="p">{</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">aliceblue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">citycard</span><span class="p">:</span><span class="nd">nth-Child</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span><span class="w"> </span><span class="p">.</span><span class="nc">cityname</span><span class="p">{</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">244</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">cityname</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
+<span class="w">            </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1600px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">wrapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
+<span class="w">                </span><span class="k">grid-template-columns</span><span class="p">:</span><span class="w"> </span><span class="nf">repeat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">fr</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>STÄDTE<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+
+
+        <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/berlin.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Berlin&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Berlin<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/bernau.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Bernau&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bernau<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/brandenburg.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Brandenburg&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Brandenburg<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/bremen.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Bremen&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bremen<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/bremerhaven.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Bremerhaven&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bremerhaven<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/madrid.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Madrid&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Madrid<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/magdeburg.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Magdeburg&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Magdeburg<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/mainz.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Mainz&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Mainz<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/mannheim.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Mannheim&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Mannheim<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/Marburg.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Marburg&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Marburg<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/newyork.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;New York&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>New York<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;citycard&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityimage&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./images/stockholm.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Stockholm&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cityname&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Stockholm<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
 <h4 id="ubung-4">Übung 4<a class="headerlink" href="#ubung-4" title="Permanent link">&para;</a></h4>
 <details class="question">
 <summary>Übungsaufgabe 4 (Bootstrap und JavaScript)</summary>
@@ -1486,6 +1679,90 @@
 <li>Wird der <code>Abbrechen</code>-Button gedrückt, werden alle bereits eingegebenen Daten wieder aus den Textfeldern entfernt.   </li>
 <li>Ziele der Übung sind die Anwendung von <em>CSS-Bootstrap</em> und <em>JavaScript</em>.</li>
 </ul>
+</details>
+<details class="note">
+<summary>Eine mögliche Lösung für Übung 4</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">uebung4.html</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../css/bootstrap.min.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Übung 4<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3&quot;</span><span class="p">&gt;</span>Teilnehmerin Registrierung<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;First name&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;first&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Last name&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;last&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;E-Mail&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;IP-Address&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;ipaddr&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-secondary&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Abbrechen&quot;</span><span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-3 col-12 col-sm-6 col-md-4 col-lg-3&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;register()&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-success&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Registrieren&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-4&quot;</span><span class="p">&gt;</span>Eingegebene Werte<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">register</span><span class="p">()</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// Eingaben auslesen</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Registrieren geklickt&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">firstInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;first&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">firstValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstInput</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#last&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">emailValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#email&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">ipaddrValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#ipaddr&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Eingaben auf Konsole ausgeben</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;firstValue : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">firstValue</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;lastValue : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">lastValue</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;emailValue : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">emailValue</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ipaddrValue : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">ipaddrValue</span><span class="p">)</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nx">firstValue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">firstInput</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;is-valid&#39;</span><span class="p">)</span>
+<span class="w">                </span><span class="nx">firstInput</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;is-invalid&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">firstInput</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;is-invalid&#39;</span><span class="p">)</span>
+<span class="w">                </span><span class="nx">firstInput</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;is-valid&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">output</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            &lt;ul&gt;</span>
+<span class="sb">                &lt;li&gt;</span><span class="si">${</span><span class="nx">firstValue</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">                &lt;li&gt;</span><span class="si">${</span><span class="nx">lastValue</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">                &lt;li&gt;</span><span class="si">${</span><span class="nx">emailValue</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">                &lt;li&gt;</span><span class="si">${</span><span class="nx">ipaddrValue</span><span class="si">}</span><span class="sb">&lt;/li&gt;</span>
+<span class="sb">            &lt;/ul&gt;`</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 </details>
 <h4 id="ubung-5">Übung 5<a class="headerlink" href="#ubung-5" title="Permanent link">&para;</a></h4>
 <details class="question">
@@ -1518,6 +1795,142 @@
 </ul>
 </li>
 </ul>
+</details>
+<details class="note">
+<summary>Eine mögliche Lösung für Übung 5</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">uebung5.html</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../css/bootstrap.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Übung 5<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span> <span class="na">onload</span><span class="o">=</span><span class="s">&quot;init()&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Städte<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row my-4&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-2&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;filter&quot;</span><span class="p">&gt;</span>Filter:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-10&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;filter&quot;</span> <span class="na">oninput</span><span class="o">=</span><span class="s">&quot;createTable()&quot;</span><span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>     
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table table-striped table-hover align-middle&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Nr<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Jahr<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Stadt<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Bild<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tbody&quot;</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">staedtearr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getStaedte</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Request</span><span class="p">(</span><span class="s1">&#39;staedte.json&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// GET ist default</span>
+<span class="w">                    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="s1">&#39;Accept&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">});</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;staedte.json&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">createTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;filter&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nx">staedtearr</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">tbody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;tbody&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">tbody</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">nr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">                </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">stadtObj</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">staedtearr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;stadt : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">stadt</span><span class="p">)</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">stadt</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">td1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">td1</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nr</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td1</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">td2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">td2</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">jahr</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td2</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">td3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">td3</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">stadt</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td3</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">td4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">td4</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;a class=&quot;btn btn-success btn-sm&quot; href=&quot;</span><span class="si">${</span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">link</span><span class="si">}</span><span class="sb">&quot;&gt;Link&lt;/a&gt;`</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td4</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="kd">let</span><span class="w"> </span><span class="nx">td5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">);</span>
+<span class="w">                        </span><span class="nx">td5</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;img src=&quot;</span><span class="si">${</span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">bild</span><span class="si">}</span><span class="sb">&quot; als=&quot;</span><span class="si">${</span><span class="nx">stadtObj</span><span class="p">.</span><span class="nx">stadt</span><span class="si">}</span><span class="sb">&quot; /&gt;`</span><span class="p">;</span>
+<span class="w">                        </span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td5</span><span class="p">);</span>
+
+<span class="w">                        </span><span class="nx">tbody</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+
+
+<span class="w">                </span><span class="c1">// hier muessen jetzt die einzelnen Zeilen in die Tabelle eingelesen werden</span>
+<span class="w">                </span><span class="c1">// das Staedte-Array muss ausgelesen werden (z.B. for(stadt of staedtearr)</span>
+<span class="w">                </span><span class="c1">// Tipp: zunaechst einfach alle anzeigen lassen und erst dann das Filtern einbauen</span>
+<span class="w">                </span><span class="c1">// Filtern: die Eingabe mit dem jeweiligen Gruendungsjahr bzw. der jeweiligen Stadt</span>
+<span class="w">                </span><span class="c1">// vergleichen (siehe z.B. substring(0, input.length) und toLowerCase())</span>
+<span class="w">                </span><span class="c1">// wenn match, dann entsprechende Zeile einfuegen; sonst nicht</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="nx">getStaedte</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="w"> </span><span class="nx">jsonObj</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;body --&gt; &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">jsonObj</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">jsonObj</span><span class="p">.</span><span class="nx">staedte</span><span class="p">;</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="w"> </span><span class="p">(</span><span class="nx">alleStaedteAlsArray</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;staedte array --&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">alleStaedteAlsArray</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">staedtearr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">alleStaedteAlsArray</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">createTable</span><span class="p">();</span>
+<span class="w">            </span><span class="p">})</span>
+
+<span class="w">            </span><span class="c1">// hier getStaedte() aufrufen und</span>
+<span class="w">            </span><span class="c1">// staedtearr befuellen!</span>
+<span class="w">            </span><span class="c1">// siehe Promises!</span>
+
+
+
+<span class="w">        </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 </details>
 <h4 id="ubung-6">Übung 6<a class="headerlink" href="#ubung-6" title="Permanent link">&para;</a></h4>
 <details class="question">
@@ -1823,61 +2236,96 @@
 </details>
 <h4 id="ubung-8">Übung 8<a class="headerlink" href="#ubung-8" title="Permanent link">&para;</a></h4>
 <details class="question">
-<summary>Übungsaufgabe 8 (REST-API)</summary>
-<ul>
-<li>
-<p>Erstellen Sie eine REST-API mit folgenden Endpunkten:</p>
-<ul>
-<li><code>GET /users</code>          /* gebe alle <code>user</code>-Einträge zurück */</li>
-<li><code>POST /users</code>         /* erstelle einen neuen <code>user</code> */</li>
-<li><code>GET /users/:name</code>    /* gibt den <code>user</code> mit <code>username == name</code> zurück */</li>
-<li><code>DELETE /users/:id</code>   /* löscht den <code>user</code> mit <code>_id == id</code> */</li>
-<li><code>PUT /users/:id</code>      /* ändert Daten von <code>user</code> mit <code>_id == id</code> */</li>
-</ul>
-</li>
-<li>
-<p>Geben Sie am Anfang Folgendes im Terminal innerhalb Ihres Projekteordners ein (ohne die Kommentare):</p>
-<ul>
-<li><code>mkdir Uebung8</code></li>
-<li><code>cd Uebung8</code></li>
-<li><code>npm i</code>                    /* Erstellt das <a href="https://nodejs.dev/en/download/">Node.js</a>-Projekt  */</li>
-<li><code>npm i express --save</code>     /* <a href="https://expressjs.com/de/">express.js</a>  */</li>
-<li><code>npm i nodemon --save-dev</code> /* <a href="https://www.npmjs.com/package/nodemon">nodemon</a> */</li>
-<li><code>npm i mongoose --save</code>    /* <a href="https://mongoosejs.com/">mongoose</a> */</li>
-<li><code>npm i dotenv --save</code>      /* <a href="https://www.npmjs.com/package/dotenv">dotenv</a>  */</li>
-</ul>
-</li>
-<li>
-<p>Vewenden Sie <a href="https://www.mongodb.com/home">MongoDB</a> als Datenbankmanagementsystem. Installieren Sie sich entweder eine lokale Instanz (<a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a>) oder verwenden Sie <a href="https://www.mongodb.com/atlas/database">MongoDB Atlas</a>. Für Letzteres benötigen Sie einen MongoDB-Account.</p>
-</li>
-<li>
-<p>Erstellen Sie folgendes Mongoose-Schema (Datenmodell):</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-<span class="w">    </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span>
-<span class="p">});</span>
-</code></pre></div>
-</li>
-<li>
-<p>Beachten Sie!: Es soll <strong>kein</strong> neuer <code>User</code> angelegt werden, wenn der <code>username</code> bereits verwendet wird und/oder wenn die <code>email</code> bereits verwendet wird:</p>
-<ul>
-<li>Weder <code>username</code> noch <code>email</code> exitieren bereits:
-    <img alt="Uebung7" src="../files/268_uebung7.png" /></li>
-<li><code>username</code> existiert bereits:
-    <img alt="Uebung7" src="../files/269_uebung7.png" /></li>
-<li><code>email</code> existiert bereits:
-    <img alt="Uebung7" src="../files/270_uebung7.png" /></li>
-</ul>
-</li>
-<li>
-<p><code>GET /user/:name</code> sucht nach dem <code>username</code>:</p>
-<ul>
-<li><img alt="Uebung7" src="../files/272_uebung7.png" /></li>
-</ul>
-</li>
-</ul>
+<summary>Übungsaufgabe 8 (REST-API mit PostgreSQL)</summary>
+<p><ul>
+<li>Erstellen Sie eine <a href="../webtech/backend_pg/#rest-api-postgresql">REST-API</a> mit folgenden Endpunkten:</li></p>
+<p><table>
+    <thead>
+    <tr>
+    <th>Endpunkt</th>
+    <th>Erläuterung </th>
+    </tr>
+    </thead>
+    <tbody>
+     <tr>
+     <td><code>GET /users</code>  </td>      <br />
+     <td>gebe alle <code>user</code>-Einträge zurück</td>
+     </tr>
+     <tr>
+     <td><code>POST /users</code>  </td>      <br />
+     <td>erstelle einen neuen <code>user</code> </td>
+     </tr>
+     <tr>
+     <td><code>GET /users/:name</code>  </td>      <br />
+     <td>gibt den <code>user</code> mit <code>username == name</code> zurück </td>
+     </tr>
+     <tr>
+     <td><code>DELETE /users/:id</code>  </td>      <br />
+     <td>löscht den <code>user</code> mit <code>_id == id</code> </td>
+     </tr>
+     <tr>
+     <td><code>PUT /users/:id</code>  </td>      <br />
+     <td>ändert Daten von <code>user</code> mit <code>_id == id</code> </td>
+     </tr>
+    </tbody>
+</table></p>
+<p><li>Geben Sie am Anfang Folgendes im Terminal innerhalb Ihres Projekteordners ein (ohne die Kommentare):</li></p>
+<p><table>
+    <thead>
+    <tr>
+    <th>Anweisung</th>
+    <th>Webseite</th>
+    </tr>
+    </thead>
+    <tbody>
+     <tr>
+     <td><code>mkdir Uebung8</code>  </td>      <br />
+     <td>Ordner <code>Uebung8</code>erstellen</td>
+     </tr>
+     <tr>
+     <td><code>npm i</code>  </td>      <br />
+     <td>Erstellt das <a href="https://nodejs.dev/en/download/">Node.js</a>-Projekt  </td>
+     </tr>
+     <tr>
+     <td><code>npm i express</code>  </td>      <br />
+     <td><a href="https://expressjs.com/de/">express.js</a></td>
+     </tr>
+     <tr>
+     <td><code>npm i nodemon --save-dev</code>  </td>      <br />
+     <td><a href="https://www.npmjs.com/package/nodemon">nodemon</a> </td>
+     </tr>
+     <tr>
+     <td><code>npm i dotenv</code>  </td>      <br />
+     <td><a href="https://www.npmjs.com/package/dotenv">dotenv</a> </td>
+     </tr>
+     <tr>
+     <td><code>npm i cors</code>  </td>      <br />
+     <td><a href="https://www.npmjs.com/package/cors">cors</a>  </td>
+     </tr>
+     <tr>
+     <td><code>npm i pg</code>  </td>      <br />
+     <td><a href="https://www.npmjs.com/package/pg">pg</a> </td>
+     </tr>
+     <tr>
+     <td><code>npm i pg-format</code>  </td>      <br />
+     <td><a href="https://www.npmjs.com/package/pg-format">pg-format</a> </td>
+     </tr>
+    </tbody>
+</table></p>
+<p><li>Vewenden Sie <a href="https://www.postgresql.org">PostgreSQL</a> als Datenbankmanagementsystem. Sie können sich entweder eine lokale Instanz <a href="https://www.postgresql.org/download/">installieren</a> oder den HTW-Server <a href="https://ocean.f4.htw-berlin.de/">Ocean.f4.htw-berlin.de</a> nutzen. </li></p>
+<p><li>Implementieren Sie obige CRUD-Funktionalitäten. </li></p>
+<p><li>Beachten Sie!: Es soll <strong>kein</strong> neuer <code>User</code> angelegt werden, wenn der <code>username</code> bereits verwendet wird und/oder wenn die <code>email</code> bereits verwendet wird:
+    <ul>
+    <li>Weder <code>username</code> noch <code>email</code> exitieren bereits (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus <code>_id</code>, <code>__v</code>):</li>
+        <img alt="Uebung7" src="../files/268_uebung7.png" width="50%" />
+    <li><code>username</code> existiert bereits:</li>
+        <img alt="Uebung7" src="../files/269_uebung7.png" width="50%" />
+    <li><code>email</code> existiert bereits:</li>
+        <img alt="Uebung7" src="../files/270_uebung7.png" width="50%" />
+    </ul></li>
+<li><code>GET /user/:name</code> sucht nach dem <code>username</code> (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus <code>_id</code>, <code>__v</code>):</li>      <br />
+<img alt="Uebung7" src="../files/272_uebung7.png" width="50%" /> 
+</ul></p>
 </details>
 
 
