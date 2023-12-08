@@ -1257,6 +1257,9 @@
     - In der nächsten Übung befüllen wir die Tabelle mithilfe eines Services. 
 
 
+??? note "Eine mögliche Lösung für Übung 6"
+    [siehe mein GitHub-Repository](https://github.com/jfreiheit/WT23.git)
+
 
 #### Übung 7
     
@@ -1633,6 +1636,191 @@
     <li>`GET /user/:name` sucht nach dem `username` (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus `_id`, `__v`):</li>        
             ![Uebung7](./files/272_uebung7.png){ width=50% } 
     </ul>
+
+
+
+#### Übung 9
+    
+??? question "Übungsaufgabe 9 (Angular, Material Design und Formulare)"
+
+    - Erstellen Sie ein neues Angular-Projekt `Uebung9`.
+
+    - Fügen Sie diesem Projekt mithilfe von `ng add @angular/material` [Material Design](https://material.angular.io/guide/getting-started) hinzu. 
+
+    - Erzeugen Sie mithilfe von `ng generate @angular/material:navigation nav` eine neue Komponente `nav`. Sie dazu [Navigation Schematic](https://material.angular.io/guide/schematics#navigation-schematic).
+
+    - Die `app.component.html` soll nur noch `<app-nav />` enthalten (alles andere löschen, auch `<router-outlet></router-outlet>`). Fügen Sie `NavComponent` dem `imports`-Array in `app.component.ts` hinzu (`RouterOutlet` können Sie dort löschen).
+
+    - Fügen Sie in der `nav.component.html` unter dem Kommentar `<!-- Add Content Here -->` den Selektor `<router-outlet></router-outlet>` ein. Fügen Sie `RouterOutlet` dem `imports`-Array in der `nav.component.ts` hinzu. 
+
+    - Starten Sie das Projekt mit `ng serve`. Je nachdem, welches Farbschema Sie gewählt haben, sieht die Seite nun ungefähr so aus: 
+
+        ![uebung9](./files/291_uebung9.png)
+
+        Sie können Ihr Farbschema in der `angular.json` im `styles`-Array ändern (siehe [hier](https://material.angular.io/guide/theming#using-a-pre-built-theme))
+
+    - Erzeugen Sie drei Komponenten `home`, `table` und `form` und binden diese über die Routen `''`, `read` und `create` dynamisch ein. Suchen Sie in der `nav.component.html` nach den Menüeinträgen und passen Sie das Menü so an, dass die drei Komponenten darüber aufgerufen werden können.
+
+    - In der `FormComponent` erzeugen wir uns ein Formular. Schauen Sie sich dazu den Abschnitt [Reactive Forms](https://angular.dev/guide/forms/reactive-forms) unter [Angular.dev](https://angular.dev/overview) sowie die Abschnitte [Form fields](https://material.angular.io/components/form-field/overview) und [Input](https://material.angular.io/components/input/overview) unter [Angular Material](https://material.angular.io/) an. 
+
+        - Die `FormComponent` muss `ReactiveFormsModule` im `imports`-Array enthalten!
+
+        - Eingabefelder (`input`) werden in Angular als `FormControl`-Objekte defininiert, z.B.:
+
+            ```js
+            export class FormComponent {
+
+                username = new FormControl('');
+                password = new FormControl('');
+                email = new FormControl('');
+                role = new FormControl('');
+
+            }
+            ```
+
+            `FormControl` muss aus `@angular/forms` importiert werden. 
+
+        - Die Verbindung zwischen View (`html`) und Controller (`ts`) wird per `[formControl]="username"` hergestellt, z.B.:
+
+            ```html
+            <label for="user-name">username</label>
+            <input id="user-name" type="text" [formControl]="username" />
+
+            <label for="pwd">password</label>
+            <input id="pwd" type="password" [formControl]="password" />
+
+            <label for="e-mail">email</label>
+            <input id="e-mail" type="email" [formControl]="email" />
+
+            <label for="role">role</label>
+            <select id="role" [formControl]="role">
+              <option value="">--Rolle auswählen--</option>
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
+            ```
+
+        - Unter Verwendung von *Material Design* werden die Elemente `<mat-form-field>`, `<mat-label>` und die Eigenschaft `matInput` verwendet:
+
+            ```html
+            <mat-form-field>
+              <mat-label for="user-name">username</mat-label>
+              <input matInput id="user-name" type="text" [formControl]="username" />
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+              <mat-label for="pwd">password</mat-label>
+              <input matInput id="pwd" type="password" [formControl]="password" />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label for="e-mail">email</mat-label>
+              <input matInput id="e-mail" type="email" [formControl]="email" />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label for="role">role</mat-label>
+              <select matNativeControl id="role" [formControl]="role">
+                <option value="">--Rolle auswählen--</option>
+                <option value="user">user</option>
+                <option value="admin">admin</option>
+              </select>
+            </mat-form-field>
+            ```
+
+            In der `form.component.ts` muss dazu das `imports`-Array entsprechend befüllt werden: 
+
+            ```js
+            imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+            ```
+
+        - Den einzelnen `input`-Elementen können *Validatoren* hinzugefügt werden, mit denen überprüft werden kann, ob die Eingabe den Anforderungen genügt. Dazu wird die Klasse `Validators` aus `@angular/forms` verwendet (siehe [hier](https://angular.io/guide/form-validation#validating-input-in-reactive-forms) und [hier](https://angular.io/api/forms/Validators)), z.B.:
+
+            ```js
+                username = new FormControl('', [Validators.required]);
+                password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+                email = new FormControl('', [Validators.required, Validators.email]);
+                role = new FormControl('', [Validators.required]);
+
+                getErrorMessageUsername(){
+                  if(this.username.hasError('required')) return 'Bitte ausfüllen';
+                  else return '';
+                }
+
+                getErrorMessagePassword(){
+                  if(this.password.hasError('required')) return 'Bitte ausfüllen';
+                  else if(this.password.hasError('minlength')) return 'Mindestens 8 Zeichen';
+                  else return '';
+                }
+
+                getErrorMessageEmail(){
+                  if(this.email.hasError('required')) return 'Bitte ausfüllen';
+                  else if(this.email.hasError('email')) return 'Keine gültige E-Mail-Adresse';
+                  else return '';
+                }
+
+                getErrorMessageRole(){
+                  if(this.role.hasError('required')) return 'Bitte ausfüllen';
+                  else return '';
+                }
+            ```
+
+            Die `getErrorMessage`-Funktionen können dann z.B. so im HTML-Code verwendet werden:
+
+            ```html
+            <mat-form-field class="wide-width">
+              <mat-label for="user-name">username</mat-label>
+              <input matInput id="user-name" type="text" [formControl]="username" />
+              @if (username.invalid) {
+              <mat-error>{{getErrorMessageUsername()}}</mat-error>
+              }
+            </mat-form-field>
+            <br/>
+            <mat-form-field class="wide-width">
+              <mat-label for="pwd">password</mat-label>
+              <input matInput id="pwd" type="password" [formControl]="password" />
+              @if (password.invalid) {
+              <mat-error>{{getErrorMessagePassword()}}</mat-error>
+              }
+            </mat-form-field>
+            <br />
+            <mat-form-field class="wide-width">
+              <mat-label for="e-mail">email</mat-label>
+              <input matInput id="e-mail" type="email" [formControl]="email" />
+              @if (email.invalid) {
+              <mat-error>{{getErrorMessageEmail()}}</mat-error>
+              }
+            </mat-form-field>
+            <br />
+            <mat-form-field class="wide-width">
+              <mat-label for="role">role</mat-label>
+              <select matNativeControl id="role" [formControl]="role" placeholder="role">
+                <option value="user">user</option>
+                <option value="admin">admin</option>
+              </select>
+              @if (role.invalid) {
+              <mat-error>{{getErrorMessageRole()}}</mat-error>
+              }
+            </mat-form-field>
+            ```
+
+        - Button hinzufügen: Für Matrial Design Buttons siehe [hier](https://material.angular.io/components/button/overview), z.B.:
+
+            ```html
+            <button mat-raised-button [disabled]="formInvalid()" (click)="register()">Registrieren</button>
+            ```
+
+            Dazu muss `MatButtonModule` in das `imports`-Array von `form.component.ts` eingefügt werden. 
+
+        - Der Button ist so lange `disabled`, so lange das Formular nicht korrekt ausgefüllt ist, d.h. `formInvalid()` liefert so lange ein `true` zurück, so lange (mindestens) einer der Fehler auftritt, der eine Error-Message erzeugt (siehe oben). Schreiben Sie die Funktion `formInvalid()` entsprechend. 
+
+        - Bei Klick auf den Button (wenn er `enabled` ist), wird die Funktion `register()` aufgerufen. Implementieren Sie diese Funktion so, dass ein Objekt der Art 
+
+            ![uebung9](./files/292_uebung9.png)
+
+            auf die Konsole ausgegeben wird.
+
+        - In Übung 10 werden wir die so erzeugten Objekte an das Backend senden und in die Datenbank speichern. Außerdem befüllen wir dann die `TableComponent` mit Objekten aus der Datenbank.
 
 
 
