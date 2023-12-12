@@ -291,6 +291,215 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 ??? hint "Video aus Vorlesung 05.12.2023"
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="10_Services" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
+
+
+??? question "Code Vorlesung 12.12.2023"
+	=== "server.js"
+		```js
+		const express = require('express');
+		const cors = require('cors');
+		require('dotenv').config();
+		const routes = require('./routes');
+		const init = require('./initdb')
+
+		const app = express();
+		const PORT = 4000;
+
+		app.use(express.json());
+		app.use(cors());
+		app.use('/init', init)
+		app.use('/', routes);
+
+		app.listen(PORT, (error) => {
+		    if(error) {
+		        console.log('error! ', error)
+		    } else {
+		        console.log(`server running on port ${PORT} ...`)
+		    }
+		})
+		```
+
+	=== "routes.js"
+		```js
+		const express = require('express');
+		const client = require('./db')
+		const router = express.Router();
+
+		// CRUD
+
+		// get all members
+		router.get('/members', async(req, res) => {
+		    const query = `SELECT * FROM public.members `;
+
+		    try {
+		        const result = await client.query(query)
+		        console.log(result)
+		        res.send(result.rows);
+		    } catch (err) {
+		        console.log('error - select' , err.stack)
+		    }
+		});
+
+		module.exports = router;
+		```
+
+	=== "db.js"
+		```js
+		const pg = require('pg')
+		require('dotenv').config();
+
+		const client = new pg.Client({
+		    user: process.env.PGUSER,
+		    host: process.env.PGHOST,
+		    database: process.env.PGDATABASE,
+		    password: process.env.PGPASSWORD,
+		    port: process.env.PGPORT
+		})
+
+		client.connect( (err) => {
+		    if(err) {
+		        console.log('database NOT connected', err)
+		    } else {
+		        console.log('database connected ...')
+		    }
+		})
+
+		module.exports = client;	/* hier fehlte ein s hinter export im Video */
+		```
+
+	=== "initdb.js"
+		```js
+		const express = require('express');
+		const client = require('./db');
+		const initdb = express.Router();
+		const format = require('pg-format');
+
+
+		initdb.get('/', async(req, res) => {
+
+		    // Anlegen der Tabelle members
+		    let query = `
+		            DROP TABLE IF EXISTS members;
+		            CREATE TABLE members(id serial PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50));
+		            `;
+
+		    try {
+		        await client.query(query)
+		        console.log("Table created successfully ...")
+		    } catch (err) {
+		        console.log(err)
+		    }
+
+		    // Befüllen der Tabelle members mit 50 Einträgen
+		    const values = [
+		        ["Catherine", "Williams", "cwilliamsl@360.cn"],
+		        ["Adam", "Anderson", "aanderson8@google.fr"],
+		        ["Susan", "Andrews", "sandrewsn@google.co.jp"],
+		        ["Catherine", "Andrews", "candrewsp@noaa.gov"],
+		        ["Alan", "Bradley", "abradley1c@globo.com"],
+		        ["Anne", "Brooks", "abrooks16@bravesites.com"],
+		        ["Russell", "Brown", "rbrownq@nifty.com"],
+		        ["Ryan", "Burton", "rburton18@foxnews.com"],
+		        ["Roy", "Campbell", "rcampbell1@geocities.com"],
+		        ["Russell", "Campbell", "rcampbell17@eventbrite.com"],
+		        ["Bonnie", "Coleman", "bcoleman11@fc2.com"],
+		        ["Ernest", "Coleman", "ecoleman15@businessweek.com"],
+		        ["Richard", "Cruz", "rcruz7@unc.edu"],
+		        ["Sean", "Cruz", "scruz10@answers.com"],
+		        ["Rebecca", "Cunningham", "rcunninghamd@mac.com"],
+		        ["Margaret", "Evans", "mevansh@pcworld.com"],
+		        ["Jeffrey", "Ford", "jford14@cnet.com"],
+		        ["Andrea", "Gardner", "agardnerv@woothemes.com"],
+		        ["Deborah", "George", "dgeorge6@furl.net"],
+		        ["Sean", "Gibson", "sgibsony@alexa.com"],
+		        ["Virginia", "Graham", "vgrahamk@aol.com"],
+		        ["Steven", "Hamilton", "shamiltonu@state.tx.us"],
+		        ["Virginia", "Hawkins", "vhawkinsf@ehow.com"],
+		        ["Edward", "Hicks", "ehicksc@pcworld.com"],
+		        ["Mark", "Johnson", "mjohnsonj@hostgator.com"],
+		        ["Ruth", "Jordan", "rjordan1a@smugmug.com"],
+		        ["Antonio", "Kim", "akim4@odnoklassniki.ru"],
+		        ["Jennifer", "Marshall", "jmarshallt@gnu.org"],
+		        ["Eric", "Matthews", "ematthews5@independent.co.uk"],
+		        ["Raymond", "Mcdonald", "rmcdonald2@ihg.com"],
+		        ["Eric", "Miller", "emillere@creativecommons.org"],
+		        ["Jonathan", "Morales", "jmoralesa@ovh.net"],
+		        ["Marie", "Morgan", "mmorganb@cloudflare.com"],
+		        ["Amanda", "Nelson", "anelson13@indiatimes.com"],
+		        ["Lisa", "Olson", "lolsonr@telegraph.co.uk"],
+		        ["Alice", "Ortiz", "aortizw@histats.com"],
+		        ["Peter", "Phillips", "pphillipss@1688.com"],
+		        ["Matthew", "Porter", "mporter9@europa.eu"],
+		        ["Tammy", "Ray", "trayx@weather.com"],
+		        ["Mark", "Richardson", "mrichardson1d@ihg.com"],
+		        ["Joan", "Roberts", "jroberts12@alibaba.com"],
+		        ["Kathleen", "Rose", "kroseg@pinterest.com"],
+		        ["Steve", "Sanders", "ssanders1b@wikispaces.com"],
+		        ["Shirley", "Scott", "sscottm@macromedia.com"],
+		        ["Lillian", "Stephens", "lstephens19@hugedomains.com"],
+		        ["Nicole", "Thompson", "nthompson3@admin.ch"],
+		        ["Marie", "Thompson", "mthompsonz@yelp.com"],
+		        ["Alan", "Vasquez", "avasquezo@miibeian.gov.cn"],
+		        ["Mildred", "Watkins", "mwatkins0@miibeian.gov.cn"],
+		        ["Eugene", "Williams", "ewilliamsi@deliciousdays.com"]
+		    ];
+		    const paramquery = format('INSERT INTO members(firstname, lastname, email) VALUES %L RETURNING *', values);
+
+
+		    try {
+		        const result = await client.query(paramquery)
+		        console.log("50 members inserted ...")
+		        res.status(200)
+		        res.send(result.rows)
+		    } catch (err) {
+		        console.log(err)
+		    }
+
+		});
+
+
+		module.exports = initdb;
+		```
+
+	=== ".env (Anpassen!)"
+		```
+		PGUSER=ihr_username
+		PGHOST=psql.f4.htw-berlin.de
+		PGPASSWORD=ihr_passwort
+		PGDATABASE=ihre_datenbank
+		PGPORT=5432
+		```
+
+	=== "package,json"
+		```
+		{
+		  "name": "backend1",
+		  "version": "1.0.0",
+		  "description": "Backend mit PostgreSQL",
+		  "main": "server.js",
+		  "scripts": {
+		    "start": "nodemon server.js",
+		    "test": "echo \"Error: no test specified\" && exit 1"
+		  },
+		  "author": "",
+		  "license": "ISC",
+		  "dependencies": {
+		    "cors": "^2.8.5",
+		    "dotenv": "^16.3.1",
+		    "express": "^4.18.2",
+		    "nodemon": "^3.0.2",
+		    "pg": "^8.11.3",
+		    "pg-format": "^1.0.4"
+		  }
+		}
+
+		```
+
+
+
+??? hint "Video aus Vorlesung 12.12.2023"
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=1622721f44d0a01a63ceaff2514405e7&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=1622721f44d0a01a63ceaff2514405e7&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="11_backend_postgresql" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
 	
 ## Semesteraufgabe
 

@@ -1136,6 +1136,211 @@
 <summary>Video aus Vorlesung 05.12.2023</summary>
 <p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=bb3c140407d5a0b09e4379af729c3c01&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="10_Services" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe></p>
 </details>
+<details class="question">
+<summary>Code Vorlesung 12.12.2023</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:6"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><input id="__tabbed_5_5" name="__tabbed_5" type="radio" /><input id="__tabbed_5_6" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">server.js</label><label for="__tabbed_5_2">routes.js</label><label for="__tabbed_5_3">db.js</label><label for="__tabbed_5_4">initdb.js</label><label for="__tabbed_5_5">.env (Anpassen!)</label><label for="__tabbed_5_6">package,json</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./initdb&#39;</span><span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/init&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">init</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;error! &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ...`</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./db&#39;</span><span class="p">)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// CRUD</span>
+
+<span class="c1">// get all members</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`SELECT * FROM public.members `</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;error - select&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">pg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">pg</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGUSER</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGHOST</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGDATABASE</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPASSWORD</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPORT</span>
+<span class="p">})</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;database NOT connected&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;database connected ...&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">client</span><span class="p">;</span><span class="w">    </span><span class="cm">/* hier fehlte ein s hinter export im Video */</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./db&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">initdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>
+
+
+<span class="nx">initdb</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Anlegen der Tabelle members</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            DROP TABLE IF EXISTS members;</span>
+<span class="sb">            CREATE TABLE members(id serial PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50));</span>
+<span class="sb">            `</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Table created successfully ...&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Befüllen der Tabelle members mit 50 Einträgen</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Catherine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Williams&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cwilliamsl@360.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Anderson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;aanderson8@google.fr&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Susan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Andrews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandrewsn@google.co.jp&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Catherine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Andrews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;candrewsp@noaa.gov&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bradley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abradley1c@globo.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Anne&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Brooks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abrooks16@bravesites.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Russell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rbrownq@nifty.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ryan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Burton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rburton18@foxnews.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Roy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Campbell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcampbell1@geocities.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Russell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Campbell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcampbell17@eventbrite.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Bonnie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Coleman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bcoleman11@fc2.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ernest&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Coleman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ecoleman15@businessweek.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Richard&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cruz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcruz7@unc.edu&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Sean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cruz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scruz10@answers.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Rebecca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cunningham&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcunninghamd@mac.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Margaret&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Evans&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mevansh@pcworld.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jeffrey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jford14@cnet.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Andrea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gardner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;agardnerv@woothemes.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Deborah&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;George&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dgeorge6@furl.net&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Sean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gibson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sgibsony@alexa.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Virginia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Graham&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vgrahamk@aol.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Steven&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hamilton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;shamiltonu@state.tx.us&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Virginia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hawkins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vhawkinsf@ehow.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Edward&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hicks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ehicksc@pcworld.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mjohnsonj@hostgator.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ruth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Jordan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rjordan1a@smugmug.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Antonio&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Kim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;akim4@odnoklassniki.ru&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jennifer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Marshall&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jmarshallt@gnu.org&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Matthews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ematthews5@independent.co.uk&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Raymond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mcdonald&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rmcdonald2@ihg.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Miller&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;emillere@creativecommons.org&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jonathan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Morales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jmoralesa@ovh.net&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Marie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Morgan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mmorganb@cloudflare.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Amanda&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Nelson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;anelson13@indiatimes.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Lisa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Olson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lolsonr@telegraph.co.uk&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ortiz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;aortizw@histats.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Phillips&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pphillipss@1688.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Matthew&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Porter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mporter9@europa.eu&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Tammy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ray&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;trayx@weather.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Richardson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mrichardson1d@ihg.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Joan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Roberts&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jroberts12@alibaba.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Kathleen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kroseg@pinterest.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Steve&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sanders&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ssanders1b@wikispaces.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Shirley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Scott&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sscottm@macromedia.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Lillian&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Stephens&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lstephens19@hugedomains.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Nicole&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;nthompson3@admin.ch&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Marie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mthompsonz@yelp.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Vasquez&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;avasquezo@miibeian.gov.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mildred&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Watkins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mwatkins0@miibeian.gov.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eugene&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Williams&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ewilliamsi@deliciousdays.com&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">paramquery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;INSERT INTO members(firstname, lastname, email) VALUES %L RETURNING *&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">values</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">paramquery</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;50 members inserted ...&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">200</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">});</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initdb</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>PGUSER=ihr_username
+PGHOST=psql.f4.htw-berlin.de
+PGPASSWORD=ihr_passwort
+PGDATABASE=ihre_datenbank
+PGPORT=5432
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>{
+  &quot;name&quot;: &quot;backend1&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;Backend mit PostgreSQL&quot;,
+  &quot;main&quot;: &quot;server.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;nodemon server.js&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;dependencies&quot;: {
+    &quot;cors&quot;: &quot;^2.8.5&quot;,
+    &quot;dotenv&quot;: &quot;^16.3.1&quot;,
+    &quot;express&quot;: &quot;^4.18.2&quot;,
+    &quot;nodemon&quot;: &quot;^3.0.2&quot;,
+    &quot;pg&quot;: &quot;^8.11.3&quot;,
+    &quot;pg-format&quot;: &quot;^1.0.4&quot;
+  }
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details class="hint">
+<summary>Video aus Vorlesung 12.12.2023</summary>
+<p><iframe src="https://mediathek.htw-berlin.de/media/embed?key=1622721f44d0a01a63ceaff2514405e7&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=1622721f44d0a01a63ceaff2514405e7&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="11_backend_postgresql" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe></p>
+</details>
 <h2 id="semesteraufgabe">Semesteraufgabe<a class="headerlink" href="#semesteraufgabe" title="Permanent link">&para;</a></h2>
 <p>Am Ende des Kurses geben Sie eine Webanwendung ab. Diese wird bewertet und bildet die Modulnote für "WebTech" (es gibt also keine Klausur o.ä.). Überlegen Sie sich früh, was Sie implementieren wollen. Ihrer Kreativität sind keine Grenzen gesetzt. Es können 2 Studentinnen gemeinsam ein Projekt durchführen und abgeben. Sie erhalten dann (höchstwahrscheinlich) die gleiche Note. Es muss an den Commits erkennbar sein, welchen Anteil am Ergebnis jede der beiden Studentinnen hatte.</p>
 <details class="question">

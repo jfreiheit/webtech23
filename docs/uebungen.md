@@ -1535,6 +1535,108 @@
 
     - Alle Bilder sind nur Anregungen, kann gerne ganz anders aussehen. Gerne können Sie auch Bootstrap einbinden und verwenden (siehe [hier](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)).
 
+    
+??? hint "Video zur Übung 7"
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=b1caa5255020214b5fab27cc84ac36bb&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=b1caa5255020214b5fab27cc84ac36bb&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Uebung7" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+
+??? note "Eine mögliche Lösung für Übung 7"
+    === "table.component.ts"
+        ```js
+        import { Component, OnInit, inject } from '@angular/core';
+        import { MembersService } from '../shared/members.service';
+        import { Member } from '../shared/member';
+        import { CommonModule } from '@angular/common';
+        import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+        @Component({
+          selector: 'app-table',
+          standalone: true,
+          imports: [CommonModule, ReactiveFormsModule],
+          templateUrl: './table.component.html',
+          styleUrl: './table.component.css'
+        })
+        export class TableComponent implements OnInit {
+          private service = inject(MembersService);
+          allmembers: Member[] = [];
+          filterarray: Member[] = [];
+          search = new FormControl();
+
+          async ngOnInit(): Promise<void> {
+            this.allmembers = await this.service.getAllMembers();
+            this.filterarray = this.allmembers;
+            console.log('in ngOnInit -> allmembers', this.allmembers)
+          }
+
+          filterMembers(){
+            let searchstring = this.search.value.toLowerCase();
+            console.log(searchstring);
+            this.filterarray = this.allmembers.filter( (member) => {
+              return (member.forename.toLowerCase().includes(searchstring) || member.surname.toLowerCase().includes(searchstring)) 
+            });
+          }
+
+        }
+        ```
+
+    === "table.component.html"
+        ```html
+        <h1>Alle Teilnehmerinnen</h1>
+
+        <input type="text" [formControl]="search" (input)="filterMembers()" />
+        <table>
+          <thead>
+            <tr>
+              <th>Nr</th>
+              <th>Vorname</th>
+              <th>Nachname</th>
+              <th>E-Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of filterarray; index as i;">
+              <td>{{ i+1 }}</td>
+              <td>{{ item.forename }}</td>
+              <td>{{ item.surname }}</td>
+              <td>{{ item.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+        ```
+
+    === "shared/members.service.ts"
+        ```js
+        import { Injectable } from '@angular/core';
+        import { Member } from './member';
+
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class MembersService {
+
+          async getAllMembers(): Promise<Member[]> {
+            let response = await fetch('../../assets/members.json')
+            console.log('in service -> response', response)
+            let members = await response.json();
+            console.log('in service -> members', members)
+            return members;
+          }
+        }
+
+        ```
+
+    === "shared/member.ts"
+        ```js
+        export interface Member {
+          forename: string;
+          surname: string;
+          email: string;
+        }
+        ```
+
+
+
+
 
 
 #### Übung 8
