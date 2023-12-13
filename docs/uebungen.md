@@ -1692,7 +1692,7 @@
          <td>Ordner `Uebung8`erstellen</td>
          </tr>
          <tr>
-         <td>`npm i`  </td>        
+         <td>`npm init`  </td>        
          <td>Erstellt das [Node.js](https://nodejs.dev/en/download/)-Projekt  </td>
          </tr>
          <tr>
