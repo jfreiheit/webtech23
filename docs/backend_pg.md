@@ -220,6 +220,7 @@ Jetzt erstellen wir die Datenbank und binden sie an.
 		        ["Mildred", "Watkins", "mwatkins0@miibeian.gov.cn"],
 		        ["Eugene", "Williams", "ewilliamsi@deliciousdays.com"]
 		    ];
+		    // hierfuer muss pg-format installiert werden (wegen %L):
 		    const paramquery = format('INSERT INTO members(firstname, lastname, email) VALUES %L RETURNING *', values);
 
 
@@ -332,10 +333,10 @@ Nun fügen wir in die `routes.js` die einzelnen Routen ein, um die CRUD-Funktion
 	router.put('/members/:id', async(req, res) => {
 	    const query = `SELECT * FROM members WHERE id=$1`;
 
-	    try {
-	        let id = req.params.id;
-	        const result = await client.query(query, [id])
-	        console.log(res)
+	    let id = req.params.id;
+	    const result = await client.query(query, [id])
+	    if(result.rowCount > 0)
+	    {
 	        let member = result.rows[0];
 	        let firstname = (req.body.firstname) ? req.body.firstname : member.firstname;
 	        let lastname = (req.body.lastname) ? req.body.lastname : member.lastname;
@@ -349,14 +350,14 @@ Nun fügen wir in die `routes.js` die einzelnen Routen ein, um die CRUD-Funktion
 	        const updateresult = await client.query(updatequery, [firstname, lastname, email, id]);
 	        console.log(updateresult)
 	        res.send({ id, firstname, lastname, email });
-	    } catch (err) {
+	    } else {
 	        res.status(404)
 	        res.send({
 	            error: "Member with id=" + id + " does not exist!"
 	        })
 	    }
 	});
-
+	
 
 	// delete one member via id
 	router.delete('/members/:id', async(req, res) => {

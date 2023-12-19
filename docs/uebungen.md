@@ -1635,10 +1635,6 @@
         ```
 
 
-
-
-
-
 #### Übung 8
     
 ??? question "Übungsaufgabe 8 (REST-API mit PostgreSQL)"
@@ -1739,6 +1735,13 @@
             ![Uebung7](./files/272_uebung7.png){ width=50% } 
     </ul>
 
+
+??? note "Eine mögliche Lösung für Übung 8"
+    [siehe mein GitHub-Repository](https://github.com/jfreiheit/WT23.git)
+
+    
+??? hint "Video zur Übung 8"
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=e122c97c6c8937e1ee12c9df44d9d84b&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=e122c97c6c8937e1ee12c9df44d9d84b&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Uebung8" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 
 #### Übung 9
