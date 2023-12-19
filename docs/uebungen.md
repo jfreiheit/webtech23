@@ -1733,6 +1733,11 @@
         </ul></li>
     <li>`GET /user/:name` sucht nach dem `username` (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus `_id`, `__v`):</li>        
             ![Uebung7](./files/272_uebung7.png){ width=50% } 
+
+    <li>Die `SQL-Query` für die Erstellung der **Tabelle** `users` kann so aussehen: `let query = '
+            DROP TABLE IF EXISTS users;
+            CREATE TABLE users(id serial PRIMARY KEY, username VARCHAR(50), password VARCHAR(50), email VARCHAR(50), role VARCHAR(50));'
+            `; </li>
     </ul>
 
 

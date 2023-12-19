@@ -2441,7 +2441,10 @@
         <img alt="Uebung7" src="../files/270_uebung7.png" width="50%" />
     </ul></li>
 <li><code>GET /user/:name</code> sucht nach dem <code>username</code> (Response-Body-Datensatz hier von MongoDB erstellt - sieht in Postgres etwas anders aus <code>_id</code>, <code>__v</code>):</li>      <br />
-<img alt="Uebung7" src="../files/272_uebung7.png" width="50%" /> 
+<img alt="Uebung7" src="../files/272_uebung7.png" width="50%" /> </p>
+<p><li>Die <code>SQL-Query</code> für die Erstellung der <strong>Tabelle</strong> <code>users</code> kann so aussehen: <code>let query = '
+        DROP TABLE IF EXISTS users;
+        CREATE TABLE users(id serial PRIMARY KEY, username VARCHAR(50), password VARCHAR(50), email VARCHAR(50), role VARCHAR(50));'</code>; </li>
 </ul></p>
 </details>
 <details class="note">

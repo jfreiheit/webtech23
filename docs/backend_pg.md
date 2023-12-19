@@ -288,7 +288,7 @@ Nun fügen wir in die `routes.js` die einzelnen Routen ein, um die CRUD-Funktion
 
 	    try {
 	        const result = await client.query(query)
-	        console.log(res)
+	        console.log(result)
 	        res.send(result.rows);
 	    } catch (err) {
 	        console.log(err.stack)
