@@ -1747,7 +1747,9 @@
     
 ??? hint "Video zur Übung 8"
     <iframe src="https://mediathek.htw-berlin.de/media/embed?key=e122c97c6c8937e1ee12c9df44d9d84b&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=e122c97c6c8937e1ee12c9df44d9d84b&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Uebung8" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
-
+    
+??? hint "Video zur Übung 8 - Teil 2"
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=7f34cbf0d6f73be3d61aca541d04cb94&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=7f34cbf0d6f73be3d61aca541d04cb94&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_uebung8_teil2" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 #### Übung 9
     
