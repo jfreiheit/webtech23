@@ -504,6 +504,102 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=4d3b91dff946a0efb441c10c1e1ede53&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=4d3b91dff946a0efb441c10c1e1ede53&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Backend2" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 
+
+??? question "Code Vorlesung 2.1.2024"
+	=== "register.component.html"
+		```html
+		<div class="container">
+		  <h1 class="mt-5">Registrierung</h1>
+
+		    <div class="mb-3 row">
+		      <label for="idUsername" class="col-sm-2 col-form-label">Username</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" id="idUsername" placeholder="username" [formControl]="usernameFC" [class]="usernameFC.valid ? 'is-valid' : 'is-invalid'">
+		      </div>
+
+		    </div>
+
+		    <div class="mb-3 row">
+		      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+		      <div class="col-sm-10">
+		        <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" [formControl]="emailFC" [class]="emailFC.valid ? 'is-valid' : 'is-invalid'">
+		      </div>
+		    </div>
+
+		    <div class="mb-3 row">
+		      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+		      <div class="col-sm-10">
+		        <input type="password" class="form-control" id="inputPassword" [formControl]="passwordFC" [class]="passwordFC.valid ? 'is-valid' : 'is-invalid'">
+		      </div>
+		    </div>
+
+		    <div class="mb-3 row">
+		    <label for="roleID" class="col-sm-2 col-form-label">Role</label>
+		    <div class="col-sm-10">
+		    <select class="form-select" id="roleID" [formControl]="roleFC" [class]="roleFC.valid ? 'is-valid' : 'is-invalid'">
+		      <option value="admin">Admin</option>
+		      <option value="user">User</option>
+		      <option value="reader">Reader</option>
+		    </select>
+		    </div>
+		    </div>
+
+		    <div class="mb-3 row">
+		      <button type="button" class="offset-2 col-10 btn btn-success" (click)="register()">Register</button>
+		    </div>
+		</div>
+		```
+
+	=== "register.component.ts"
+		```js
+		import { Component } from '@angular/core';
+		import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+
+		@Component({
+		  selector: 'app-register',
+		  standalone: true,
+		  imports: [ReactiveFormsModule],
+		  templateUrl: './register.component.html',
+		  styleUrl: './register.component.css'
+		})
+		export class RegisterComponent {
+		  usernameFC = new FormControl('', Validators.required);
+		  passwordFC = new FormControl('', Validators.required);
+		  emailFC = new FormControl('', [Validators.required, Validators.email]);
+		  roleFC = new FormControl('', Validators.required);
+
+		  register() {
+		    console.log('button geklickt')
+
+		    if(this.usernameFC.valid) {
+		      console.log('valid')
+		    }
+		    else {
+		      console.log('invalid');
+		      if(this.usernameFC.errors?.['required']) console.log('username required')
+		    }
+		    let usernameValue = this.usernameFC.value;
+		    let passwordValue = this.passwordFC.value;
+		    let emailValue = this.emailFC.value;
+		    let roleValue = this.roleFC.value;
+
+		    let user = {
+		      username: usernameValue,
+		      password: passwordValue,
+		      email: emailValue,
+		      role: roleValue
+		    }
+
+		    console.log('user : ', user)
+		  }
+		}
+		```
+
+
+??? hint "Video aus Vorlesung 2.1.2024"
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=361e14872bb0d3da49435d2bcb6d77d1&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=361e14872bb0d3da49435d2bcb6d77d1&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Formulare" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+
 	
 ## Semesteraufgabe
 
