@@ -1935,6 +1935,89 @@
         - In Übung 10 werden wir die so erzeugten Objekte an das Backend senden und in die Datenbank speichern. Außerdem befüllen wir dann die `TableComponent` mit Objekten aus der Datenbank.
 
 
+#### Übung 10
+    
+??? question "Übungsaufgabe 10 (Frontend-Backend-Anbindung)"
+
+    - Starten Sie das Backend aus [Übung 8](./#ubung-8).
+
+    - Nutzen Sie das Frontend aus [Übung 9](./#ubung-9) und erweitern es wie folgt:
+
+        - Binden Sie in die `app.config.ts` das [HttpClientModule](https://angular.io/api/common/http/HttpClientModule) ein:
+            ```js
+            import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+            import { provideRouter } from '@angular/router';
+
+            import { routes } from './app.routes';
+            import { HttpClientModule } from '@angular/common/http';
+
+            export const appConfig: ApplicationConfig = {
+              providers: [provideRouter(routes), importProvidersFrom(HttpClientModule)]
+            };
+            ```
+
+        - Erstellen Sie sich einen `Backend`-Service und ein `User`-Interface mithilfe der Angular CLI: 
+            ```bash
+            ng g s shared/backend
+            ng g i shared/user
+            ```
+
+        - Definieren Sie im `User`-Interface die Eigenschaften `username, password, email, role` (alles `string`s).
+
+        - Definieren Sie sich im `Backend`-Service Funktionen für die Anbindung der Backend-Endpunkte (`GET /users`, `POST /users`, `GET /users/:name`, `DELETE /users/:id` und `PUT / users/:id`). Beachten Sie, dass jeweils ein [Observable](https://rxjs.dev/guide/observable) zurückgegeben wird, z.B.:
+
+            ```js
+            import { HttpClient } from '@angular/common/http';
+            import { Injectable } from '@angular/core';
+            import { User } from './user';
+            import { Observable } from 'rxjs';
+
+            @Injectable({
+              providedIn: 'root'
+            })
+            export class BackendService {
+              backendUrl = 'http://localhost:4000';
+
+              constructor(private http: HttpClient) { }
+
+              getAllUsers(): Observable<User[]> {
+                let endpoint = '/users';
+                return this.http.get<User[]>(this.backendUrl + endpoint);
+              }
+
+              deleteOneMember(id: string): Observable<any> {
+                let endpoint = '/users';
+                return this.http.delete<any>(this.backendUrl + endpoint + "/" + id);
+              }
+
+              createNewUser(user: User): Observable<User> {
+                let endpoint = '/users';
+                return this.http.post<User>(this.backendUrl + endpoint, user);
+              }
+            }
+            ```
+
+        - Binden Sie in die `Register`-Komponente den `Backend`-Service ein, z.B. `private bs = inject(BackendService);`. Lesen Sie alle Werte aus dem Registrierungsformular aus und erzeugen sich damit ein neues `user`-Objekt. Rufen Sie die Funktion `createNewUser(user)` aus dem `Backend`-Service auf, z.B.:
+            ```js
+            this.bs.createNewUser(user).subscribe({
+              next: (response) => console.log('response', response),
+              error: (err) => console.log(err),
+              complete: () => console.log('register completed')
+            });
+            ```
+
+            Prüfen Sie, ob die Daten in die Datenbank gespeichert werden. 
+
+        - Binden Sie in die `Table`-Komponente den `Backend`-Service ein und erstellen sich dort eine `readAll()`-Funktion, in der die `getAllUsers()`-Funktion des `Backend`-Services aufgerufen wird. 
+            - Befüllen Sie mit der Response ein `users`-Array. 
+            - Rufen Sie in der `ngOnInit()`-Funktion der Komponente die `readAll()`-Funktion auf (die Komponente muss dazu `OnInit` implementieren).
+            - Lesen Sie in einer Tabelle in der `table.component.html` alle User aus dem `users`-Array aus.
+            - Richten Sie in der Tabelle eine Spalte `Delete` ein, deren Einträge aus Buttons bestehen. Für das Klick-Ereignis soll eine `delete(id)`-Funktion aufgerufen werden, die den Eintrag aus der Datenbank löscht. Rufen Sie in der `delete(id)`-Funktion auch die `readAll()`-Funktion erneut auf, damit das `users`-Array aktualisiert wird. 
+
+
+
+
+
 
 
 

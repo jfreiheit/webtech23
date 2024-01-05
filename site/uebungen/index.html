@@ -533,6 +533,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ubung-10" class="md-nav__link">
+    Übung 10
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -663,6 +670,13 @@
         <li class="md-nav__item">
   <a href="#ubung-9" class="md-nav__link">
     Übung 9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubung-10" class="md-nav__link">
+    Übung 10
   </a>
   
 </li>
@@ -2636,6 +2650,93 @@
 </li>
 <li>
 <p>In Übung 10 werden wir die so erzeugten Objekte an das Backend senden und in die Datenbank speichern. Außerdem befüllen wir dann die <code>TableComponent</code> mit Objekten aus der Datenbank.</p>
+</li>
+</ul>
+</li>
+</ul>
+</details>
+<h4 id="ubung-10">Übung 10<a class="headerlink" href="#ubung-10" title="Permanent link">&para;</a></h4>
+<details class="question">
+<summary>Übungsaufgabe 10 (Frontend-Backend-Anbindung)</summary>
+<ul>
+<li>
+<p>Starten Sie das Backend aus <a href="./#ubung-8">Übung 8</a>.</p>
+</li>
+<li>
+<p>Nutzen Sie das Frontend aus <a href="./#ubung-9">Übung 9</a> und erweitern es wie folgt:</p>
+<ul>
+<li>
+<p>Binden Sie in die <code>app.config.ts</code> das <a href="https://angular.io/api/common/http/HttpClientModule">HttpClientModule</a> ein:
+    <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ApplicationConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">importProvidersFrom</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">provideRouter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app.routes&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="nx">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span><span class="w"> </span><span class="nx">importProvidersFrom</span><span class="p">(</span><span class="nx">HttpClientModule</span><span class="p">)]</span>
+<span class="p">};</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Erstellen Sie sich einen <code>Backend</code>-Service und ein <code>User</code>-Interface mithilfe der Angular CLI: 
+    <div class="highlight"><pre><span></span><code>ng<span class="w"> </span>g<span class="w"> </span>s<span class="w"> </span>shared/backend
+ng<span class="w"> </span>g<span class="w"> </span>i<span class="w"> </span>shared/user
+</code></pre></div></p>
+</li>
+<li>
+<p>Definieren Sie im <code>User</code>-Interface die Eigenschaften <code>username, password, email, role</code> (alles <code>string</code>s).</p>
+</li>
+<li>
+<p>Definieren Sie sich im <code>Backend</code>-Service Funktionen für die Anbindung der Backend-Endpunkte (<code>GET /users</code>, <code>POST /users</code>, <code>GET /users/:name</code>, <code>DELETE /users/:id</code> und <code>PUT / users/:id</code>). Beachten Sie, dass jeweils ein <a href="https://rxjs.dev/guide/observable">Observable</a> zurückgegeben wird, z.B.:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./user&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">BackendService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://localhost:4000&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getAllUsers</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">User</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/users&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">User</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">deleteOneMember</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/users&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="ow">delete</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">createNewUser</span><span class="p">(</span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">User</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">User</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/users&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">User</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Binden Sie in die <code>Register</code>-Komponente den <code>Backend</code>-Service ein, z.B. <code>private bs = inject(BackendService);</code>. Lesen Sie alle Werte aus dem Registrierungsformular aus und erzeugen sich damit ein neues <code>user</code>-Objekt. Rufen Sie die Funktion <code>createNewUser(user)</code> aus dem <code>Backend</code>-Service auf, z.B.:
+    <div class="highlight"><pre><span></span><code><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">createNewUser</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;register completed&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div></p>
+<p>Prüfen Sie, ob die Daten in die Datenbank gespeichert werden. </p>
+</li>
+<li>
+<p>Binden Sie in die <code>Table</code>-Komponente den <code>Backend</code>-Service ein und erstellen sich dort eine <code>readAll()</code>-Funktion, in der die <code>getAllUsers()</code>-Funktion des <code>Backend</code>-Services aufgerufen wird. </p>
+<ul>
+<li>Befüllen Sie mit der Response ein <code>users</code>-Array. </li>
+<li>Rufen Sie in der <code>ngOnInit()</code>-Funktion der Komponente die <code>readAll()</code>-Funktion auf (die Komponente muss dazu <code>OnInit</code> implementieren).</li>
+<li>Lesen Sie in einer Tabelle in der <code>table.component.html</code> alle User aus dem <code>users</code>-Array aus.</li>
+<li>Richten Sie in der Tabelle eine Spalte <code>Delete</code> ein, deren Einträge aus Buttons bestehen. Für das Klick-Ereignis soll eine <code>delete(id)</code>-Funktion aufgerufen werden, die den Eintrag aus der Datenbank löscht. Rufen Sie in der <code>delete(id)</code>-Funktion auch die <code>readAll()</code>-Funktion erneut auf, damit das <code>users</code>-Array aktualisiert wird. </li>
+</ul>
 </li>
 </ul>
 </li>

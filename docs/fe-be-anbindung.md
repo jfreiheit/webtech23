@@ -157,7 +157,7 @@ Wir erstellen uns im Ordner `shared` einen `backend`-Service:
 ng g service shared/backend
 ```
 
-In diesem Service wollen wir ein Modul verwenden, dass die Kommunikation mit dem Backend per HTTP ermöglicht. Diese Modul heißt `HttpClientModule` und muss zunächst für die Anwendung in `app.module.ts` importiert werden:
+In diesem Service wollen wir ein Modul verwenden, dass die Kommunikation mit dem Backend per HTTP ermöglicht. Diese Modul heißt `HttpClientModule` und muss zunächst für die Anwendung in `app.module.ts` importiert werden (ab Angular 17 in `app.config.ts` - siehe darunter):
 
 === "app.module.ts"
     ```ts linenums="1" hl_lines="11 29"
@@ -196,6 +196,24 @@ In diesem Service wollen wir ein Modul verwenden, dass die Kommunikation mit dem
     })
     export class AppModule { }
 
+    ```
+
+Ab Angular 17 gibt es die `app.module.ts` nicht mehr. Stattdessen wird in der `main.ts` aus `./app/app.config` importiert. Wir müssen das `HttpClientModule` deshalb dort bekannt machen, um es für alle Komponenten und Services *injectable* zu machen: 
+
+=== "app.config.ts"
+    ```ts linenums="1" hl_lines="1 5 10"
+    import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+    import { provideRouter } from '@angular/router';
+
+    import { routes } from './app.routes';
+    import { HttpClientModule } from '@angular/common/http';
+
+    export const appConfig: ApplicationConfig = {
+      providers: [
+        provideRouter(routes), 
+        importProvidersFrom(HttpClientModule)
+      ]
+    };
     ```
 
 Das `HttpClientModule` enthält einen Service `HttpClient`, der alle HTTP-Anfragemethoden, also `GET`, `POST`, `PUT`, `PATCH`, `DELETE` usw. als Funktionen bereitstellt. Diesen Service wollen wir in unserem `backend`-Service verwenden und binden ihn deshalb dort per *dependency injection* ein:
@@ -1138,5 +1156,777 @@ Um eine Nachricht anzeigen zu lassen, dass der Datensatz gelöscht wurde, fügen
 
 !!! success
     Wir haben nun die CRUD-Funktionen im Frontend implementiert und dafür das Frontend an das Backend vollständig angebunden. Zwar fehlt hier noch Create, aber das sollten Sie selbständig leicht hinbekommen. Schauen Sie sich das Formular für Update an, dann sollte das kein Problem sein! Ist eine gute Übung! Der Entwicklungsstack Datenbank <-> Backend <-> Frontend ist damit fertig und abgeschlossen. Eine weitere gute Übung für Sie wäre, statt des MongoDB-Backends das PostgreSQL-Backend anzubinden. Sie werden feststellen, dass nur sehr wenige Anpassungen notwendig sind. Wir haben nun alle Voraussetzungen besprochen, um die Semesteraufgabe zu erledigen. 
+
+## Eine vollständige Lösung (members)
+
+??? hint "Backend"
+    === "server.js"
+        ```js
+        const express = require('express');
+        const cors = require('cors');
+        require('dotenv').config();
+        const routes = require('./routes');
+        const initdb = require('./initdb')
+
+        const app = express();
+        const PORT = 4000;
+
+        app.use(express.json());
+        app.use(cors());
+        app.use('/init', initdb)
+        app.use('/', routes);
+
+        app.listen(PORT, (error) => {
+            if(error) {
+                console.log('error! ', error)
+            } else {
+                console.log(`server running on port ${PORT} ...`)
+            }
+        })
+        ```
+
+    === "routes.js"
+        ```js
+        const express = require('express');
+        const client = require('./db')
+        const router = express.Router();
+
+        // CRUD
+        //router.METHOD(PATH, HANDLER)
+
+        // get all members - Read all
+        router.get('/members', async(req, res) => {
+            const sqlStatement = `SELECT * FROM members `;
+
+            try {
+                const result = await client.query(sqlStatement)
+                console.log(result)
+                res.send(result.rows);
+            } catch (err) {
+                console.log('error - select' , err.stack)
+            }
+        });
+
+
+        // post one member - Create
+        router.post('/members', async(req, res) => {
+            let firstname = (req.body.firstname) ? req.body.firstname : null;
+            let lastname = (req.body.lastname) ? req.body.lastname : null;
+            let email = (req.body.email) ? req.body.email : null;
+
+            let exists = await client.query('SELECT * FROM members WHERE lastname = $1', [lastname])
+            console.log('rowCount : ', exists.rowCount)
+            if(exists.rowCount > 0)
+            {
+                res.send({ message: 'lastname already exists'})
+            } else {
+
+                const sqlStatement = `INSERT INTO members(firstname, lastname, email) VALUES ($1, $2, $3) RETURNING *`;
+
+                try {
+                    const result = await client.query(sqlStatement, [firstname, lastname, email])
+                    //console.log(result)
+                    res.send(result.rows[0]);
+                } catch (err) {
+                    console.log(err.stack)
+                }
+            }
+        });
+
+
+        // delete one member via id
+        // /members/vorname/11/freiheit
+        router.delete('/members/:id', async(req, res) => {
+            const query = `DELETE FROM members WHERE id=$1`;
+
+            try {
+                const idParam = req.params.id;
+                console.log('id = ', idParam)
+                const result = await client.query(query, [idParam])
+                console.log(result)
+                if (result.rowCount == 1)
+                    res.send({ message: "Member with id=" + idParam + " deleted" });
+                else
+                    res.send({ message: "No member found with id=" + idParam });
+            } catch (err) {
+                console.log(err.stack)
+            }
+        });
+
+
+        // get one member via id
+        router.get('/members/:id', async(req, res) => {
+            const query = `SELECT * FROM members WHERE id=$1`;
+
+            try {
+                const id = req.params.id;
+                const result = await client.query(query, [id])
+                console.log(result)
+                if (result.rowCount == 1)
+                    res.send(result.rows[0]);
+                else
+                    res.send({ message: "No member found with id=" + id });
+            } catch (err) {
+                console.log("error", err.stack)
+            }
+        });
+
+        // update one member
+        router.put('/members/:id', async(req, res) => {
+            const query = `SELECT * FROM members WHERE id=$1`;
+
+            let id = req.params.id;
+            const result = await client.query(query, [id])
+            if(result.rowCount > 0)
+            {
+                let member = result.rows[0];
+                let firstname = (req.body.firstname) ? req.body.firstname : member.firstname;
+                let lastname = (req.body.lastname) ? req.body.lastname : member.lastname;
+                let email = (req.body.email) ? req.body.email : member.email;
+
+                const updatequery = `UPDATE members SET 
+                    firstname = $1, 
+                    lastname = $2,
+                    email = $3
+                    WHERE id=$4;`;
+                const updateresult = await client.query(updatequery, [firstname, lastname, email, id]);
+                console.log(updateresult)
+                res.send({ id, firstname, lastname, email });
+            } else {
+                res.status(404)
+                res.send({
+                    error: "Member with id=" + id + " does not exist!"
+                })
+            }
+        });
+        
+        module.exports = router;
+        ```
+
+    === "db.js"
+        ```js
+        const pg = require('pg')
+        require('dotenv').config();
+
+        const client = new pg.Client({
+            user: process.env.PGUSER,
+            host: process.env.PGHOST,
+            database: process.env.PGDATABASE,
+            password: process.env.PGPASSWORD,
+            port: process.env.PGPORT
+        })
+
+        client.connect( (err) => {
+            if(err) {
+                console.log('database NOT connected', err)
+            } else {
+                console.log('database connected ...')
+            }
+        })
+
+        module.exports = client;
+        ```
+
+    === "initdb.js"
+        ```js
+        const express = require('express');
+        const client = require('./db');
+        const initdb = express.Router();
+        const format = require('pg-format');
+
+
+        initdb.get('/', async(req, res) => {
+
+            // Anlegen der Tabelle members
+            let query = `
+                    DROP TABLE IF EXISTS members;
+                    CREATE TABLE members(id serial PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50));
+                    `;
+
+            try {
+                await client.query(query)
+                console.log("Table created successfully ...")
+            } catch (err) {
+                console.log(err)
+            }
+
+            // Befüllen der Tabelle members mit 50 Einträgen
+            const values = [
+                ["Catherine", "Williams", "cwilliamsl@360.cn"],
+                ["Adam", "Anderson", "aanderson8@google.fr"],
+                ["Susan", "Andrews", "sandrewsn@google.co.jp"],
+                ["Catherine", "Andrews", "candrewsp@noaa.gov"],
+                ["Alan", "Bradley", "abradley1c@globo.com"],
+                ["Anne", "Brooks", "abrooks16@bravesites.com"],
+                ["Russell", "Brown", "rbrownq@nifty.com"],
+                ["Ryan", "Burton", "rburton18@foxnews.com"],
+                ["Roy", "Campbell", "rcampbell1@geocities.com"],
+                ["Russell", "Campbell", "rcampbell17@eventbrite.com"],
+                ["Bonnie", "Coleman", "bcoleman11@fc2.com"],
+                ["Ernest", "Coleman", "ecoleman15@businessweek.com"],
+                ["Richard", "Cruz", "rcruz7@unc.edu"],
+                ["Sean", "Cruz", "scruz10@answers.com"],
+                ["Rebecca", "Cunningham", "rcunninghamd@mac.com"],
+                ["Margaret", "Evans", "mevansh@pcworld.com"],
+                ["Jeffrey", "Ford", "jford14@cnet.com"],
+                ["Andrea", "Gardner", "agardnerv@woothemes.com"],
+                ["Deborah", "George", "dgeorge6@furl.net"],
+                ["Sean", "Gibson", "sgibsony@alexa.com"],
+                ["Virginia", "Graham", "vgrahamk@aol.com"],
+                ["Steven", "Hamilton", "shamiltonu@state.tx.us"],
+                ["Virginia", "Hawkins", "vhawkinsf@ehow.com"],
+                ["Edward", "Hicks", "ehicksc@pcworld.com"],
+                ["Mark", "Johnson", "mjohnsonj@hostgator.com"],
+                ["Ruth", "Jordan", "rjordan1a@smugmug.com"],
+                ["Antonio", "Kim", "akim4@odnoklassniki.ru"],
+                ["Jennifer", "Marshall", "jmarshallt@gnu.org"],
+                ["Eric", "Matthews", "ematthews5@independent.co.uk"],
+                ["Raymond", "Mcdonald", "rmcdonald2@ihg.com"],
+                ["Eric", "Miller", "emillere@creativecommons.org"],
+                ["Jonathan", "Morales", "jmoralesa@ovh.net"],
+                ["Marie", "Morgan", "mmorganb@cloudflare.com"],
+                ["Amanda", "Nelson", "anelson13@indiatimes.com"],
+                ["Lisa", "Olson", "lolsonr@telegraph.co.uk"],
+                ["Alice", "Ortiz", "aortizw@histats.com"],
+                ["Peter", "Phillips", "pphillipss@1688.com"],
+                ["Matthew", "Porter", "mporter9@europa.eu"],
+                ["Tammy", "Ray", "trayx@weather.com"],
+                ["Mark", "Richardson", "mrichardson1d@ihg.com"],
+                ["Joan", "Roberts", "jroberts12@alibaba.com"],
+                ["Kathleen", "Rose", "kroseg@pinterest.com"],
+                ["Steve", "Sanders", "ssanders1b@wikispaces.com"],
+                ["Shirley", "Scott", "sscottm@macromedia.com"],
+                ["Lillian", "Stephens", "lstephens19@hugedomains.com"],
+                ["Nicole", "Thompson", "nthompson3@admin.ch"],
+                ["Marie", "Thompson", "mthompsonz@yelp.com"],
+                ["Alan", "Vasquez", "avasquezo@miibeian.gov.cn"],
+                ["Mildred", "Watkins", "mwatkins0@miibeian.gov.cn"],
+                ["Eugene", "Williams", "ewilliamsi@deliciousdays.com"]
+            ];
+            // hierfuer muss pg-format installiert werden (wegen %L):
+            const paramquery = format('INSERT INTO members(firstname, lastname, email) VALUES %L RETURNING *', values);
+
+
+            try {
+                const result = await client.query(paramquery)
+                console.log(`${result.rowCount} members inserted ...`)
+                res.status(200)
+                res.send(result.rows)
+            } catch (err) {
+                console.log(err)
+            }
+
+        });
+
+        module.exports = initdb;
+        ```
+
+    === ".env"
+        ```json
+        PGUSER=
+        PGHOST=localhost
+        PGPASSWORD=
+        PGDATABASE=members
+        PGPORT=5432
+        ```
+
+
+??? hint "Frontend"
+    === "app.config.ts"
+        ```js
+        import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+        import { provideRouter } from '@angular/router';
+
+        import { routes } from './app.routes';
+        import { HttpClientModule } from '@angular/common/http';
+
+        export const appConfig: ApplicationConfig = {
+          providers: [provideRouter(routes), importProvidersFrom(HttpClientModule)]
+        };
+        ```
+
+    === "shared/backend.service.js"
+        ```js
+        import { HttpClient } from '@angular/common/http';
+        import { Injectable } from '@angular/core';
+        import { Member } from './member';
+        import { Observable } from 'rxjs';
+
+        @Injectable({
+          providedIn: 'root'
+        })
+        export class BackendService {
+          backendUrl = 'http://localhost:4000';
+
+          constructor(private http: HttpClient) { }
+
+          getAllMembers(): Observable<Member[]> {
+            let endpoint = '/members';
+            return this.http.get<Member[]>(this.backendUrl + endpoint);
+          }
+
+          deleteOneMember(id: string): Observable<any> {
+            let endpoint = '/members';
+            return this.http.delete<any>(this.backendUrl + endpoint + "/" + id);
+          }
+
+          getOneMember(id: string): Observable<Member>{
+            let endpoint = '/members';
+            return this.http.get<Member>(this.backendUrl + endpoint + '/' + id);
+          }
+
+          createNewMember(member: Member): Observable<Member> {
+            let endpoint = '/members';
+            return this.http.post<Member>(this.backendUrl + endpoint, member);
+          }
+
+          updateOneMember(member: Member, id: string): Observable<Member> {
+            let endpoint = '/members';
+            return this.http.put<Member>(this.backendUrl + endpoint + "/" + id, member);
+          }
+        }
+        ```
+
+    === "shared/member.js"
+        ```js
+        export interface Member {
+          id: string;
+          firstname: string;
+          lastname: string;
+          email: string;
+        }
+        ```
+
+    === "members.component.ts"
+        ```js
+        import { Component, OnInit, inject } from '@angular/core';
+        import { BackendService } from '../shared/backend.service';
+        import { Member } from '../shared/member';
+        import { RouterLink } from '@angular/router';
+        import { CommonModule } from '@angular/common';
+        import { Observable } from 'rxjs';
+
+        @Component({
+          selector: 'app-members',
+          standalone: true,
+          imports: [CommonModule, RouterLink],
+          templateUrl: './members.component.html',
+          styleUrl: './members.component.css'
+        })
+        export class MembersComponent implements OnInit{
+          ngOnInit(): void {
+            this.readAll();
+          }
+          bs = inject(BackendService)
+          members: Member[] = [];
+
+          readAll(): void {
+          this.bs.getAllMembers().subscribe(
+                {
+                  next: (response) => {
+                        this.members = response;
+                        console.log(this.members);
+                        return this.members;
+                      },
+                  error: (err) => console.log(err),
+                  complete: () => console.log('getAllMembers() completed')
+                })
+          }
+
+          delete(id: string): void {
+            console.log('id', id)
+            this.bs.deleteOneMember(id).subscribe(
+                {
+                  next: (response) => {
+                        console.log(response);
+                        this.readAll();
+                      },
+                  error: (err) => console.log(err),
+                  complete: () => console.log('deleting completed')
+                })
+          }
+        }
+        ```
+
+    === "members.component.html"
+        ```html
+        <div class="container">
+          <h1 class="my-5">Alle Teilnehmerinnen</h1>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Vorname</th>
+                <th scope="col">Nachname</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (member of members; track member.id) {
+              <tr>
+                <th scope="row">{{ member.id  }}</th>
+                <td>
+                  {{ member.firstname }}
+                </td>
+                <td>{{ member.lastname }}</td>
+                <td>{{ member.email }}</td>
+                <td><a class="btn btn-sm btn-success" [routerLink]="['/update', member.id]">update</a></td>
+                <td><button class="btn btn-sm btn-danger" (click)="delete(member.id)">delete</button></td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        ```
+
+    === "register.component.ts"
+        ```js
+        import { Component, TemplateRef, inject } from '@angular/core';
+        import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+        import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+        import { BackendService } from '../shared/backend.service';
+        import { Router } from '@angular/router';
+
+        @Component({
+          selector: 'app-register',
+          standalone: true,
+          imports: [ReactiveFormsModule, NgbDatepickerModule],
+          templateUrl: './register.component.html',
+          styleUrl: './register.component.css'
+        })
+        export class RegisterComponent {
+          private modalService = inject(NgbModal);
+          private bs = inject(BackendService);
+          private router = inject(Router);
+          closeResult = '';
+
+          firstnameFC = new FormControl('', [Validators.required]);
+          lastnameFC = new FormControl('', [Validators.required]);
+          emailFC = new FormControl('', [Validators.required, Validators.email]);
+
+          private formValid() {
+            return this.firstnameFC.valid && this.lastnameFC.valid && this.emailFC.valid;
+          }
+
+          register(content: TemplateRef<any>) {
+
+            if(this.formValid())
+            {
+              let member = {
+                id: '',
+                firstname: this.firstnameFC.value!,
+                lastname: this.lastnameFC.value!,
+                email: this.emailFC.value!
+              }
+
+              this.bs.createNewMember(member).subscribe({
+                  next: (response) => console.log('response', response),
+                  error: (err) => console.log(err),
+                  complete: () => console.log('register completed')
+              });
+
+              this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
+              .then(
+                (result) => {
+                  this.closeResult = `Closed with: ${result}`;
+                  this.router.navigate(['/members']);
+                },
+                (reason) => {
+                  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                },
+              );
+
+              console.log('new member: ', member)
+            }
+            else
+            {
+              console.warn('form still invalid!')
+            }
+          }
+
+          cancel() {
+            this.firstnameFC.reset();
+            this.lastnameFC.reset();
+            this.emailFC.reset();
+          }
+
+          private getDismissReason(reason: any): string {
+          switch (reason) {
+            case ModalDismissReasons.ESC:
+              return 'by pressing ESC';
+            case ModalDismissReasons.BACKDROP_CLICK:
+              return 'by clicking on a backdrop';
+            default:
+              return `with: ${reason}`;
+          }
+        }
+        }
+
+        ```
+
+    === "register.component.html"
+        ```html
+        <div class="container">
+          <h1 class="my-5">Registrierung</h1>
+
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="idFirstname" placeholder="Firstname" [formControl]="firstnameFC"
+                  [class]="firstnameFC.touched ? firstnameFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="idFirstname">Firstname</label>
+            <div class="invalid-feedback">
+              Please provide a firstname.
+            </div>
+          </div>
+
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="idLastname" placeholder="lastname" [formControl]="lastnameFC"
+              [class]="lastnameFC.touched ? lastnameFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="idLastname">Lastname</label>
+            <div class="invalid-feedback">
+              Please provide a lastname.
+            </div>
+          </div>
+
+          <div class="mb-5 form-floating">
+            <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" [formControl]="emailFC"
+              [class]="emailFC.touched ? emailFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="staticEmail">Email</label>
+            <div class="invalid-feedback">
+              Please provide a valid email address.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+            <button type="button" class="w-100 btn btn-success" (click)="register(content)">Register</button>
+            </div>
+            <div class="col">
+            <button type="button" class="w-100 btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-basic-title">New member registered!</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>firstname</td>
+                  <td>:</td>
+                  <td>{{ firstnameFC.value }}</td>
+                </tr>
+                <tr>
+                  <td>lastname</td>
+                  <td>:</td>
+                  <td>{{ lastnameFC.value }}</td>
+                </tr>
+                <tr>
+                  <td>email</td>
+                  <td>:</td>
+                  <td>{{ emailFC.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+          </div>
+        </ng-template>
+
+        ```
+
+
+    === "update.component.ts"
+        ```js
+        import { Component, OnInit, TemplateRef, inject } from '@angular/core';
+        import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+        import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+        import { BackendService } from '../shared/backend.service';
+        import { Member } from '../shared/member';
+        import { ActivatedRoute, Router } from '@angular/router';
+
+        @Component({
+          selector: 'app-update',
+          standalone: true,
+          imports: [ReactiveFormsModule, NgbDatepickerModule],
+          templateUrl: './update.component.html',
+          styleUrl: './update.component.css'
+        })
+        export class UpdateComponent implements OnInit{
+          id: string = '';
+          member!: Member;
+          closeResult = '';
+
+          firstnameFC = new FormControl('', [Validators.required]);
+          lastnameFC = new FormControl('', [Validators.required]);
+          emailFC = new FormControl('', [Validators.required, Validators.email]);
+
+          private modalService = inject(NgbModal);
+          private bs = inject(BackendService)
+          private route = inject(ActivatedRoute)
+          private router = inject(Router);
+
+          ngOnInit(): void {
+            this.id = this.route.snapshot.paramMap.get('id') || '';
+            this.readOne(this.id);
+          }
+
+          readOne(id: string): void {
+            this.bs.getOneMember(id).subscribe(
+            {
+              next: (response: Member) => {
+                      this.member = response;
+                      console.log(this.member);
+                      this.firstnameFC.setValue(this.member.firstname);
+                      this.lastnameFC.setValue(this.member.lastname);
+                      this.emailFC.setValue(this.member.email);
+                      return this.member;
+              },
+              error: (err) => console.log(err),
+              complete: () => console.log('getOne() completed')
+            });
+          }
+
+          private formValid() {
+            return this.firstnameFC.valid && this.lastnameFC.valid && this.emailFC.valid;
+          }
+
+          register(content: TemplateRef<any>) {
+
+            if(this.formValid())
+            {
+              let member = {
+                id: '',
+                firstname: this.firstnameFC.value!,
+                lastname: this.lastnameFC.value!,
+                email: this.emailFC.value!
+              }
+
+              this.bs.updateOneMember(member, this.id).subscribe({
+                  next: (response) => console.log('response', response),
+                  error: (err) => console.log(err),
+                  complete: () => console.log('update completed')
+              });
+
+              this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
+              .then(
+                (result) => {
+                  this.closeResult = `Closed with: ${result}`;
+                  this.router.navigate(['/members']);
+                },
+                (reason) => {
+                  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                },
+              );
+
+              console.log('new member: ', member)
+            }
+            else
+            {
+              console.warn('form still invalid!')
+            }
+          }
+
+          cancel() {
+            this.firstnameFC.reset();
+            this.lastnameFC.reset();
+            this.emailFC.reset();
+          }
+
+          private getDismissReason(reason: any): string {
+          switch (reason) {
+            case ModalDismissReasons.ESC:
+              return 'by pressing ESC';
+            case ModalDismissReasons.BACKDROP_CLICK:
+              return 'by clicking on a backdrop';
+            default:
+              return `with: ${reason}`;
+          }
+        }
+        }
+        ```
+
+    === "update.component.html"
+        ```html
+        <div class="container">
+          <h1 class="my-5">Update</h1>
+
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="idFirstname" placeholder="Firstname" [formControl]="firstnameFC"
+              [class]="firstnameFC.touched ? firstnameFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="idFirstname">Firstname</label>
+            <div class="invalid-feedback">
+              Please provide a firstname.
+            </div>
+          </div>
+
+          <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="idLastname" placeholder="lastname" [formControl]="lastnameFC"
+              [class]="lastnameFC.touched ? lastnameFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="idLastname">Lastname</label>
+            <div class="invalid-feedback">
+              Please provide a lastname.
+            </div>
+          </div>
+
+          <div class="mb-5 form-floating">
+            <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" [formControl]="emailFC"
+              [class]="emailFC.touched ? emailFC.valid ? 'is-valid' : 'is-invalid' : ''">
+            <label for="staticEmail">Email</label>
+            <div class="invalid-feedback">
+              Please provide a valid email address.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <button type="button" class="w-100 btn btn-success" (click)="register(content)">Update</button>
+            </div>
+            <div class="col">
+              <button type="button" class="w-100 btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-basic-title">Existing member updated!</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>firstname</td>
+                  <td>:</td>
+                  <td>{{ firstnameFC.value }}</td>
+                </tr>
+                <tr>
+                  <td>lastname</td>
+                  <td>:</td>
+                  <td>{{ lastnameFC.value }}</td>
+                </tr>
+                <tr>
+                  <td>email</td>
+                  <td>:</td>
+                  <td>{{ emailFC.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+          </div>
+        </ng-template>
+
+        ```
+
 
 

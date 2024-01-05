@@ -541,6 +541,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#eine-vollstandige-losung-members" class="md-nav__link">
+    Eine vollständige Lösung (members)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -773,6 +780,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#eine-vollstandige-losung-members" class="md-nav__link">
+    Eine vollständige Lösung (members)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -958,7 +972,7 @@ ng<span class="w"> </span>g<span class="w"> </span>c<span class="w"> </span>deta
 <p>Wir erstellen uns im Ordner <code>shared</code> einen <code>backend</code>-Service:</p>
 <div class="highlight"><pre><span></span><code>ng<span class="w"> </span>g<span class="w"> </span>service<span class="w"> </span>shared/backend
 </code></pre></div>
-<p>In diesem Service wollen wir ein Modul verwenden, dass die Kommunikation mit dem Backend per HTTP ermöglicht. Diese Modul heißt <code>HttpClientModule</code> und muss zunächst für die Anwendung in <code>app.module.ts</code> importiert werden:</p>
+<p>In diesem Service wollen wir ein Modul verwenden, dass die Kommunikation mit dem Backend per HTTP ermöglicht. Diese Modul heißt <code>HttpClientModule</code> und muss zunächst für die Anwendung in <code>app.module.ts</code> importiert werden (ab Angular 17 in <code>app.config.ts</code> - siehe darunter):</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">app.module.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1033,8 +1047,39 @@ ng<span class="w"> </span>g<span class="w"> </span>c<span class="w"> </span>deta
 </div>
 </div>
 </div>
+<p>Ab Angular 17 gibt es die <code>app.module.ts</code> nicht mehr. Stattdessen wird in der <code>main.ts</code> aus <code>./app/app.config</code> importiert. Wir müssen das <code>HttpClientModule</code> deshalb dort bekannt machen, um es für alle Komponenten und Services <em>injectable</em> zu machen: </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">app.config.ts</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ApplicationConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">importProvidersFrom</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">provideRouter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app.routes&#39;</span><span class="p">;</span>
+<span class="hll"><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span><span class="w"> </span>
+<span class="hll"><span class="w">    </span><span class="nx">importProvidersFrom</span><span class="p">(</span><span class="nx">HttpClientModule</span><span class="p">)</span>
+</span><span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
 <p>Das <code>HttpClientModule</code> enthält einen Service <code>HttpClient</code>, der alle HTTP-Anfragemethoden, also <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code> usw. als Funktionen bereitstellt. Diesen Service wollen wir in unserem <code>backend</code>-Service verwenden und binden ihn deshalb dort per <em>dependency injection</em> ein:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">shared/backend.service.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">shared/backend.service.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1064,7 +1109,7 @@ ng<span class="w"> </span>g<span class="w"> </span>c<span class="w"> </span>deta
 <div class="highlight"><pre><span></span><code>ng<span class="w"> </span>g<span class="w"> </span>interface<span class="w"> </span>shared/member
 </code></pre></div>
 <p>Wir übernehmen hier das Datenmodell, das wir für die MongoDB gewählt hatten. Bei der PostgreSQL hatten die Eigenschaften andere Namen (<code>id</code>, <code>firstname</code>, <code>lastname</code>)! Das sollte dann entsprechend angepasst werden - je nachdem, welches Backend verwendet wird. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">shared/member.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">shared/member.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1092,7 +1137,7 @@ ng<span class="w"> </span>g<span class="w"> </span>c<span class="w"> </span>deta
 <p>Diese Funktion gibt ein sogenanntes <em>Observable</em> zurück. <em>Observables</em> implementieren das <em>Observer Pattern</em> - ein Design Pattern zur Kommunikation zwischen einem sogenannte <em>subject</em>, das einen oder mehrere <em>observers</em> beobachtet und das immer dann informiert wird, sobald sich der Zustand eines <em>observers</em> geändert hat. Eine typische Implementierung des <em>Observer Patterns</em> findet durch Ereignis-Listener statt. Jemand (das <em>subject</em>) meldet sich an einem <em>observer</em> an, z.B. einem Button (genauer gesagt, an das Click-Ereignis des Buttons) und wird informiert, sobald der Button gecklickt wurde. </p>
 <p>Die Grundidee bei <em>Observables</em> in TypeScript ist die, dass es eine Funktion gibt, die Werte ermittelt (z.B. <code>http.get()</code>), aber diese Funktion nur ausgeführt wird, wenn sie jemand <code>subscribe</code>d. <code>subscribe()</code> ist also wie eine Anmeldung an den zu beobachtenden Wert. </p>
 <p>Wir schauen uns dieses Prinzip mal mit der <code>get()</code>-Funktion des <code>HttpClient</code>s an:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">src/app/shared/backend.service.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">src/app/shared/backend.service.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
@@ -1136,7 +1181,7 @@ ng<span class="w"> </span>g<span class="w"> </span>c<span class="w"> </span>deta
 <p>Wir müssen sowohl <code>Observable</code> (aus <code>rxjs</code>) als auch <code>Member</code> (aus unserer <code>member.ts</code>) importieren (Zeilen <code>3</code> und <code>4</code>). Nun müssen wir uns noch an dieses <code>Observable</code> mittels <code>subscribe()</code> anmelden. Das machen wir in unserer <code>TableComponent</code>.</p>
 <h3 id="subscribe"><code>subscribe()</code><a class="headerlink" href="#subscribe" title="Permanent link">&para;</a></h3>
 <p>In unserer <code>TableComponent</code> wollen wir die <code>getAll()</code>-Funktion unseres Backend-Services nutzen, um uns alle <code>members</code>-Datensätze vom Backend anfragen und anzeigen zu lassen. Wir öffnen dazu die <code>table.component.ts</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">src/app/table.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">src/app/table.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
@@ -1227,7 +1272,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>i<span class="w"> </span>bootstrap-icons
 </code></pre></div>
 <p>(für die <a href="https://www.npmjs.com/package/ngx-bootstrap-icons">ngx-bootstrap-icons</a> müssten Sie <code>npm i ngx-bootstrap-icons</code> eingeben). Um die Icons in der <code>TableComponent</code> einfach verwenden zu können, werden die Icons in der <code>table.component.css</code> importiert:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">table.component.css</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">table.component.css</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">&#39;../../../node_modules/bootstrap-icons/font/bootstrap-icons.css&#39;</span><span class="o">)</span><span class="p">;</span>
@@ -1236,7 +1281,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 </div>
 <p>Die Bootstrap-Klassen für eine Tablle können <a href="https://getbootstrap.com/docs/5.2/content/tables/#accented-tables">hier</a> entnommen werden. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">table.component.html</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">table.component.html</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1304,7 +1349,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <p>Die erste Spalte der Tabelle wird einfach mit einer fortlaufenden Nummer befüllt, in die zweite Spalte kommt der Vorname (<code>member.forename</code>) und in die dritte Spalte der Nachname (<code>member.surname</code>) - siehe Zeilen <code>16-18</code>. In Zeile <code>20</code> erstellen wir einen Link, um an die E-Mail-Adresse (<code>member.email</code>) eine E-Mail zu senden. Der Inhalt des Links ist das Bootstrap-Icon <code>bi-envelope</code> - siehe <a href="https://icons.getbootstrap.com/icons/envelope/">hier</a>.</p>
 <p>In Zeile <code>21</code> definieren wir ebenfalls einen Link, dieses Mal aber keinen Hyperlink, sondern einen Routerlink unter Verwendung der <code>_id</code> von <code>member</code>. Es entsteht der Aufruf der Route <code>/member/:id</code>, wobei für die <code>:id</code> die entsprechende <code>_id</code> von <code>member</code> eingesetzt wird. Inhalt des Links ist das Bootstrap-Icon <a href="https://icons.getbootstrap.com/icons/pencil-square/">pencil-square</a>.</p>
 <p>In Zeile <code>22</code> verwenden wir das Bootstrap-Icon <a href="https://icons.getbootstrap.com/icons/trash/">trash</a>. Dieses wird an das <code>click</code>-Ereignis angemeldet. Sobald das Icon angeklickt wird, wird die Methode <code>delete(id)</code> aufgerufen. Dieser Methode wird die jeweilige <code>_id</code> von <code>member</code> übergeben. Diese Methode <code>delete(id)</code> muss dazu in der <code>table.component.ts</code> definiert werden. Um die vollständige Implementierung der Methode kümmern wir uns später. Zunächst fügen wir sie nur ein, damit kein Fehler beim Übersetzen der Anwendung mehr passiert und geben einfach die übergebene <code>_id</code> auf die Konsole aus:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">table.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">table.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1390,7 +1435,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <li>erweiteren wir den <code>BackendService</code> um eine Funktion <code>getOne(id)</code>, die den Endpunkt <code>GET /members/id</code> der REST-API des Backends aufruft.</li>
 <li>Wir nutzen diese Funktion, um in der <code>detail.component.ts</code> die Daten dieses <code>member</code> zu speichern. Dazu gehen wir wie beim <a href="../routing/#weiter-mit-parametrisierten-routen">Routing mit parametrisierten Routen</a> gezeigt, vor. </li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">backend.service.ts</label><label for="__tabbed_11_2">detail.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">backend.service.ts</label><label for="__tabbed_12_2">detail.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1532,7 +1577,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <li><code>FormGroup</code> für eine zusammenhängende Menge von Steuerlementen (einem Formular). </li>
 </ul>
 <p>Um <em>reaktive Formulare</em> zu verwenden, ist es <strong>wichtig</strong>, das Modul <code>ReactiveFormsModule</code> in die <code>app.module.ts</code> zu importieren!</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">app.module.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">app.module.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1611,7 +1656,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 </div>
 <p>Wenn das vergessen wird, sind die Fehlerausgaben wirklich nicht zielführend und es ist recht schwierig, diesen Fehler zu finden! <em>Reactive Forms</em> werden, im Gegensatz zu den <em>template-basierten Formularen</em>, hauptsächlich in der TypeScript-Klasse erstellt. Wir passen deshalb unsere <code>detail.component.ts</code> wie folgt an:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">detail.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">detail.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1752,7 +1797,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <p><code>objekt?.eigenschaft</code></p>
 </blockquote>
 <p>Solange <code>objekt</code> noch <code>undefined</code> ist, wird nicht auf die (noch nicht existierende) <code>eigenschaft</code> zugegriffen. Wir verwenden den <em>safe navigation operator</em> in der <code>detail.component.ts</code> ein:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">detail.component.ts (Auszug mit safe navigation oprator)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">detail.component.ts (Auszug mit safe navigation oprator)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
@@ -1772,7 +1817,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <p>Jetzt wird zunächst geprüft, ob <code>member</code> überhaupt definiert ist (also nicht <code>undefined</code>). Wenn nicht, wird gar nicht erst auf die Eigenschaft (z.B. <code>firstname</code>) zugegriffen. Ohne den Operator erhalten Sie eine Fehlermeldung, da z.B. der Zugriff <code>undefined.firstname</code> versucht würde.  Allerdings wird ja direkt nach der Wertzuweisung auf die <code>member</code>-Variable zugegriffen. Dadurch könnte hier der <code>safe navigation operator</code> auch weggelassen werden. </p>
 <h3 id="reactive-forms-in-componenthtml">Reactive Forms in <code>*.component.html</code><a class="headerlink" href="#reactive-forms-in-componenthtml" title="Permanent link">&para;</a></h3>
 <p>Das Formular existiert nun (als TypeScript-Objekt). Nun binden wir es in die <code>detail.component.html</code> ein. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">detail.component.html</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">detail.component.html</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1860,7 +1905,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 <p>Es entsteht folgende Ansicht:</p>
 <p><img alt="formular" src="../files/234_formular.png" /></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">detail.component.css</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">detail.component.css</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">main</span><span class="w"> </span><span class="p">{</span>
@@ -1882,7 +1927,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;6399ec28bc9eaaf21290cc3b&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Anderson&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;aanderson8@google.fr&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">ipaddress</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;118.93.83.157&#39;</span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div>
 <p>zurückbekommen. Im letzteren Fall ist es am einfachsten, wenn Sie das Backend wie folgt anpassen:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="17:1"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">routes.js</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="18:1"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">routes.js</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
@@ -1918,7 +1963,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <h3 id="submit-und-cancel-ereignisbehandlung">Submit- und Cancel-Ereignisbehandlung<a class="headerlink" href="#submit-und-cancel-ereignisbehandlung" title="Permanent link">&para;</a></h3>
 <p>Um sich an das <code>submit</code>-Ereignis anzumelden, wird für das <code>&lt;form&gt;</code>-Element <code>(ngSubmit)</code> hinzugefügt und als dessen Wert die Funktion, die aufgerufen werden soll, beim Absenden des Formulars - hier die Funktion <code>update()</code> (die wir gleich noch in <code>detail.component.ts</code> implementieren). Für den <code>Abbrechen</code>-Button melden wir uns an das <code>click</code>-Ereignis mithilfe von <code>(click)</code> und der Angabe der Funktion, die ausgeführt werden soll (hier <code>cancel()</code>) an. </p>
 <p>Wir implementieren nun die Funktionen <code>cancel()</code> und <code>update()</code>. Die <code>cancel()</code>-Funktion wird durch das <code>click</code>-Ereignis des <code>Abbrechen</code>-Buttons aufgerufen und die <code>update()</code>-Funktion durch den <code>submit</code>-Button <code>Aktualisieren</code> (siehe im Formular <code>(ngSubmit)="update()"</code>). Wenn wir auf <code>Abbrechen</code> klicken, dann wollen wir wieder zur Tabellenansicht zurück. Das erreichen wir mit dem Service <code>Location</code> aus <code>@angular/common</code>, der uns z.B. die <code>back()</code>-Funktion zur Verfügung stellt:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="18:1"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">detail.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:1"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">detail.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2052,7 +2097,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 <p>Wenn wir nun auf <code>Abbrechen</code> klicken, dann haben wir das gleiche Verhalten, als würden wir im Browser auf <code>zurück</code> (oder <code>back</code>) klicken. </p>
 <p>Wenn jedoch der <code>Aktualisieren</code>-Button gedrückt wird, dann soll der Datensatz in der Datenbank aktualisiert werden, d.h. es wird der Endpunkt <code>PATCH /members/:id</code> der REST-API angesprochen, wobei <code>:id</code> den Wert der <code>_id</code> des aktuell bearbeiteten Datensatzes erhält und die Werte aus dem Formular im <code>body</code> des <code>request</code>-Objektes übergeben werden. Dazu erweiteren wir zunächst den <code>BackendService</code> um eine entsprechende Funktion, die wir dort ebenfalls <code>update()</code> nennen und der die <code>id</code> sowie die Daten aus dem Formular übergeben werden.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="19:1"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">backend.service.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="20:1"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">backend.service.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2109,7 +2154,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 </div>
 <p>In der <code>detail.component.ts</code> werden in der <code>update()</code>-Funktion zunächst alle Werte des Formulars ausgelesen und in <code>this.member</code> gespeichert und dann wird die <code>update()</code>-Funktion des <code>BackendService</code> aufgerufen und ihr die <code>this.id</code> sowie <code>this.member</code> übergeben. Nachdem der Datensatz in der Datenbank aktualisiert wurde, wird wieder die <code>table</code>-Komponente aufgerufen. Dazu wird die <code>navigateByUrl()</code>-Funktion des <code>Router</code>-Services verwendet.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="20:1"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">detail.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="21:1"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">detail.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2281,7 +2326,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <h2 id="d-elete-tablecomponent">D-elete -- TableComponent<a class="headerlink" href="#d-elete-tablecomponent" title="Permanent link">&para;</a></h2>
 <p>In der <code>table</code>-Komponente ist das Löschen eines Datensatzes bereits vorbereitet. Bei Klick auf das <code>trash</code>-Icon in der Tabelle wird die <code>delete()</code>-Funktion in der <code>table.component.ts</code> aufgerufen und ihr die <code>_id</code> des löschenden Datensatzes übergeben. Derzeit gibt die Funktion aber diese <code>id</code> nur auf der Konsole aus. </p>
 <p>Wir implementieren zunächst eine <code>deleteOne(id)</code>-Funktion im <code>BackendService</code>. Es wird der Endpunkt <code>DELETE /members/:id</code> verwendet. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="21:1"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">backend.service.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="22:1"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">backend.service.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2347,7 +2392,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 <p>Im Gegensatz zu den anderen Endpunkten, kann die <code>response</code> beim Aufruf von <code>DELETE /members/:id</code> leer sein (wenn der Datensatz gelöscht wurde) oder es wird ein Objekt mit einem <code>error</code> zurückgesendet (siehe <a href="http://127.0.0.1:8000/webtech/backend/#d-delete-one">hier</a>). Die Typisierung des <code>Observale</code> ist deshalb nicht <code>Member</code>, sondern <code>any</code>. Da vom Backend jedoch der HTTP-Status in der <code>response</code> zurückgegeben wird (<code>204</code> oder <code>404</code>) wollen wir auf diesen Status zugreifen. Wäre die <code>response</code> leer, ginge das jedoch nicht. Deshalb legen wir mit <code>{observe: 'response'}</code> als zweitem Parameter fest, dass in jedem Fall eine <code>response</code> (und nicht nur der <code>body</code>) durch das <code>Observable</code> erzeugt wird.</p>
 <p>Wir verwenden diese Funktion nun in unserer <code>table.component.ts</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="22:1"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">table.component.ts</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">table.component.ts</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2473,7 +2518,7 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 </div>
 <p>Wir haben gleich mehrer Sachen hinzugefügt. Zunächst ruft die <code>delete(id)</code>-Funktion wie gewohnt die <code>BackendService</code>-Funktion <code>deleteOne(id)</code> mit <code>subsribe()</code> auf. Wir haben darin eine Fallunterscheidung, je nach zurückgegebenem HTTP-Status integriert mit jeweiliger Konsolen-Ausgabe (die können natürlich raus). </p>
 <p>Um eine Nachricht anzeigen zu lassen, dass der Datensatz gelöscht wurde, fügen wir der TypeScript-Klasse die Eigenschaft <code>deleted</code> hinzu. Ist der Wert von <code>deleted</code> <code>false</code> wird die Tabelle angezeigt. Ist der Wert jedoch <code>true</code> wird die Löschnachricht angezeigt. In der Löschnachricht ist ein Button, dessen Klickereignis die Funktion <code>reload()</code> aufruft. In <code>reload()</code> wird die Tabelle neu geladen. Dazu werden zuvor nochmal alle Einträge aus der Datenbank mit <code>readAll()</code> geholt, damit man sieht, dass der Datensatz gelöscht wurde. Die <code>table.component.html</code> sieht nun so aus:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">table.component.html</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:1"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">table.component.html</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2549,6 +2594,769 @@ connected<span class="w"> </span>to<span class="w"> </span>DB
 <p class="admonition-title">Success</p>
 <p>Wir haben nun die CRUD-Funktionen im Frontend implementiert und dafür das Frontend an das Backend vollständig angebunden. Zwar fehlt hier noch Create, aber das sollten Sie selbständig leicht hinbekommen. Schauen Sie sich das Formular für Update an, dann sollte das kein Problem sein! Ist eine gute Übung! Der Entwicklungsstack Datenbank &lt;-&gt; Backend &lt;-&gt; Frontend ist damit fertig und abgeschlossen. Eine weitere gute Übung für Sie wäre, statt des MongoDB-Backends das PostgreSQL-Backend anzubinden. Sie werden feststellen, dass nur sehr wenige Anpassungen notwendig sind. Wir haben nun alle Voraussetzungen besprochen, um die Semesteraufgabe zu erledigen. </p>
 </div>
+<h2 id="eine-vollstandige-losung-members">Eine vollständige Lösung (members)<a class="headerlink" href="#eine-vollstandige-losung-members" title="Permanent link">&para;</a></h2>
+<details class="hint">
+<summary>Backend</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="25:5"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><input id="__tabbed_25_2" name="__tabbed_25" type="radio" /><input id="__tabbed_25_3" name="__tabbed_25" type="radio" /><input id="__tabbed_25_4" name="__tabbed_25" type="radio" /><input id="__tabbed_25_5" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">server.js</label><label for="__tabbed_25_2">routes.js</label><label for="__tabbed_25_3">db.js</label><label for="__tabbed_25_4">initdb.js</label><label for="__tabbed_25_5">.env</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">initdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./initdb&#39;</span><span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/init&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">initdb</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">routes</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;error! &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb"> ...`</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./db&#39;</span><span class="p">)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// CRUD</span>
+<span class="c1">//router.METHOD(PATH, HANDLER)</span>
+
+<span class="c1">// get all members - Read all</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sqlStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`SELECT * FROM members `</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sqlStatement</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;error - select&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="c1">// post one member - Create</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/members&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">exists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM members WHERE lastname = $1&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">lastname</span><span class="p">])</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;rowCount : &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">exists</span><span class="p">.</span><span class="nx">rowCount</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">exists</span><span class="p">.</span><span class="nx">rowCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;lastname already exists&#39;</span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">sqlStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`INSERT INTO members(firstname, lastname, email) VALUES ($1, $2, $3) RETURNING *`</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sqlStatement</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">firstname</span><span class="p">,</span><span class="w"> </span><span class="nx">lastname</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">])</span>
+<span class="w">            </span><span class="c1">//console.log(result)</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="c1">// delete one member via id</span>
+<span class="c1">// /members/vorname/11/freiheit</span>
+<span class="nx">router</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`DELETE FROM members WHERE id=$1`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">idParam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;id = &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">idParam</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">idParam</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rowCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member with id=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">idParam</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; deleted&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;No member found with id=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">idParam</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="c1">// get one member via id</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`SELECT * FROM members WHERE id=$1`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rowCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;No member found with id=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// update one member</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/members/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`SELECT * FROM members WHERE id=$1`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">id</span><span class="p">])</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rowCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">firstname</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">member</span><span class="p">.</span><span class="nx">firstname</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">lastname</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">member</span><span class="p">.</span><span class="nx">lastname</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">member</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">updatequery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`UPDATE members SET </span>
+<span class="sb">            firstname = $1, </span>
+<span class="sb">            lastname = $2,</span>
+<span class="sb">            email = $3</span>
+<span class="sb">            WHERE id=$4;`</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">updateresult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">updatequery</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">firstname</span><span class="p">,</span><span class="w"> </span><span class="nx">lastname</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">]);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">updateresult</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">firstname</span><span class="p">,</span><span class="w"> </span><span class="nx">lastname</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Member with id=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; does not exist!&quot;</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">pg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">)</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">pg</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGUSER</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGHOST</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGDATABASE</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPASSWORD</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPORT</span>
+<span class="p">})</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;database NOT connected&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;database connected ...&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">client</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./db&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">initdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>
+
+
+<span class="nx">initdb</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Anlegen der Tabelle members</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            DROP TABLE IF EXISTS members;</span>
+<span class="sb">            CREATE TABLE members(id serial PRIMARY KEY, firstname VARCHAR(50), lastname VARCHAR(50), email VARCHAR(50));</span>
+<span class="sb">            `</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Table created successfully ...&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Befüllen der Tabelle members mit 50 Einträgen</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Catherine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Williams&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cwilliamsl@360.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Adam&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Anderson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;aanderson8@google.fr&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Susan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Andrews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandrewsn@google.co.jp&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Catherine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Andrews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;candrewsp@noaa.gov&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bradley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abradley1c@globo.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Anne&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Brooks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;abrooks16@bravesites.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Russell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Brown&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rbrownq@nifty.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ryan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Burton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rburton18@foxnews.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Roy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Campbell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcampbell1@geocities.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Russell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Campbell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcampbell17@eventbrite.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Bonnie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Coleman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bcoleman11@fc2.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ernest&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Coleman&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ecoleman15@businessweek.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Richard&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cruz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcruz7@unc.edu&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Sean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cruz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scruz10@answers.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Rebecca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cunningham&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rcunninghamd@mac.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Margaret&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Evans&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mevansh@pcworld.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jeffrey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ford&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jford14@cnet.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Andrea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gardner&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;agardnerv@woothemes.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Deborah&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;George&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dgeorge6@furl.net&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Sean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gibson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sgibsony@alexa.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Virginia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Graham&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vgrahamk@aol.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Steven&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hamilton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;shamiltonu@state.tx.us&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Virginia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hawkins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vhawkinsf@ehow.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Edward&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hicks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ehicksc@pcworld.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Johnson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mjohnsonj@hostgator.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Ruth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Jordan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rjordan1a@smugmug.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Antonio&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Kim&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;akim4@odnoklassniki.ru&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jennifer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Marshall&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jmarshallt@gnu.org&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Matthews&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ematthews5@independent.co.uk&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Raymond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Mcdonald&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rmcdonald2@ihg.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Miller&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;emillere@creativecommons.org&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Jonathan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Morales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jmoralesa@ovh.net&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Marie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Morgan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mmorganb@cloudflare.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Amanda&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Nelson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;anelson13@indiatimes.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Lisa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Olson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lolsonr@telegraph.co.uk&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ortiz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;aortizw@histats.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Peter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Phillips&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pphillipss@1688.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Matthew&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Porter&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mporter9@europa.eu&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Tammy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ray&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;trayx@weather.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Richardson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mrichardson1d@ihg.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Joan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Roberts&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jroberts12@alibaba.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Kathleen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;kroseg@pinterest.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Steve&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sanders&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ssanders1b@wikispaces.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Shirley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Scott&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sscottm@macromedia.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Lillian&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Stephens&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lstephens19@hugedomains.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Nicole&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;nthompson3@admin.ch&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Marie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Thompson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mthompsonz@yelp.com&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Alan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Vasquez&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;avasquezo@miibeian.gov.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Mildred&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Watkins&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mwatkins0@miibeian.gov.cn&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;Eugene&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Williams&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ewilliamsi@deliciousdays.com&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// hierfuer muss pg-format installiert werden (wegen %L):</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">paramquery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;INSERT INTO members(firstname, lastname, email) VALUES %L RETURNING *&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">values</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">paramquery</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">result</span><span class="p">.</span><span class="nx">rowCount</span><span class="si">}</span><span class="sb"> members inserted ...`</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">200</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initdb</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="err">PGUSER=</span>
+<span class="err">PGHOST=localhos</span><span class="kc">t</span>
+<span class="err">PGPASSWORD=</span>
+<span class="err">PGDATABASE=members</span>
+<span class="err">PGPORT=</span><span class="mi">5432</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details class="hint">
+<summary>Frontend</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="26:9"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><input id="__tabbed_26_2" name="__tabbed_26" type="radio" /><input id="__tabbed_26_3" name="__tabbed_26" type="radio" /><input id="__tabbed_26_4" name="__tabbed_26" type="radio" /><input id="__tabbed_26_5" name="__tabbed_26" type="radio" /><input id="__tabbed_26_6" name="__tabbed_26" type="radio" /><input id="__tabbed_26_7" name="__tabbed_26" type="radio" /><input id="__tabbed_26_8" name="__tabbed_26" type="radio" /><input id="__tabbed_26_9" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">app.config.ts</label><label for="__tabbed_26_2">shared/backend.service.js</label><label for="__tabbed_26_3">shared/member.js</label><label for="__tabbed_26_4">members.component.ts</label><label for="__tabbed_26_5">members.component.html</label><label for="__tabbed_26_6">register.component.ts</label><label for="__tabbed_26_7">register.component.html</label><label for="__tabbed_26_8">update.component.ts</label><label for="__tabbed_26_9">update.component.html</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ApplicationConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">importProvidersFrom</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">provideRouter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">routes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./app.routes&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClientModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">appConfig</span><span class="o">:</span><span class="w"> </span><span class="nx">ApplicationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span><span class="w"> </span><span class="nx">importProvidersFrom</span><span class="p">(</span><span class="nx">HttpClientModule</span><span class="p">)]</span>
+<span class="p">};</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">HttpClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common/http&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Injectable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./member&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Injectable</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">BackendService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://localhost:4000&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="w"> </span><span class="nx">HttpClient</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getAllMembers</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Member</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/members&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">Member</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">deleteOneMember</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/members&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="ow">delete</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">getOneMember</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/members&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">createNewMember</span><span class="p">(</span><span class="nx">member</span><span class="o">:</span><span class="w"> </span><span class="nx">Member</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/members&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="p">,</span><span class="w"> </span><span class="nx">member</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">updateOneMember</span><span class="p">(</span><span class="nx">member</span><span class="o">:</span><span class="w"> </span><span class="nx">Member</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/members&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">put</span><span class="o">&lt;</span><span class="nx">Member</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backendUrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">endpoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">member</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kr">interface</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BackendService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../shared/backend.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../shared/member&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RouterLink</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CommonModule</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/common&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-members&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span><span class="w"> </span><span class="nx">RouterLink</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./members.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./members.component.css&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MembersComponent</span><span class="w"> </span><span class="kr">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">readAll</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">BackendService</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="nx">Member</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="nx">readAll</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">getAllMembers</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">members</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">members</span><span class="p">;</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">          </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getAllMembers() completed&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="ow">delete</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">deleteOneMember</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">readAll</span><span class="p">();</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">          </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;deleting completed&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-5&quot;</span><span class="p">&gt;</span>Alle Teilnehmerinnen<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table table-striped&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>#<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Vorname<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Nachname<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>E-Mail<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Update<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Delete<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+      @for (member of members; track member.id) {
+      <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>{{ member.id  }}<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+          {{ member.firstname }}
+        <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ member.lastname }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ member.email }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-sm btn-success&quot;</span> <span class="err">[</span><span class="na">routerLink</span><span class="err">]=&quot;[&#39;/</span><span class="na">update</span><span class="err">&#39;,</span> <span class="na">member</span><span class="err">.</span><span class="na">id</span><span class="err">]&quot;</span><span class="p">&gt;</span>update<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-sm btn-danger&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">delete</span><span class="err">(</span><span class="na">member</span><span class="err">.</span><span class="na">id</span><span class="err">)&quot;</span><span class="p">&gt;</span>delete<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+      }
+    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">,</span><span class="w"> </span><span class="nx">ReactiveFormsModule</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbDatepickerModule</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbModal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@ng-bootstrap/ng-bootstrap&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BackendService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../shared/backend.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-register&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ReactiveFormsModule</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbDatepickerModule</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./register.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./register.component.css&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">RegisterComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">modalService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">NgbModal</span><span class="p">);</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">BackendService</span><span class="p">);</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">firstnameFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">lastnameFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">emailFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">email</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">formValid</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">valid</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">register</span><span class="p">(</span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">formValid</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">createNewMember</span><span class="p">(</span><span class="nx">member</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">          </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;register completed&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">modalService</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ariaLabelledBy</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;modal-basic-title&#39;</span><span class="w"> </span><span class="p">}).</span><span class="nx">result</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Closed with: </span><span class="si">${</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/members&#39;</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Dismissed </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">getDismissReason</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;new member: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">member</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;form still invalid!&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">cancel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">getDismissReason</span><span class="p">(</span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">.</span><span class="nx">ESC</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;by pressing ESC&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">.</span><span class="nx">BACKDROP_CLICK</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;by clicking on a backdrop&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="sb">`with: </span><span class="si">${</span><span class="nx">reason</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-5&quot;</span><span class="p">&gt;</span>Registrierung<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;idFirstname&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Firstname&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">firstnameFC</span><span class="err">&quot;</span>
+          <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">firstnameFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">firstnameFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;idFirstname&quot;</span><span class="p">&gt;</span>Firstname<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a firstname.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;idLastname&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;lastname&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">lastnameFC</span><span class="err">&quot;</span>
+      <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">lastnameFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">lastnameFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;idLastname&quot;</span><span class="p">&gt;</span>Lastname<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a lastname.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-5 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;staticEmail&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;email@example.com&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">emailFC</span><span class="err">&quot;</span>
+      <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">emailFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">emailFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;staticEmail&quot;</span><span class="p">&gt;</span>Email<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a valid email address.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;w-100 btn btn-success&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">register</span><span class="err">(</span><span class="na">content</span><span class="err">)&quot;</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;w-100 btn btn-secondary&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">cancel</span><span class="err">()&quot;</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ng-template</span> <span class="err">#</span><span class="na">content</span> <span class="na">let-modal</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-header&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h6</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;modal-basic-title&quot;</span><span class="p">&gt;</span>New member registered!<span class="p">&lt;/</span><span class="nt">h6</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-close&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Close&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">modal</span><span class="err">.</span><span class="na">dismiss</span><span class="err">(&#39;</span><span class="na">Cross</span> <span class="na">click</span><span class="err">&#39;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>firstname<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ firstnameFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>lastname<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ lastnameFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>email<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ emailFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-footer&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-outline-dark&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">modal</span><span class="err">.</span><span class="na">close</span><span class="err">(&#39;</span><span class="na">Save</span> <span class="na">click</span><span class="err">&#39;)&quot;</span><span class="p">&gt;</span>Close<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ng-template</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">,</span><span class="w"> </span><span class="nx">ReactiveFormsModule</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/forms&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbDatepickerModule</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbModal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@ng-bootstrap/ng-bootstrap&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BackendService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../shared/backend.service&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Member</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../shared/member&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ActivatedRoute</span><span class="p">,</span><span class="w"> </span><span class="nx">Router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/router&#39;</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-update&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">standalone</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">ReactiveFormsModule</span><span class="p">,</span><span class="w"> </span><span class="nx">NgbDatepickerModule</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./update.component.html&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">styleUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./update.component.css&#39;</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UpdateComponent</span><span class="w"> </span><span class="kr">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">member</span><span class="o">!:</span><span class="w"> </span><span class="nx">Member</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">firstnameFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">lastnameFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">emailFC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FormControl</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span><span class="w"> </span><span class="nx">Validators</span><span class="p">.</span><span class="nx">email</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">modalService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">NgbModal</span><span class="p">);</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">BackendService</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">route</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">ActivatedRoute</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">route</span><span class="p">.</span><span class="nx">snapshot</span><span class="p">.</span><span class="nx">paramMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">readOne</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">readOne</span><span class="p">(</span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">getOneMember</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="o">:</span><span class="w"> </span><span class="nx">Member</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="p">);</span>
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="p">.</span><span class="nx">firstname</span><span class="p">);</span>
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="p">.</span><span class="nx">lastname</span><span class="p">);</span>
+<span class="w">              </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span>
+<span class="w">              </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">member</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getOne() completed&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">formValid</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">valid</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">register</span><span class="p">(</span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="nx">TemplateRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">formValid</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">firstname</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">lastname</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">value</span><span class="o">!</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">bs</span><span class="p">.</span><span class="nx">updateOneMember</span><span class="p">(</span><span class="nx">member</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="w">          </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;update completed&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">modalService</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">content</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ariaLabelledBy</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;modal-basic-title&#39;</span><span class="w"> </span><span class="p">}).</span><span class="nx">result</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Closed with: </span><span class="si">${</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">navigate</span><span class="p">([</span><span class="s1">&#39;/members&#39;</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">closeResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Dismissed </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">getDismissReason</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;new member: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">member</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;form still invalid!&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">cancel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">firstnameFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">lastnameFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">emailFC</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kr">private</span><span class="w"> </span><span class="nx">getDismissReason</span><span class="p">(</span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">.</span><span class="nx">ESC</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;by pressing ESC&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">ModalDismissReasons</span><span class="p">.</span><span class="nx">BACKDROP_CLICK</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;by clicking on a backdrop&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="sb">`with: </span><span class="si">${</span><span class="nx">reason</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;my-5&quot;</span><span class="p">&gt;</span>Update<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;idFirstname&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Firstname&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">firstnameFC</span><span class="err">&quot;</span>
+      <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">firstnameFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">firstnameFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;idFirstname&quot;</span><span class="p">&gt;</span>Firstname<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a firstname.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;idLastname&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;lastname&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">lastnameFC</span><span class="err">&quot;</span>
+      <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">lastnameFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">lastnameFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;idLastname&quot;</span><span class="p">&gt;</span>Lastname<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a lastname.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-5 form-floating&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;staticEmail&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;email@example.com&quot;</span> <span class="err">[</span><span class="na">formControl</span><span class="err">]=&quot;</span><span class="na">emailFC</span><span class="err">&quot;</span>
+      <span class="err">[</span><span class="na">class</span><span class="err">]=&quot;</span><span class="na">emailFC</span><span class="err">.</span><span class="na">touched</span> <span class="err">?</span> <span class="na">emailFC</span><span class="err">.</span><span class="na">valid</span> <span class="err">?</span> <span class="err">&#39;</span><span class="na">is-valid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;</span><span class="na">is-invalid</span><span class="err">&#39;</span> <span class="na">:</span> <span class="err">&#39;&#39;&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;staticEmail&quot;</span><span class="p">&gt;</span>Email<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;invalid-feedback&quot;</span><span class="p">&gt;</span>
+      Please provide a valid email address.
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;w-100 btn btn-success&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">register</span><span class="err">(</span><span class="na">content</span><span class="err">)&quot;</span><span class="p">&gt;</span>Update<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;w-100 btn btn-secondary&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">cancel</span><span class="err">()&quot;</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ng-template</span> <span class="err">#</span><span class="na">content</span> <span class="na">let-modal</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-header&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h6</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;modal-basic-title&quot;</span><span class="p">&gt;</span>Existing member updated!<span class="p">&lt;/</span><span class="nt">h6</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-close&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Close&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">modal</span><span class="err">.</span><span class="na">dismiss</span><span class="err">(&#39;</span><span class="na">Cross</span> <span class="na">click</span><span class="err">&#39;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-body&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>firstname<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ firstnameFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>lastname<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ lastnameFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>email<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>:<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ emailFC.value }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;modal-footer&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-outline-dark&quot;</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">modal</span><span class="err">.</span><span class="na">close</span><span class="err">(&#39;</span><span class="na">Save</span> <span class="na">click</span><span class="err">&#39;)&quot;</span><span class="p">&gt;</span>Close<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ng-template</span><span class="p">&gt;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
 
 
 
