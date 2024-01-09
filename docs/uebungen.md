@@ -1935,6 +1935,127 @@
         - In Übung 10 werden wir die so erzeugten Objekte an das Backend senden und in die Datenbank speichern. Außerdem befüllen wir dann die `TableComponent` mit Objekten aus der Datenbank.
 
 
+??? note "Eine mögliche Lösung für Übung 9"
+    === "form.component.ts"
+        ```js
+        import { Component } from '@angular/core';
+        import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+        import { MatButtonModule } from '@angular/material/button';
+        import { MatFormFieldModule } from '@angular/material/form-field';
+        import { MatInputModule } from '@angular/material/input';
+
+        @Component({
+          selector: 'app-form',
+          standalone: true,
+          imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+          templateUrl: './form.component.html',
+          styleUrl: './form.component.css'
+        })
+        export class FormComponent {
+            username = new FormControl('', [Validators.required]);
+            password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+            email = new FormControl('', [Validators.required, Validators.email]);
+            role = new FormControl('', [Validators.required]);
+
+            getErrorMessageUsername(){
+              if(this.username.hasError('required')) return 'Bitte ausfüllen';
+              else return '';
+            }
+
+            getErrorMessagePassword(){
+              if(this.password.hasError('required')) return 'Bitte ausfüllen';
+              else if(this.password.hasError('minlength')) return 'Mindestens 8 Zeichen';
+              else return '';
+            }
+
+            getErrorMessageEmail(){
+              if(this.email.hasError('required')) return 'Bitte ausfüllen';
+              else if(this.email.hasError('email')) return 'Keine gültige E-Mail-Adresse';
+              else return '';
+            }
+
+            getErrorMessageRole(){
+              if(this.role.hasError('required')) return 'Bitte ausfüllen';
+              else return '';
+            }
+
+            formInvalid() {
+              return this.username.invalid || this.password.invalid || this.email.invalid || this.role.invalid;
+            }
+
+            register() {
+              if(!this.formInvalid())
+              {
+                let user = {
+                  username: this.username.value,
+                  password: this.password.value,
+                  email: this.email.value,
+                  role: this.role.value
+                }
+
+                console.log('user', user)
+              }
+            }
+        }
+        ```
+    === "form.component.html"
+        ```html
+        <div class="form">
+          <mat-form-field class="wide-width">
+            <mat-label for="user-name">username</mat-label>
+            <input matInput id="user-name" type="text" [formControl]="username" />
+            @if (username.invalid) {
+            <mat-error>{{getErrorMessageUsername()}}</mat-error>
+            }
+          </mat-form-field>
+          <br />
+          <mat-form-field class="wide-width">
+            <mat-label for="pwd">password</mat-label>
+            <input matInput id="pwd" type="password" [formControl]="password" />
+            @if (password.invalid) {
+            <mat-error>{{getErrorMessagePassword()}}</mat-error>
+            }
+          </mat-form-field>
+          <br />
+          <mat-form-field class="wide-width">
+            <mat-label for="e-mail">email</mat-label>
+            <input matInput id="e-mail" type="email" [formControl]="email" />
+            @if (email.invalid) {
+            <mat-error>{{getErrorMessageEmail()}}</mat-error>
+            }
+          </mat-form-field>
+          <br />
+          <mat-form-field class="wide-width">
+            <mat-label for="role">role</mat-label>
+            <select matNativeControl id="role" [formControl]="role" placeholder="role">
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
+            @if (role.invalid) {
+            <mat-error>{{getErrorMessageRole()}}</mat-error>
+            }
+          </mat-form-field>
+          <br/>
+          <button mat-raised-button [disabled]="formInvalid()" (click)="register()">Registrieren</button>
+        </div>
+        ```
+    === "form.component.css"
+        ```css
+        .form {
+          width: 80%;
+          margin: auto;
+          margin-top: 5%;
+          background-color: white;
+          padding: 2%;
+        }
+
+        .form mat-form-field {
+          width: 100%;
+        }
+        ```
+
+
+
 #### Übung 10
     
 ??? question "Übungsaufgabe 10 (Frontend-Backend-Anbindung)"
