@@ -2054,7 +2054,9 @@
         }
         ```
 
-
+    
+??? hint "Video zur Übung 9"
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=8e0c562e79eac41fc776554393ed3b21&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=8e0c562e79eac41fc776554393ed3b21&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Uebung9" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 #### Übung 10
     
@@ -2135,6 +2137,9 @@
             - Lesen Sie in einer Tabelle in der `table.component.html` alle User aus dem `users`-Array aus.
             - Richten Sie in der Tabelle eine Spalte `Delete` ein, deren Einträge aus Buttons bestehen. Für das Klick-Ereignis soll eine `delete(id)`-Funktion aufgerufen werden, die den Eintrag aus der Datenbank löscht. Rufen Sie in der `delete(id)`-Funktion auch die `readAll()`-Funktion erneut auf, damit das `users`-Array aktualisiert wird. 
 
+    
+??? hint "Video zur Übung 10"
+    <iframe src="https://mediathek.htw-berlin.de/media/embed?key=1d38028aff695d6038383264af63f01f&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=1d38028aff695d6038383264af63f01f&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="WebTech_uebung10" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 
 
