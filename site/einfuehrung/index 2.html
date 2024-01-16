@@ -1,0 +1,988 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Lehrmaterial, Übungen, Aufgaben und Hilfen für WebTech">
+      
+      
+        <meta name="author" content="Jörn Freiheit">
+      
+      
+        <link rel="canonical" href="http://freiheit.f4.htw-berlin.de/webtech/einfuehrung/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../html/">
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+    
+    
+      
+        <title>Einführung - WebTech</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#webtechnologien-einfuhrung" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="WebTech" class="md-header__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WebTech
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Einführung
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WebTech" class="md-nav__button md-logo" aria-label="WebTech" data-md-component="logo">
+      
+  <img src="../img/fiw.jpg" alt="logo">
+
+    </a>
+    WebTech
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jfreiheit/webtech" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    webtech
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Einführung
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Einführung
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#internet" class="md-nav__link">
+    Internet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet-protocol" class="md-nav__link">
+    Internet Protocol
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet-dienste" class="md-nav__link">
+    Internet-Dienste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hypertext-transfer-protocol-http" class="md-nav__link">
+    Hypertext Transfer Protocol (HTTP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uniform-resource-identifier-uri" class="md-nav__link">
+    Uniform Resource Identifier (URI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-name-system-dns" class="md-nav__link">
+    Domain Name System (DNS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#world-wide-web-www" class="md-nav__link">
+    World Wide Web (WWW)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tim-berners-lee" class="md-nav__link">
+    Tim Berners Lee
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html/" class="md-nav__link">
+        HTML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../css/" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rwd/" class="md-nav__link">
+        RWD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript/" class="md-nav__link">
+        JavaScript
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular/" class="md-nav__link">
+        Angular
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angular2/" class="md-nav__link">
+        JSON und Direktiven
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        Routing und Services
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend/" class="md-nav__link">
+        Backend (MongoDB)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend_pg/" class="md-nav__link">
+        Backend (PostgreSQL)
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fe-be-anbindung/" class="md-nav__link">
+        Frontend-Backend-Anbindung
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guards/" class="md-nav__link">
+        RxJS und Guards
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uebungen/" class="md-nav__link">
+        Übungen
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        Werkzeuge
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#internet" class="md-nav__link">
+    Internet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet-protocol" class="md-nav__link">
+    Internet Protocol
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet-dienste" class="md-nav__link">
+    Internet-Dienste
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hypertext-transfer-protocol-http" class="md-nav__link">
+    Hypertext Transfer Protocol (HTTP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uniform-resource-identifier-uri" class="md-nav__link">
+    Uniform Resource Identifier (URI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-name-system-dns" class="md-nav__link">
+    Domain Name System (DNS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#world-wide-web-www" class="md-nav__link">
+    World Wide Web (WWW)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tim-berners-lee" class="md-nav__link">
+    Tim Berners Lee
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="webtechnologien-einfuhrung">Webtechnologien - Einführung<a class="headerlink" href="#webtechnologien-einfuhrung" title="Permanent link">&para;</a></h1>
+<p>Als ein wesentlicher Begründer des World Wide Webs gilt <a href="https://de.wikipedia.org/wiki/Tim_Berners-Lee">Tim Berners Lee</a>. Er begann 1989 mit einem Projekt, dessen Ergebnisse </p>
+<ul>
+<li>der erste Browser,</li>
+<li>der erste Webserver,</li>
+<li>HTTP und </li>
+<li>HTML</li>
+</ul>
+<p>waren. Hier werden die wesentlichen Begriffe erläutert, die bei den Webtechnologien eine Rolle spielen.  </p>
+<h3 id="internet">Internet<a class="headerlink" href="#internet" title="Permanent link">&para;</a></h3>
+<p>Das Internet ist ein <strong>Netzwerk von Rechnernetzen</strong> (<em>Interconnected Network - InterNet</em>). Es handelt sich also um miteinander verbundene Rechnernetze. </p>
+<p><img alt="internet" src="../files/201_internet.png" /></p>
+<p>Das Internet ist aus dem <em>ARPANET</em> (<em>Advanced Research Projects Agency Network</em>) entstanden, welches Ende der 1960er Jahre am MIT und im US-Verteidigungsministerium entwickelt wurde. Die folgende Abbildung zeigt das komplette ARPANET im Jahre 1973:</p>
+<p><img alt="internet" src="../files/202_arpanet.png" /></p>
+<p>Die erste Datenübertragung im ARPANET erfolgte 1969. Zwei wesentliche Konzepte wurden dafür (im Laufe der folgenden Jahre) entwickelt:</p>
+<ul>
+<li>die eindeutige Adressierbarkeit der einzelnen Rechner im ARPANET/Internet und</li>
+<li>das Transportprotokolle, das die Datenübertragung (in Datenpaketen) ermöglichte.</li>
+</ul>
+<p>Es entstand eine Internetprotokollfamilie: das <em>Internet Protocol</em> (<em>IP</em>).</p>
+<h3 id="internet-protocol">Internet Protocol<a class="headerlink" href="#internet-protocol" title="Permanent link">&para;</a></h3>
+<p>Das Internet Protocol ist im OSI-Schichtenmodell die erste Schicht, die unabhängig vom eigentlichen Übetragungsmedium ist. Ein wesentlicher Teil der Definition des Internet Protocols nehmen die <em>IP-Adressen</em> ein. Die IP-Adressen des Internet Protocols Version 4 (<em>v4</em>) bestehen aus 32 Bits und sind in 4 Blöcke unterteilt, die durch einen Punkt getrennt sind. In Dezimaldarstellung kann jeder dieser vier Blöcke die Werte von <code>0</code> bis <code>255</code> annehmen. Eine IP-Adresse der HTW sieht z.B. so aus:</p>
+<div class="highlight"><pre><span></span><code><span class="m">141</span>.45.66.214
+</code></pre></div>
+<p>Die ersten drei Zahlenblöcke bilden den <em>Netzanteil</em> und der letzte Zahlenblock gibt den <em>Hostanteil</em> an. Die Aufteilung dieser Anteile kann allerdings durch eine <em>Subnetzmaske</em> festgelegt bzw. geändert werden. Die genannte Aufteilung gilt für eine Subnetzmaske <code>255.244.255.0</code>. </p>
+<p>Die Kommunikation zwischen den Teilnetzen erfolgt über einen <em>Router</em>. Unter Verwendung von IPv4 lassen sich <code>2^32 = 256^4 = 4.294.967.296</code> Adressen unterscheiden. Da die Anzahl der Rechner, die mit dem Internet verbunden sind, in den vergangenen Jahren enorm gestiegen ist und weitere Geräte (siehe <em>Internet of Things</em>) hinzukommen werden, reicht dieser Adressraum nicht mehr aus und es wurde <em>IPv6</em> spezifiziert, in dem 128 Bit zur Adressierung verwendet werden und somit <code>2^128</code> Adressen zur Verfügung stehen. Das genügt erstmal (<em>Diese Anzahl reicht aus, um für jeden Quadratmillimeter der Erdoberfläche mindestens 665.570.793.348.866.944 (= 6,65 · 10^17) IP-Adressen bereitzustellen</em> <a href="https://de.wikipedia.org/wiki/IP-Adresse#cite_note-2">Wikipedia</a>).</p>
+<p>Die Übertragung der Datenpakete zwischen zwei <em>Hosts</em> (Rechner mit jeweiliger IP-Adresse) wird auf der Transportschicht durch das <em>Transmission Control Protocol</em> (<em>TCP</em>) geregelt. Dabei kommunizieren die beiden sich verbindenden Rechner im <em>Vollduplex</em>, d.h. beide Rechner können sowohl Daten empfangen als auch senden. Die herstellung der Verbindung zwischen den beiden Rechnern erfogt über einen <em>Handshake</em>. Die jeweiligen Datenpakete bestehen aus einem <em>Header</em> und den eigentlichen <em>Daten</em>. Ein Paket wird so oft gesendet, bis der Empfang bestätigt wurde. <em>TCP</em> wird als Transportprotokoll für viele <em>Internet-Dienste</em> verwendet, z.B. für WWW und für E-Mail. Dabei darf das Transportprotokoll (Transportschicht) nicht mit einem Protokoll der Anwendungsschicht (ist über der Transportschicht) verwechselt werden. Das HTTP (Anwendungsschicht) nutzt TCP genauso wie SMTP. </p>
+<h3 id="internet-dienste">Internet-Dienste<a class="headerlink" href="#internet-dienste" title="Permanent link">&para;</a></h3>
+<p>Das Internet (der Verbund aus Rechnernetzen) stellt zusammen mit dem Internet Protocol eine Infrastruktur für verschiedene <em>Dienste</em> zur Verfügung. Dienste stellen Möglichkeiten dar, das Internet zu nutzen. Zu solchen Diensten gehören z.B. (in Klammern die verwendteen Protokolle):</p>
+<ul>
+<li>E-Mail (<a href="https://de.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>, <a href="https://de.wikipedia.org/wiki/Post_Office_Protocol">POP3</a>, <a href="https://de.wikipedia.org/wiki/Internet_Message_Access_Protocol">IMAP</a>), </li>
+<li>File Transfer (<a href="https://de.wikipedia.org/wiki/File_Transfer_Protocol">FTP</a>), </li>
+<li>World Wide Web (<a href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a>, <a href="https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol_Secure">HTTPS</a>),</li>
+<li>Secure Shell (<a href="https://de.wikipedia.org/wiki/Secure_Shell">SSH</a>),</li>
+<li>Namensauflösung (<a href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS</a>),</li>
+<li>Internet-Telefonie (VoIP), Video-Chat, Video on Demand usw. </li>
+</ul>
+<p>Das WWW ist also ein <strong>Dienst</strong> für die Infrastruktur Internet! Die beiden Begriffe werden häufig fälschlicherweise synonym verwendet.</p>
+<h3 id="hypertext-transfer-protocol-http">Hypertext Transfer Protocol (HTTP)<a class="headerlink" href="#hypertext-transfer-protocol-http" title="Permanent link">&para;</a></h3>
+<p>Das <em>Hypertext Transfer Protocol</em> ist ein Protokoll der Anwendungsschicht, aufbauend auf das TCP der Transportschicht. Es wird verwendet, um Daten von einem Rechner (dem <em>Webserver</em>) auf einen anderen Rechner (dem <em>Client</em> mit einem <em>Webbrowser</em>) zu übetragen (und vice versa). Es wurde von Tim Berners Lee entwickelt und nun vom <em>World Wide Web Consortium (<a href="https://www.w3.org/">W3C</a>)</em> standardisiert. Es unterscheidet nur wenige Anfragemethoden (folgende Liste nicht ganz vollständig):</p>
+<ul>
+<li><code>GET</code>: fragt eine Ressource (Daten/Datei) von einem Webserver an,</li>
+<li><code>POST</code>: schickt Daten vom Client an den Webserver, </li>
+<li><code>PUT</code>: schickt ebenfalls Daten an den Webserver, typischerweise, um Ressourcen zu aktualisieren, </li>
+<li><code>DELETE</code>: schickt Daten an den Server, um sie dort zu löschen. </li>
+</ul>
+<p>Die wichtigste Anfragemethode ist <code>GET</code>, denn sie wird in den allermeisten Fällen verwendet, um eine Webseite von einem Webserver anzufragen. Wenn wir in die Konsole bspw. </p>
+<div class="highlight"><pre><span></span><code>curl https://www.htw-berlin.de/
+</code></pre></div>
+<p>eingeben, dann erhalten wir vom Webserver der HTW die Webseite der HTW. Für <code>curl</code> siehe <a href="../tools/#curl">hier</a>. Typischerweise werden die Anfragen an den Webserver aber von einem Browser aus durchgeführt. Das heißt, die Anfrage <code>GET https://www.htw-berlin.de/</code> wird von einem Browser durchgeführt, wenn wir in das URL-Eingabefeld <code>https://www.htw-berlin.de/</code> eingeben. Das prinzipielle Szenario ist also wie folgt:</p>
+<p><img alt="http" src="../files/203_http.png" /> </p>
+<p>Der <em>request</em> beginnt mit einer der obigen Anfragemethoden und der angefragten Ressource (also z.B. <code>GET https://www.htw-berlin.de/index.html</code>). Die <em>response</em> besteht dann genau aus der angefragten Ressource (<code>index.html</code>), wenn sie existiert. Die Ressource muss nicht zwingend eine <code>html</code>-Seite sein, es kann sich auch um eine <code>xml</code>, <code>json</code> oder irgendein anderes Dateiformat handeln. </p>
+<p>Ein konkreter <em>request</em> und eine konkrete <em>response</em> ist im folgenden Bild zu sehen:</p>
+<p><img alt="http" src="../files/204_http.png" /> </p>
+<p>In der <em>response</em> wird ein sogenannter <em>HTTP-Statuscode</em> mitgesendet. Die folgende Tabelle gibt einen kurzen Überblick über diese Codes (siehe auch <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">hier</a>):</p>
+<table>
+    <thead>
+        <tr>
+            <th>Methode</th>
+            <th>Beschreibung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>1xx</code></td>
+            <td>Verarbeitung des Requests dauert noch an. (Seltene) Rückmeldung, um Abbruch durch Zeitüberschreitung zu verhindern.
+            </td>
+        </tr>
+        <tr>
+            <td><code>2xx</code></td>
+            <td>Erfolgreiche Bearbeitung der Anfrage und Rückmeldung. <br/>
+                <code>200 OK</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>3xx</code></td>
+            <td>Angeforderte Ressource wurde verschoben (Umleitung). <br/>
+                <code>301 Moved Permanently</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>4xx</code></td>
+            <td>Client-Fehler. Z.B. Request auf ein Dokument, das nicht existiert. <br/>
+                <code>404 Not Found</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>5xx</code></td>
+            <td>Server-Fehler. Z.B. Server kann Anfrage nicht bearbeiten. <br/>
+                <code>500 Internal Server Error</code>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Ganz wichtig ist, dass das HTTProtokoll <strong>zustandslos</strong> ist. Das bedeutet, dass keine Informationen aus früheren Anfragen gespeichert oder anderweitig verwaltet werden. Das bedeutet aber auch, dass bspw. ein befüllter Warenkorb durch HTTP gar nicht unterstützt würde (fühere "Käufe" können durch das Protokoll nicht berücksichtigt werden). Um dieses Zustandslosigkeit zu umgehen, werden z.B. <em>Cookies</em> oder <em>Session-IDs</em> verwendet, um eine Historie der Anfragen beim Webserver erstellen und den Nutzern zuordnen zu können. </p>
+<p><em>HTTPS</em> funktioniert wie HTTP, nur dass die Verbindung zwischen Browser und Webserver mittels <em>Transport Layer Security</em> (<a href="https://de.wikipedia.org/wiki/Transport_Layer_Security">TLS</a>) verschlüsselt wird. </p>
+<p>Ein Programm, welches das HTTProtokoll implementiert hat, ist <a href="../tools/#curl">Curl</a>. Wenn Sie Curl installiert haben und im Terminal bspw. </p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-v<span class="w"> </span>http://freiheit.f4.htw-berlin.de/WT/index.html
+</code></pre></div>
+<p>eingeben (<code>-v</code> steht für den <code>verbose</code>-Modus), dann erhalten Sie</p>
+<div class="highlight"><pre><span></span><code>*<span class="w">   </span>Trying<span class="w"> </span><span class="m">141</span>.45.146.146...
+*<span class="w"> </span>TCP_NODELAY<span class="w"> </span><span class="nb">set</span>
+*<span class="w"> </span>Connected<span class="w"> </span>to<span class="w"> </span>freiheit.f4.htw-berlin.de<span class="w"> </span><span class="o">(</span><span class="m">141</span>.45.146.146<span class="o">)</span><span class="w"> </span>port<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">(</span><span class="c1">#0)</span>
+&gt;<span class="w"> </span>GET<span class="w"> </span>/WT/index.html<span class="w"> </span>HTTP/1.1
+&gt;<span class="w"> </span>Host:<span class="w"> </span>freiheit.f4.htw-berlin.de
+&gt;<span class="w"> </span>User-Agent:<span class="w"> </span>curl/7.64.1
+&gt;<span class="w"> </span>Accept:<span class="w"> </span>*/*
+&gt;<span class="w"> </span>
+&lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">301</span><span class="w"> </span>Moved<span class="w"> </span>Permanently
+&lt;<span class="w"> </span>Date:<span class="w"> </span>Fri,<span class="w"> </span><span class="m">08</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">2021</span><span class="w"> </span><span class="m">06</span>:35:13<span class="w"> </span>GMT
+&lt;<span class="w"> </span>Server:<span class="w"> </span>Apache/2.4.38<span class="w"> </span><span class="o">(</span>Debian<span class="o">)</span>
+&lt;<span class="w"> </span>Location:<span class="w"> </span>https://freiheit.f4.htw-berlin.de/WT/index.html
+&lt;<span class="w"> </span>Content-Length:<span class="w"> </span><span class="m">346</span>
+&lt;<span class="w"> </span>Content-Type:<span class="w"> </span>text/html<span class="p">;</span><span class="w"> </span><span class="nv">charset</span><span class="o">=</span>iso-8859-1
+&lt;<span class="w"> </span>
+&lt;!DOCTYPE<span class="w"> </span>HTML<span class="w"> </span>PUBLIC<span class="w"> </span><span class="s2">&quot;-//IETF//DTD HTML 2.0//EN&quot;</span>&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;301<span class="w"> </span>Moved<span class="w"> </span>Permanently&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Moved<span class="w"> </span>Permanently&lt;/h1&gt;
+&lt;p&gt;The<span class="w"> </span>document<span class="w"> </span>has<span class="w"> </span>moved<span class="w"> </span>&lt;a<span class="w"> </span><span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://freiheit.f4.htw-berlin.de/WT/index.html&quot;</span>&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.38<span class="w"> </span><span class="o">(</span>Debian<span class="o">)</span><span class="w"> </span>Server<span class="w"> </span>at<span class="w"> </span>freiheit.f4.htw-berlin.de<span class="w"> </span>Port<span class="w"> </span><span class="m">80</span>&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+*<span class="w"> </span>Connection<span class="w"> </span><span class="c1">#0 to host freiheit.f4.htw-berlin.de left intact</span>
+*<span class="w"> </span>Closing<span class="w"> </span>connection<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<p>Sie erhalten also die Meldung vom Webserver, dass die Seite <code>index.html</code> nicht mehr unter dieser Adresse verfügbar ist, sondern wegbewegt wurde (<code>Moved permanently</code>). Der Statuscode der Antwort ist <code>301</code>. Das ist anders, wenn die Anfrage an die Ressource <code>https://freiheit.f4.htw-berlin.de/WT/index.html</code> gestellt wird, also per <code>Transport Layer Security (TLS)</code> verschlüsselt wird:</p>
+<p><div class="highlight"><pre><span></span><code>*<span class="w">   </span>Trying<span class="w"> </span><span class="m">141</span>.45.146.146...
+*<span class="w"> </span>TCP_NODELAY<span class="w"> </span><span class="nb">set</span>
+*<span class="w"> </span>Connected<span class="w"> </span>to<span class="w"> </span>freiheit.f4.htw-berlin.de<span class="w"> </span><span class="o">(</span><span class="m">141</span>.45.146.146<span class="o">)</span><span class="w"> </span>port<span class="w"> </span><span class="m">443</span><span class="w"> </span><span class="o">(</span><span class="c1">#0)</span>
+*<span class="w"> </span>ALPN,<span class="w"> </span>offering<span class="w"> </span>h2
+*<span class="w"> </span>ALPN,<span class="w"> </span>offering<span class="w"> </span>http/1.1
+*<span class="w"> </span>successfully<span class="w"> </span><span class="nb">set</span><span class="w"> </span>certificate<span class="w"> </span>verify<span class="w"> </span>locations:
+*<span class="w">   </span>CAfile:<span class="w"> </span>/etc/ssl/cert.pem
+<span class="w">  </span>CApath:<span class="w"> </span>none
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>OUT<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Client<span class="w"> </span>hello<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Server<span class="w"> </span>hello<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Certificate<span class="w"> </span><span class="o">(</span><span class="m">11</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Server<span class="w"> </span>key<span class="w"> </span>exchange<span class="w"> </span><span class="o">(</span><span class="m">12</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Server<span class="w"> </span>finished<span class="w"> </span><span class="o">(</span><span class="m">14</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>OUT<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Client<span class="w"> </span>key<span class="w"> </span>exchange<span class="w"> </span><span class="o">(</span><span class="m">16</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>OUT<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>change<span class="w"> </span>cipher,<span class="w"> </span>Change<span class="w"> </span>cipher<span class="w"> </span>spec<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>OUT<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Finished<span class="w"> </span><span class="o">(</span><span class="m">20</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>change<span class="w"> </span>cipher,<span class="w"> </span>Change<span class="w"> </span>cipher<span class="w"> </span>spec<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
+*<span class="w"> </span>TLSv1.2<span class="w"> </span><span class="o">(</span>IN<span class="o">)</span>,<span class="w"> </span>TLS<span class="w"> </span>handshake,<span class="w"> </span>Finished<span class="w"> </span><span class="o">(</span><span class="m">20</span><span class="o">)</span>:
+*<span class="w"> </span>SSL<span class="w"> </span>connection<span class="w"> </span>using<span class="w"> </span>TLSv1.2<span class="w"> </span>/<span class="w"> </span>ECDHE-RSA-AES256-GCM-SHA384
+*<span class="w"> </span>ALPN,<span class="w"> </span>server<span class="w"> </span>accepted<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>http/1.1
+*<span class="w"> </span>Server<span class="w"> </span>certificate:
+*<span class="w">  </span>subject:<span class="w"> </span><span class="nv">CN</span><span class="o">=</span>freiheit.f4.htw-berlin.de
+*<span class="w">  </span>start<span class="w"> </span>date:<span class="w"> </span>Aug<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">20</span>:15:57<span class="w"> </span><span class="m">2021</span><span class="w"> </span>GMT
+*<span class="w">  </span>expire<span class="w"> </span>date:<span class="w"> </span>Nov<span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">20</span>:15:55<span class="w"> </span><span class="m">2021</span><span class="w"> </span>GMT
+*<span class="w">  </span>subjectAltName:<span class="w"> </span>host<span class="w"> </span><span class="s2">&quot;freiheit.f4.htw-berlin.de&quot;</span><span class="w"> </span>matched<span class="w"> </span>cert<span class="s1">&#39;s &quot;freiheit.f4.htw-berlin.de&quot;</span>
+<span class="s1">*  issuer: C=US; O=Let&#39;</span>s<span class="w"> </span>Encrypt<span class="p">;</span><span class="w"> </span><span class="nv">CN</span><span class="o">=</span>R3
+*<span class="w">  </span>SSL<span class="w"> </span>certificate<span class="w"> </span>verify<span class="w"> </span>ok.
+&gt;<span class="w"> </span>GET<span class="w"> </span>/WT/index.html<span class="w"> </span>HTTP/1.1
+&gt;<span class="w"> </span>Host:<span class="w"> </span>freiheit.f4.htw-berlin.de
+&gt;<span class="w"> </span>User-Agent:<span class="w"> </span>curl/7.64.1
+&gt;<span class="w"> </span>Accept:<span class="w"> </span>*/*
+&gt;<span class="w"> </span>
+&lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
+&lt;<span class="w"> </span>Date:<span class="w"> </span>Fri,<span class="w"> </span><span class="m">08</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">2021</span><span class="w"> </span><span class="m">06</span>:49:55<span class="w"> </span>GMT
+&lt;<span class="w"> </span>Server:<span class="w"> </span>Apache/2.4.38<span class="w"> </span><span class="o">(</span>Debian<span class="o">)</span>
+&lt;<span class="w"> </span>Last-Modified:<span class="w"> </span>Wed,<span class="w"> </span><span class="m">17</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">2018</span><span class="w"> </span><span class="m">13</span>:09:16<span class="w"> </span>GMT
+&lt;<span class="w"> </span>ETag:<span class="w"> </span><span class="s2">&quot;f3-5786c60a5f2e6&quot;</span>
+&lt;<span class="w"> </span>Accept-Ranges:<span class="w"> </span>bytes
+&lt;<span class="w"> </span>Content-Length:<span class="w"> </span><span class="m">243</span>
+&lt;<span class="w"> </span>Vary:<span class="w"> </span>Accept-Encoding
+&lt;<span class="w"> </span>Content-Type:<span class="w"> </span>text/html
+&lt;<span class="w"> </span>
+&lt;!DOCTYPE<span class="w"> </span>html&gt;
+&lt;html<span class="w"> </span><span class="nv">lang</span><span class="o">=</span><span class="s2">&quot;de&quot;</span>&gt;
+<span class="w">  </span>&lt;head&gt;
+<span class="w">    </span>&lt;meta<span class="w"> </span><span class="nv">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="w"> </span>/&gt;
+<span class="w">    </span>&lt;meta<span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;viewport&quot;</span><span class="w"> </span><span class="nv">content</span><span class="o">=</span><span class="s2">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="w"> </span>/&gt;
+<span class="w">    </span>&lt;title&gt;Webtech&lt;/title&gt;
+<span class="w">  </span>&lt;/head&gt;
+<span class="w">  </span>&lt;body&gt;
+<span class="w">    </span>&lt;p&gt;Hallo<span class="w"> </span>FIW!&lt;/p&gt;
+<span class="w">  </span>&lt;/body&gt;
+&lt;/html&gt;
+*<span class="w"> </span>Connection<span class="w"> </span><span class="c1">#0 to host freiheit.f4.htw-berlin.de left intact</span>
+*<span class="w"> </span>Closing<span class="w"> </span>connection<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+Sie sehen darin, dass der Webserver <code>freiheit.f4.htw-berlin.de</code> unter der IP <code>141.45.146.146</code> läuft, das die Verbindung über <code>TLSv1.2</code> hergestellt wird (Port <code>443</code>) und dass für die <code>GET</code>-Anfrage das HTTProtokoll in der Version <code>1.1</code> verwendet wird. Als <em>response</em> wird die HTML-Seite <code>index.html</code> zurückgesendet. Der Status-Code der Antwort ist nun <code>200 OK</code>. Für Curl siehe auch <a href="https://everything.curl.dev/usingcurl">hier</a>. </p>
+<h3 id="uniform-resource-identifier-uri">Uniform Resource Identifier (URI)<a class="headerlink" href="#uniform-resource-identifier-uri" title="Permanent link">&para;</a></h3>
+<p><em>Uniform Resource Identifiers</em> sind Zeichenfolgen, die Ressourcen eindeutig beschreiben und deren Zugriff darauf. Die bekannteste Unterart von <em>URI</em> sind <em>Uniform Resource Locator (URL)</em>. Häufig werden <em>URL</em> und <em>URI</em> synonym verwendet, was nicht ganz korrekt ist. </p>
+<p>Generell beschreiben <em>URI</em>:</p>
+<ul>
+<li><strong>Wie</strong> kann ich auf die Ressource zugreifen (Zugriffsmethode)?</li>
+<li>Um <strong>welche</strong> Ressource handelt es sich (<em>URI</em>) bzw. <strong>wo</strong> befindet sich die Ressource im Netzwerk (<em>URL</em>)?</li>
+</ul>
+<p>Der generelle Aufbau einer <em>URI</em> ist wie folgt:</p>
+<div class="highlight"><pre><span></span><code>scheme://authority/path?query#fragment
+</code></pre></div>
+<ul>
+<li><code>scheme</code> kann z.B. <code>ftp</code>, <code>mailto</code>, <code>news</code>, <code>file</code> oder <code>http</code> sein. </li>
+<li><code>authority</code> beschreibt meistens einen <em>Host</em>, z.B. <code>freiheit.f4.htw-berlin.de</code> oder <code>freiheit.f4.htw-berlin.de:443</code> oder <code>141.45.146.146</code>.</li>
+<li><code>path</code> beschreibt den Pfad hin zur Ressource und die Ressource selbst, z.B. <code>WT/index.html</code>.</li>
+<li><code>query</code> ist ein (oder mehrere) Schlüssel-Werte-Paare der Form <code>key=value</code>. Das erste Schlüssel-Werte-Paar steht nach einem <code>?</code>, jedes weitere Schlüssel-Werte-Paar steht nach einem <code>&amp;</code>, z.B. <code>?search=webtech&amp;id=1234</code>.</li>
+<li><code>fragment</code> steht für eine bestimmte Stelle innerhalb der Ressource (z.B. ein <em>Anker</em> im HTML-Dokument)</li>
+</ul>
+<p>Ganz <strong>wichtig</strong> ist, dass <em>URI</em> (<em>URL</em>) keine Leerzeichen enthalten dürfen (auch keine Umlaute! und manche Sonderzeichen, wie z.B. <code>?</code> und <code>&amp;</code> eine Bedeutung haben). Daraus ergibt sich, dass solche Zeichen <em>maskiert</em> werden. Z.B. wird ein Leerzeichen als <code>%20</code> maskiert. </p>
+<h3 id="domain-name-system-dns">Domain Name System (DNS)<a class="headerlink" href="#domain-name-system-dns" title="Permanent link">&para;</a></h3>
+<p>Das <em>Domain Name System (DNS)</em> ist für die Auflösung von Namen nach IP-Adressen zuständig. Wenn wir bspw. in den Browser <code>https://freiheit.f4.htw-berlin.de</code> eingeben, dann wird eine <code>GET</code>-Anfrage an den Webserver mit dem Namen <code>freiheit.f4.htw-berlin.de</code> gestellt. Da die Kommunikation unter den Rechnern im Internet jedoch über IP-Adressen erfolgt und nicht über Namen, muss dieser Namen "aufgelöst" werden. Das übernimmt das DNS. Es ermittelt für diesen Webserver die IP <code>141.45.146.146</code>. Das DNS funktioniert also wie eine Telefonauskunft, für einen konkreten Namen wird eine eindeutige IP ermittelt. </p>
+<p>Das DNS besteht aus sehr vielen Servern, die jeweils unabhängig voneinander (dezentral) arbeiten und die eine hierarchische Struktur des Namensraumes abbilden. Für den Fall <code>freiheit.f4.htw-berlin.de</code> bedeutet das, dass zuerst die Server (<em>Root-Server</em>) angesprochen werden, die die Top-level-Domain <code>de</code> verwalten. Von diesen Servern wird man an die Server weitergelietet, die den Namensraum <code>htw-berlin</code> verwalten und so weiter bis die IP-Adresse vollständig ermittelt und aufgelöst werden kann. </p>
+<p>Verfolgen lässt sich diese Auflösung bspw. mithilfe des <code>dig</code>-Kommandos:</p>
+<div class="highlight"><pre><span></span><code>dig<span class="w"> </span>+trace<span class="w"> </span>+additional<span class="w"> </span>-t<span class="w"> </span>A<span class="w"> </span>freiheit.f4.htw-berlin.de
+</code></pre></div>
+<p>Dieses Kommande erzeugt z.B. folgende Ausgabe (gekürzt):</p>
+<div class="highlight"><pre><span></span><code><span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.10.6<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>+trace<span class="w"> </span>+additional<span class="w"> </span>-t<span class="w"> </span>A<span class="w"> </span>freiheit.f4.htw-berlin.de
+<span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>d.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>f.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>c.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>k.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>i.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>g.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>h.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>j.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>b.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>a.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>e.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>l.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>m.root-servers.net.
+.<span class="w">           </span><span class="m">79476</span><span class="w">   </span>IN<span class="w">  </span>RRSIG<span class="w">   </span>NS<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">518400</span><span class="w"> </span><span class="m">20211021050000</span><span class="w"> </span><span class="m">20211008040000</span><span class="w"> </span><span class="m">14748</span><span class="w"> </span>.<span class="w"> </span>
+<span class="p">;;</span><span class="w"> </span>Received<span class="w"> </span><span class="m">525</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.178.1#53<span class="o">(</span><span class="m">192</span>.168.178.1<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">11</span><span class="w"> </span>ms
+
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>s.de.net.
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>n.de.net.
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>a.nic.de.
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>f.nic.de.
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>l.de.net.
+de.<span class="w">         </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>NS<span class="w">  </span>z.nic.de.
+de.<span class="w">         </span><span class="m">86400</span><span class="w">   </span>IN<span class="w">  </span>DS<span class="w">  </span><span class="m">26755</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>F341357809A5954311CCB82ADE114C6C1D724A75C0395137AA397803<span class="w"> </span>5425E78D
+de.<span class="w">         </span><span class="m">86400</span><span class="w">   </span>IN<span class="w">  </span>RRSIG<span class="w">   </span>DS<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">86400</span><span class="w"> </span><span class="m">20211021050000</span><span class="w"> </span><span class="m">20211008040000</span><span class="w"> </span><span class="m">14748</span><span class="w"> </span>.<span class="w"> </span>
+s.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">195</span>.243.137.26
+s.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span><span class="m">2003</span>:8:14::53
+n.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">194</span>.146.107.6
+n.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span><span class="m">2001</span>:67c:1011:1::53
+a.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">194</span>.0.0.53
+a.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span><span class="m">2001</span>:678:2::53
+f.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">81</span>.91.164.5
+f.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span>2a02:568:0:2::53
+l.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">77</span>.67.63.105
+l.de.net.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span><span class="m">2001</span>:668:1f:11::105
+z.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">194</span>.246.96.1
+z.nic.de.<span class="w">       </span><span class="m">172800</span><span class="w">  </span>IN<span class="w">  </span>AAAA<span class="w">    </span>2a02:568:fe02::de
+<span class="p">;;</span><span class="w"> </span>Received<span class="w"> </span><span class="m">759</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">198</span>.41.0.4#53<span class="o">(</span>a.root-servers.net<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">25</span><span class="w"> </span>ms
+
+htw-berlin.de.<span class="w">      </span><span class="m">86400</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>dns-2.dfn.de.
+htw-berlin.de.<span class="w">      </span><span class="m">86400</span><span class="w">   </span>IN<span class="w">  </span>NS<span class="w">  </span>infobloxv.htw-berlin.de.
+tjlb7qbojvmlf1s6gdriru7vsms1lg16.de.<span class="w"> </span><span class="m">7200</span><span class="w"> </span>IN<span class="w"> </span>NSEC3<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">15</span><span class="w"> </span>CA12B74ADB90591A<span class="w"> </span>TJLFG48H
+vkljn0takntiv7s3te6vlcveecv4kj34.de.<span class="w"> </span><span class="m">7200</span><span class="w"> </span>IN<span class="w"> </span>NSEC3<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">15</span><span class="w"> </span>CA12B74ADB90591A<span class="w"> </span>VKLN0C6F
+tjlb7qbojvmlf1s6gdriru7vsms1lg16.de.<span class="w"> </span><span class="m">7200</span><span class="w"> </span>IN<span class="w"> </span>RRSIG<span class="w"> </span>NSEC3<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">7200</span><span class="w"> </span><span class="m">20211017040550</span><span class="w"> </span><span class="m">20211003023550</span><span class="w"> </span><span class="m">54729</span><span class="w"> </span>de.<span class="w"> </span>
+vkljn0takntiv7s3te6vlcveecv4kj34.de.<span class="w"> </span><span class="m">7200</span><span class="w"> </span>IN<span class="w"> </span>RRSIG<span class="w"> </span>NSEC3<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">7200</span><span class="w"> </span><span class="m">20211018032318</span><span class="w"> </span><span class="m">20211004015318</span><span class="w"> </span><span class="m">54729</span><span class="w"> </span>de.<span class="w"> </span>
+infobloxv.htw-berlin.de.<span class="w"> </span><span class="m">86400</span><span class="w">  </span>IN<span class="w">  </span>A<span class="w">   </span><span class="m">141</span>.45.65.100
+<span class="p">;;</span><span class="w"> </span>Received<span class="w"> </span><span class="m">628</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">2003</span>:8:14::53#53<span class="o">(</span>s.de.net<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">17</span><span class="w"> </span>ms
+
+freiheit.f4.htw-berlin.de.<span class="w"> </span><span class="m">28800</span><span class="w"> </span>IN<span class="w"> </span>A<span class="w">   </span><span class="m">141</span>.45.146.146
+<span class="p">;;</span><span class="w"> </span>Received<span class="w"> </span><span class="m">70</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">141</span>.45.65.100#53<span class="o">(</span>infobloxv.htw-berlin.de<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">35</span><span class="w"> </span>ms
+</code></pre></div>
+<p>Zuerst erfolgt die Abfrage über die Root-Server und einige Weiterleitungsserver bis der Name vom DNS-Server der HTW <code>infobloxv.htw-berlin.de</code> (IP-Adresse <code>141.45.65.100</code>) schlussendlich aufgelöst wird. Man sieht auch, dass die Anfragen an die DNS-Server über den Port <code>53</code> gesendet werden. </p>
+<p><img alt="dns" src="../files/207_dns.png" /></p>
+<h3 id="world-wide-web-www">World Wide Web (WWW)<a class="headerlink" href="#world-wide-web-www" title="Permanent link">&para;</a></h3>
+<p>Die Grundidee von Webservern ist es, HTML-Dokumente zum Lesen zur Verfügung zu stellen. HTML steht für <em>Hypertext Markup Language</em>. Dabei steht <em>Hypertext</em> für die Idee, in den Textdokumenten <em>Hyperlinks</em> auf andere Textdokumente (die auf dem gleichen oder anderen Webservern liegen) zu definieren. Ein Klick auf diese Hyperlinks liest die Dokumente vom Webserver und öffnet sie im Browser. Stellt man alle diese Dokumente als Knoten dar und fasst man die Hyperlinks als eine Verbindung zwischen diesen Dokumenten (Knoten) auf, so entsteht das Bild eines Netzes (<em>Web</em>). Da es Webserver auf der ganzen Welt umspannt, wird vom <em>World Wide Web</em> gesprochen. </p>
+<p><img alt="www" src="../files/206_web.png" /></p>
+<p>Das WWW ist also ein über das Internet aufrufbares Hypertext-System aus lauter Webseiten. Heute spricht man eher von Hypermedien als von Hypertexten. Es ist eines von vielen Diensten des Internets. </p>
+<h3 id="tim-berners-lee">Tim Berners Lee<a class="headerlink" href="#tim-berners-lee" title="Permanent link">&para;</a></h3>
+<p>Es ist beeindruckend, wie viele der Webtechnologien erstmalig von Tim Berners Lee umgesetzt wurden. Er entwickelte</p>
+<ul>
+<li>HTML</li>
+<li>HTTP</li>
+<li>URL</li>
+<li>den ersten Webbrowser (<em>WorldWideWeb</em>) und</li>
+<li>den ersten Webserver (<em>CERN httpd</em>)</li>
+</ul>
+<p><img alt="lee" src="../files/205_lee.png" /></p>
+<p>Keine dieser Entwicklungen wurden patentiert und konnten somit kostenfrei von allen genutzt werden, was der schnellen Verbreitung dieser Technologien diente. 1994 gründete er das World Wide Web Consortium (W3C), welches sich um die Standadisierung dieser und weiterer Webtechnologien kümmert, siehe <a href="https://www.w3.org/">w3.org</a>. </p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Jörn Freiheit
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>

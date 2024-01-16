@@ -26,7 +26,7 @@ Nachfolgend der vorläufige Wochenplan (wird eventuell angepasst).
 | 13. | 15.-19.01.2024 | Wiederholung  | - | Backend (d + fertig)| 24.01.2023 |
 | 14. | 22.-26.01.2024 | Wiederholung | - | fertig stellen | 31.01.2023 |
 | 15. | 29.-02.02.2024 | - | Fragen | - | - |
-| 16. | 05.-09.02.2024 | - | Fragen | Abgabe 1.PZ 13.2.2024, Gespräche 14.2.2024  |
+| 16. | 05.-09.02.2024 | - | Fragen | Abgabe 1.PZ 8.2.2024, Gespräche 9.2.2024  |
 |  |  |  |  |Abgabe 2.PZ 26.3.2024, Gespräche 27.3.2024 | - |
 
 ### Organisatorisches 
