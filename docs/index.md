@@ -600,6 +600,13 @@ Für die Kommunikation untereinander verwenden wir [**Slack**](https://slack.com
 	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=361e14872bb0d3da49435d2bcb6d77d1&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=361e14872bb0d3da49435d2bcb6d77d1&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="Webtech_Formulare" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
 
 
+??? question "Code Vorlesung 9.1. und 16.1.2024"
+	siehe [GitHub-Repo Frontend](https://github.com/jfreiheit/frontend_bs_23) und [Backend](https://github.com/jfreiheit/backend_23)
+
+??? hint "Video aus Vorlesung 16.1.2024"
+	<iframe src="https://mediathek.htw-berlin.de/media/embed?key=0253a00e5afe7b184ab31ca3a2881664&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true&thumb=true" data-src="https://mediathek.htw-berlin.de/media/embed?key=0253a00e5afe7b184ab31ca3a2881664&width=720&height=405&autoplay=false&controls=true&autolightsoff=false&loop=false&chapters=false&playlist=false&related=false&responsive=false&t=0&loadonclick=true" class="" width="720" height="405" title="WebTech_Vorl0116" frameborder="0" allowfullscreen="allowfullscreen" allowtransparency="true" scrolling="no" aria-label="media embed code" style=""></iframe>
+
+
 	
 ## Semesteraufgabe
 
